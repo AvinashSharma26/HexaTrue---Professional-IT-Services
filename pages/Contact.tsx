@@ -1,4 +1,5 @@
 
+
 import React, { useState } from 'react';
 // Fix: Added SERVICES_DATA to the import from constants
 import { SERVICES_DATA } from '../constants';
@@ -16,6 +17,38 @@ const Contact: React.FC = () => {
   });
 
   const [errors, setErrors] = useState<Record<string, string>>({});
+  const [openFaqIndex, setOpenFaqIndex] = useState<number | null>(null); // State for accordion
+
+  const faqs = [
+    {
+      question: "What types of services does HexaTrue offer?",
+      answer: "HexaTrue offers a comprehensive range of IT services including custom Software Development, Web Development, Mobile App Development, Cloud Solutions, Security Engineering, Quality Assurance & Testing, Digital Marketing, and DevOps & Automation. We tailor our solutions to meet specific enterprise needs."
+    },
+    {
+      question: "What is HexaTrue's typical project process?",
+      answer: "Our process begins with Discovery & Scoping, followed by Strategic Planning and Cost Estimation. Then, we move into Agile Development in sprints, rigorous Quality Engineering (QA & Testing), Seamless Launch, and finally, ongoing Growth & Scaling with maintenance and support."
+    },
+    {
+      question: "How does HexaTrue approach project pricing?",
+      answer: "Our pricing models are flexible and tailored to the project's scope, complexity, and duration. We offer various engagement models including fixed-price, time & material, and dedicated team arrangements. A detailed cost estimation is provided after the initial discovery phase."
+    },
+    {
+      question: "What are your typical project timelines?",
+      answer: "Project timelines vary significantly based on the project's complexity and scope. A small-scale web application might take a few weeks, while a large-scale enterprise software solution or cloud migration could span several months. We provide clear timeline estimates during the strategic planning phase."
+    },
+    {
+      question: "How do you ensure the security of client data and projects?",
+      answer: "Security is paramount at HexaTrue. We implement industry-standard security protocols, including ISO 27001 certified practices, end-to-end encryption, regular vulnerability assessments, and strict access controls. Our DevSecOps approach embeds security into every stage of the development lifecycle."
+    },
+    {
+      question: "What kind of post-launch support does HexaTrue provide?",
+      answer: "We offer comprehensive post-launch support, including 24/7 technical monitoring, continuous maintenance, bug fixing, performance optimization, and ongoing feature enhancements. Our goal is to ensure your solution performs optimally and evolves with your business needs."
+    },
+    {
+      question: "How does HexaTrue handle communication and collaboration during a project?",
+      answer: "We prioritize transparent and frequent communication. We use agile methodologies with regular stand-ups, sprint reviews, and dedicated project managers. Clients have direct access to their project teams and can track progress through collaborative tools, ensuring full visibility and alignment."
+    }
+  ];
 
   const validate = () => {
     const newErrors: Record<string, string> = {};
@@ -235,6 +268,52 @@ const Contact: React.FC = () => {
                 </p>
               </div>
             </form>
+          </div>
+        </div>
+
+        {/* FAQ Section */}
+        <div className="mt-24 max-w-4xl mx-auto">
+          <div className="text-center max-w-2xl mx-auto mb-16">
+            <h2 className="text-blue-600 font-bold uppercase tracking-widest text-sm mb-4">FAQ</h2>
+            <h3 className="text-3xl md:text-5xl font-black text-slate-900 leading-tight">
+              Common Questions <span className="text-blue-600">Answered.</span>
+            </h3>
+          </div>
+          <div className="space-y-6">
+            {faqs.map((faq, index) => (
+              <div key={index} className="bg-white rounded-2xl shadow-lg border border-slate-100 overflow-hidden">
+                <button
+                  className="w-full flex justify-between items-center p-6 text-left focus:outline-none text-slate-900 hover:bg-slate-50 transition-colors"
+                  onClick={() => setOpenFaqIndex(openFaqIndex === index ? null : index)}
+                  aria-expanded={openFaqIndex === index}
+                  aria-controls={`faq-answer-${index}`}
+                  id={`faq-question-${index}`}
+                >
+                  <span className="text-lg md:text-xl font-bold">{faq.question}</span>
+                  <svg
+                    className={`w-6 h-6 transform transition-transform duration-300 ${
+                      openFaqIndex === index ? 'rotate-180 text-blue-600' : 'text-slate-400'
+                    }`}
+                    fill="none"
+                    stroke="currentColor"
+                    viewBox="0 0 24 24"
+                    xmlns="http://www.w3.org/2000/svg"
+                  >
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7"></path>
+                  </svg>
+                </button>
+                <div
+                  id={`faq-answer-${index}`}
+                  role="region"
+                  aria-labelledby={`faq-question-${index}`}
+                  className={`px-6 overflow-hidden transition-all duration-500 ease-in-out ${
+                    openFaqIndex === index ? 'max-h-[300px] opacity-100 py-4' : 'max-h-0 opacity-0'
+                  }`}
+                >
+                  <p className="text-slate-600 leading-relaxed pb-2">{faq.answer}</p>
+                </div>
+              </div>
+            ))}
           </div>
         </div>
       </div>
