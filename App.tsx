@@ -1,5 +1,5 @@
 
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useCallback } from 'react';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import Header from './components/Header';
 import Footer from './components/Footer';
@@ -19,8 +19,9 @@ import PrivacyPolicy from './pages/PrivacyPolicy';
 import TermsOfService from './pages/TermsOfService';
 import CookiePolicy from './pages/CookiePolicy';
 import NotFound from './pages/NotFound';
-import CookieConsentBanner from './components/CookieConsentBanner'; // Import the new component
-import { Analytics } from '@vercel/analytics/react'; // Import Analytics here for conditional rendering
+import CookieConsentBanner from './components/CookieConsentBanner';
+import ExitIntentPopup from './components/ExitIntentPopup'; // NEW IMPORT
+import { Analytics } from '@vercel/analytics/react';
 
 // Utility component to scroll to top on route change
 const ScrollToTop = () => {
@@ -34,7 +35,9 @@ const ScrollToTop = () => {
 const App: React.FC = () => {
   const [showCookieBanner, setShowCookieBanner] = useState(false);
   const [cookieConsent, setCookieConsent] = useState<'unknown' | 'accepted' | 'rejected'>('unknown');
+  const [showExitIntentPopup, setShowExitIntentPopup] = useState(false); // NEW STATE
 
+  // Cookie Consent Logic
   useEffect(() => {
     const consent = localStorage.getItem('cookies_accepted');
     const rejected = localStorage.getItem('cookies_rejected');
@@ -68,6 +71,59 @@ const App: React.FC = () => {
     setShowCookieBanner(false);
   };
 
+  // Exit Intent Popup Logic
+  useEffect(() => {
+    const exitIntentShown = sessionStorage.getItem('exit_intent_shown');
+    if (exitIntentShown === 'true') {
+      return; // Already shown in this session
+    }
+
+    const handleExitIntent = (e: MouseEvent) => {
+      // Desktop: mouse leaves viewport from top
+      // Trigger if mouse is near top (e.g., top 20 pixels) and popup not already visible
+      if (e.clientY < 20 && window.innerWidth > 768 && !showExitIntentPopup) { // Add width check for desktop
+        setShowExitIntentPopup(true);
+        sessionStorage.setItem('exit_intent_shown', 'true');
+        document.removeEventListener('mouseleave', handleExitIntent); // Remove listener after trigger
+      }
+    };
+
+    // Mobile: scroll up fast after scrolling down
+    let lastScrollY = window.scrollY;
+    let scrollDownThreshold = window.innerHeight * 0.75; // User must scroll down 75% of viewport height
+    let scrollUpSpeedThreshold = 100; // Pixels scrolled up per scroll event to trigger (heuristic)
+    let scrolledDownSignificantly = false;
+
+    const handleScroll = () => {
+      if (window.innerWidth <= 768) { // Only for mobile
+        const currentScrollY = window.scrollY;
+
+        if (currentScrollY > scrollDownThreshold) {
+          scrolledDownSignificantly = true;
+        }
+
+        if (scrolledDownSignificantly && currentScrollY < lastScrollY - scrollUpSpeedThreshold && !showExitIntentPopup) {
+          setShowExitIntentPopup(true);
+          sessionStorage.setItem('exit_intent_shown', 'true');
+          window.removeEventListener('scroll', handleScroll); // Remove listener after trigger
+        }
+        lastScrollY = currentScrollY;
+      }
+    };
+
+    document.addEventListener('mouseleave', handleExitIntent);
+    window.addEventListener('scroll', handleScroll, { passive: true });
+
+    return () => {
+      document.removeEventListener('mouseleave', handleExitIntent);
+      window.removeEventListener('scroll', handleScroll);
+    };
+  }, [showExitIntentPopup]); // Re-run if popup state changes, though sessionStorage should prevent re-showing
+
+  const closeExitIntentPopup = useCallback(() => {
+    setShowExitIntentPopup(false);
+  }, []);
+
   return (
     <Router>
       <ScrollToTop />
@@ -99,6 +155,7 @@ const App: React.FC = () => {
           <CookieConsentBanner onAccept={() => handleSetCookieConsent('accepted')} onReject={() => handleSetCookieConsent('rejected')} onDismiss={() => handleSetCookieConsent('dismissed')} />
         )}
         {cookieConsent === 'accepted' && <Analytics />}
+        {showExitIntentPopup && <ExitIntentPopup onClose={closeExitIntentPopup} />}
       </div>
     </Router>
   );
