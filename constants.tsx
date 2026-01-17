@@ -435,10 +435,370 @@ export const PROJECTS_DATA: Project[] = [
       { 
         title: 'Adaptive Learning via Behavioral Analytics', 
         content: 'We developed a recommendation engine that analyzes student performance and engagement metrics in real-time. If the system detects a student is repeatedly pausing a specific physics video, it automatically surfaces remedial "prerequisite" content. This AI-driven personalization has directly contributed to the massive increase in course completion rates, as it effectively acts as a digital 1-on-1 tutor that adapts to each student\'s unique learning pace.' 
+      }
+    ]
+  },
+  {
+    id: 'smart-logistics-iot',
+    title: 'Smart Logistics: Real-time Fleet Intelligence',
+    category: 'Cloud & Infrastructure',
+    client: 'Global Logistics Corp',
+    thumbnail: 'https://images.unsplash.com/photo-1586528116311-ad8dd3c8310d?q=80&w=2070&auto=format&fit=crop',
+    image: 'https://images.unsplash.com/photo-1519003722824-194d4455a60c?q=80&w=2075&auto=format&fit=crop',
+    shortDesc: 'End-to-end IoT tracking and predictive maintenance for a fleet of 5,000+ vehicles.',
+    challenge: 'Global Logistics suffered from fragmented tracking data and high breakdown costs. Real-time location was often delayed by minutes, and mechanical failures were only discovered after they happened, causing severe supply chain delays.',
+    solution: 'HexaTrue built a cloud-native IoT gateway using AWS IoT Core and Greengrass. We installed telemetric sensors on the fleet to capture engine health, fuel levels, and tire pressure in sub-second intervals. Data was processed using Amazon SageMaker to predict part failures 48 hours before they occurred.',
+    results: [
+      'Breakdown frequency reduced by 35% within 6 months',
+      'Fuel efficiency improved by 12% through route optimization',
+      'Real-time visibility latency reduced from 3 minutes to 1.5 seconds',
+      'Asset utilization increased by 18%'
+    ],
+    techStack: ['AWS IoT Core', 'Python', 'SageMaker', 'MQTT', 'Go', 'DynamoDB'],
+    sections: [
+      { 
+        title: 'High-Concurrency IoT Data Ingestion', 
+        content: 'We implemented a robust MQTT-based broker capable of handling 100,000+ concurrent messages per second. Edge computing nodes (AWS Greengrass) were used to filter "noise" data at the source, ensuring only critical telemetry was sent to the cloud, significantly reducing data costs.' 
       },
       { 
-        title: 'Global Delivery & Video Quality Optimization', 
-        content: 'By deploying a globally distributed mesh of TURN/STUN servers, we achieved a 99.9% connection success rate even in regions with strict government network firewalls. The custom video engine automatically scales bitrate based on the user\'s real-time network jitter and packet loss, ensuring a high-quality 1080p experience for fiber users while maintaining a stable audio-first experience for students on legacy 3G connections.' 
+        title: 'Predictive Maintenance Engine', 
+        content: 'Using historical failure data, we trained a Random Forest classification model that analyzes vibration and temperature patterns. Maintenance alerts are automatically piped into the corporate ERP system to schedule service during non-peak hours.' 
+      }
+    ]
+  },
+  {
+    id: 'retail-ai-recommendation',
+    title: 'AI-Driven Hyper-Personalization for E-commerce',
+    category: 'AI & Data',
+    client: 'VogueRetail Global',
+    thumbnail: 'https://images.unsplash.com/photo-1441986300917-64674bd600d8?q=80&w=2070&auto=format&fit=crop',
+    image: 'https://images.unsplash.com/photo-1483985988355-763728e1935b?q=80&w=2070&auto=format&fit=crop',
+    shortDesc: 'Transforming customer engagement with real-time AI product recommendations.',
+    challenge: 'VogueRetail had a vast catalog of 100k+ products, but customers struggled to find items relevant to their style, leading to a high bounce rate and low average order value (AOV).',
+    solution: 'We implemented a deep learning-based recommendation system using Transformer models. The system analyzes browsing behavior, past purchases, and image-based style preferences to curate a personalized storefront for every user in real-time.',
+    results: [
+      'Conversion rate increased by 28%',
+      'Average Order Value (AOV) grew by $14 per customer',
+      'Customer bounce rate on product pages dropped by 15%',
+      'Daily active users (DAU) increased by 22%'
+    ],
+    techStack: ['PyTorch', 'TensorFlow', 'Apache Spark', 'React', 'FastAPI', 'Elasticsearch'],
+    sections: [
+      { 
+        title: 'Real-time Vector Search', 
+        content: 'We moved away from keyword search to semantic vector search. By converting product images and descriptions into multi-dimensional vectors using CLIP models, we allow users to find products based on "vibes" and style similarity rather than just tags.' 
+      },
+      { 
+        title: 'Scalable Data Pipeline', 
+        content: 'We built a data lakehouse architecture using Databricks to process 50 million clickstream events daily. This allows for near-instant updates to the user profile, ensuring that a search for "summer dresses" immediately influences the recommendations for "sandals".' 
+      }
+    ]
+  },
+  {
+    id: 'healthcare-patient-portal',
+    title: 'Secure Health: HIPAA-Compliant Telemedicine',
+    category: 'Mobile App Development',
+    client: 'MediCore Health Systems',
+    thumbnail: 'https://images.unsplash.com/photo-1576091160550-2173dba999ef?q=80&w=2070&auto=format&fit=crop',
+    image: 'https://images.unsplash.com/photo-1505751172107-16053335352c?q=80&w=2070&auto=format&fit=crop',
+    shortDesc: 'A unified digital health platform connecting patients with 2,000+ specialists.',
+    challenge: 'MediCore needed to digitize patient records and provide secure video consultations while maintaining strict HIPAA compliance. Their legacy portal was difficult to use and lacked mobile support.',
+    solution: 'HexaTrue built a high-security mobile ecosystem using Flutter and Node.js. The platform features end-to-end encrypted video chat, real-time vital tracking integration, and an automated prescription management system.',
+    results: [
+      'Patient wait times reduced by 65%',
+      'Provider efficiency increased by 25%',
+      '100% HIPAA compliance audit score',
+      'Active patient users grew to 250k within one year'
+    ],
+    techStack: ['Flutter', 'Node.js', 'WebRTC', 'AWS HealthLake', 'Auth0', 'PostgreSQL'],
+    sections: [
+      { 
+        title: 'Zero-Knowledge Security Architecture', 
+        content: 'Patient data is encrypted locally on the device before transmission. We utilized AWS KMS for managing encryption keys, ensuring that even HexaTrue engineers cannot access sensitive medical records.' 
+      },
+      { 
+        title: 'IoT Medical Device Integration', 
+        content: 'The app integrates with Apple HealthKit and Google Fit to pull real-time blood pressure and glucose data, alerting doctors automatically if a patient\'s vitals exceed safe thresholds.' 
+      }
+    ]
+  },
+  {
+    id: 'luxury-blockchain-tracking',
+    title: 'AuthentiLink: Luxury Goods Blockchain Provenance',
+    category: 'Security Engineering',
+    client: 'Aura Luxury Group',
+    thumbnail: 'https://images.unsplash.com/photo-1548036328-c9fa89d128fa?q=80&w=2069&auto=format&fit=crop',
+    image: 'https://images.unsplash.com/photo-1523275335684-37898b6baf30?q=80&w=2099&auto=format&fit=crop',
+    shortDesc: 'Eliminating counterfeits with immutable blockchain product identities.',
+    challenge: 'Counterfeit luxury watches were costing Aura millions in lost revenue and brand trust. They needed a way for customers to verify authenticity instantly without relying on paper certificates.',
+    solution: 'We developed a private blockchain solution on Hyperledger Fabric. Every product is assigned a unique NFT-based identity at the point of manufacture, which is linked to an encrypted NFC tag embedded in the product.',
+    results: [
+      'Counterfeit report cases dropped by 92%',
+      'Secondary market resale value increased by 15%',
+      'Brand trust index improved significantly',
+      'Direct-to-consumer engagement grew by 40%'
+    ],
+    techStack: ['Hyperledger Fabric', 'Solidity', 'NFC Tech', 'React Native', 'Node.js', 'GraphQL'],
+    sections: [
+      { 
+        title: 'Immutable Lifecycle Tracking', 
+        content: 'From raw materials to the final sale, every transaction is recorded. When a watch is serviced or sold on the secondary market, the blockchain is updated, creating a complete "digital passport" for the item.' 
+      },
+      { 
+        title: 'NFC-to-Blockchain Bridge', 
+        content: 'We engineered a high-security bridge between physical NFC chips and digital tokens. The chip uses a rolling code algorithm to prevent "cloning", ensuring the physical item and its digital certificate are inextricably linked.' 
+      }
+    ]
+  },
+  {
+    id: 'energy-grid-optimization',
+    title: 'EcoGrid: Smart Grid Management System',
+    category: 'Software Development',
+    client: 'Renewable Power Co.',
+    thumbnail: 'https://images.unsplash.com/photo-1473341304170-971dccb5ac1e?q=80&w=2070&auto=format&fit=crop',
+    image: 'https://images.unsplash.com/photo-1466611653911-954ff21167d4?q=80&w=2070&auto=format&fit=crop',
+    shortDesc: 'AI-driven load balancing for renewable energy microgrids.',
+    challenge: 'Renewable Power Co. struggled with the volatility of solar and wind inputs. They needed to predict energy spikes and balance loads across thousands of homes to prevent grid failures.',
+    solution: 'HexaTrue built a real-time data orchestration platform using Elixir and Phoenix for high-availability. We integrated weather forecasting data and smart meter telemetry to predict supply-demand gaps using deep learning.',
+    results: [
+      'Grid stability improved by 40%',
+      'Wasted renewable energy reduced by 25%',
+      'Operational maintenance costs lowered by 18%',
+      'Supported 100k+ concurrent smart meters'
+    ],
+    techStack: ['Elixir', 'Phoenix', 'TimescaleDB', 'Python', 'Kafka', 'Terraform'],
+    sections: [
+      { 
+        title: 'High-Throughput Telemetry Ingestion', 
+        content: 'Elixir\'s actor model allowed us to process millions of small meter readings with sub-millisecond latency. We used TimescaleDB for specialized time-series analysis to identify localized power drops.' 
+      },
+      { 
+        title: 'Predictive Load Shedding', 
+        content: 'The AI model anticipates clouds or wind drops, triggering "smart load shedding" where non-essential appliances (like pool heaters) are briefly paused to maintain critical grid frequency.' 
+      }
+    ]
+  },
+  {
+    id: 'manufacturing-erp-migration',
+    title: 'Industry 4.0: Legacy ERP Modernization',
+    category: 'Cloud Solutions',
+    client: 'Precision Parts Mfg.',
+    thumbnail: 'https://images.unsplash.com/photo-1581091226825-a6a2a5aee158?q=80&w=2070&auto=format&fit=crop',
+    image: 'https://images.unsplash.com/photo-1565034946487-077786996e27?q=80&w=2070&auto=format&fit=crop',
+    shortDesc: 'Modernizing a monolithic ERP into a cloud-native microservices architecture.',
+    challenge: 'A 30-year-old COBOL-based ERP was crippling the manufacturing speed. Simple inventory updates took hours to reflect, and integrating with modern suppliers was impossible.',
+    solution: 'We conducted a "Big Bang" migration of core modules to a microservices architecture on Google Cloud. We used Go for performance-critical inventory modules and Node.js for the supplier portal.',
+    results: [
+      'Order processing time reduced by 90%',
+      'Inventory accuracy increased to 99.8%',
+      'System downtime dropped to zero',
+      'Supplier onboarding time reduced from weeks to days'
+    ],
+    techStack: ['Go', 'GCP', 'Kubernetes', 'RabbitMQ', 'PostgreSQL', 'Docker'],
+    sections: [
+      { 
+        title: 'Strangler Fig Pattern Migration', 
+        content: 'We migrated the system piece-by-piece, wrapping the old COBOL code in modern APIs until the old system could be completely decommissioned without stopping production for even a minute.' 
+      },
+      { 
+        title: 'Real-time Supplier Portal', 
+        content: 'A new React-based portal allows suppliers to see inventory levels in real-time, automatically triggering "Just-In-Time" restocking orders based on AI-predicted demand.' 
+      }
+    ]
+  },
+  {
+    id: 'travel-booking-engine',
+    title: 'SkyBound: High-Performance Travel Aggregator',
+    category: 'Web Development',
+    client: 'SkyBound Holidays',
+    thumbnail: 'https://images.unsplash.com/photo-1476514525535-07fb3b4ae5f1?q=80&w=2070&auto=format&fit=crop',
+    image: 'https://images.unsplash.com/photo-1506012787146-f92b2d7d6d96?q=80&w=2069&auto=format&fit=crop',
+    shortDesc: 'A search engine processing 50,000+ flight and hotel queries per minute.',
+    challenge: 'SkyBound\'s search was slow, taking 10+ seconds to aggregate results from 200+ airlines. Their conversion rate was suffering as users abandoned the site for faster competitors.',
+    solution: 'HexaTrue rebuilt the search core using Rust and gRPC for maximum speed. We implemented a massive parallel processing layer that queries multiple APIs simultaneously and caches results in a distributed Redis cluster.',
+    results: [
+      'Search latency reduced from 12s to 1.8s',
+      'Booking conversion rate increased by 45%',
+      'Monthly active users grew by 150%',
+      'Support for 1,000+ simultaneous booking transactions'
+    ],
+    techStack: ['Rust', 'Redis', 'gRPC', 'Next.js', 'AWS Cloudfront', 'Golang'],
+    sections: [
+      { 
+        title: 'Rust-Powered Search Core', 
+        content: 'By using Rust, we eliminated garbage collection pauses that caused intermittent lag in the old Java-based search. The result is a rock-steady search performance even during peak holiday booking seasons.' 
+      },
+      { 
+        title: 'Distributed Caching Strategy', 
+        content: 'We implemented a geo-distributed cache using Redis, ensuring that a user in London gets flight results from a server in Europe, significantly reducing network round-trip times.' 
+      }
+    ]
+  },
+  {
+    id: 'govt-citizen-portal',
+    title: 'Digital State: Unified Citizen Services',
+    category: 'Software Development',
+    client: 'Municipal Digital Agency',
+    thumbnail: 'https://images.unsplash.com/photo-1521737604893-d14cc237f11d?q=80&w=2084&auto=format&fit=crop',
+    image: 'https://images.unsplash.com/photo-1517048676732-d65bc937f952?q=80&w=2070&auto=format&fit=crop',
+    shortDesc: 'Digitizing 50+ government services for a population of 2 million.',
+    challenge: 'Citizen services were buried in physical paperwork and outdated departmental silos. Applying for a building permit or business license took months of manual office visits.',
+    solution: 'We built a unified digital identity system and service portal using Next.js and a secure GraphQL API. The system integrates with various municipal databases and features a secure document vault for citizens.',
+    results: [
+      'Service processing time reduced by 80%',
+      'Physical office visits dropped by 60%',
+      '92% positive citizen feedback score',
+      'Transparency and tracking improved significantly'
+    ],
+    techStack: ['Next.js', 'GraphQL', 'AWS Cognito', 'PostgreSQL', 'Serverless', 'Terraform'],
+    sections: [
+      { 
+        title: 'Unified Digital Identity', 
+        content: 'We implemented a single-sign-on (SSO) solution that allows citizens to access tax, health, and transport services with a single account, secured by multi-factor authentication and biometric verification.' 
+      },
+      { 
+        title: 'Automated Workflow Orchestration', 
+        content: 'We built a custom workflow engine that routes applications to the correct department automatically, tracking every step of the process and providing citizens with real-time status updates.' 
+      }
+    ]
+  },
+  {
+    id: 'insurance-claims-ai',
+    title: 'InsureAI: Automated Claims Processing',
+    category: 'AI & Data',
+    client: 'SafeGuard Insurance',
+    thumbnail: 'https://images.unsplash.com/photo-1450101499163-c8848c66ca85?q=80&w=2070&auto=format&fit=crop',
+    image: 'https://images.unsplash.com/photo-1509017174183-0b7e0278f1ec?q=80&w=2071&auto=format&fit=crop',
+    shortDesc: 'AI-powered damage assessment for vehicle insurance claims.',
+    challenge: 'Processing car insurance claims manually was slow and prone to human error. It took an average of 7 days to assess damage and approve a repair estimate.',
+    solution: 'We built a computer vision system that analyzes photos of vehicle damage. The AI identifies parts, assesses damage severity, and cross-references repair costs with local workshop rates.',
+    results: [
+      'Claims processing time reduced from 7 days to 4 hours',
+      'Assessment accuracy improved by 22%',
+      'Operational costs reduced by 30%',
+      'Customer satisfaction with claims increased by 50%'
+    ],
+    techStack: ['Python', 'PyTorch', 'Computer Vision', 'FastAPI', 'AWS S3', 'Snowflake'],
+    sections: [
+      { 
+        title: 'Damage Assessment Computer Vision', 
+        content: 'Using a custom-trained EfficientNet model, we can detect dents, scratches, and structural damage from mobile phone photos. The system generates a preliminary repair bill in seconds.' 
+      },
+      { 
+        title: 'Fraud Detection Engine', 
+        content: 'The AI also cross-references the metadata of the photos (GPS, Timestamp) and compares them with historical fraudulent claims to flag suspicious activity automatically.' 
+      }
+    ]
+  },
+  {
+    id: 'media-streaming-cdn',
+    title: 'StreamLine: Scalable Video Delivery Infrastructure',
+    category: 'Cloud & Infrastructure',
+    client: 'Entertainment Plus',
+    thumbnail: 'https://images.unsplash.com/photo-1522869635100-9f4c5e86aa37?q=80&w=2070&auto=format&fit=crop',
+    image: 'https://images.unsplash.com/photo-1574375927938-d5a98e8ffe85?q=80&w=2069&auto=format&fit=crop',
+    shortDesc: 'Rebuilding a regional OTT platform for 4K streaming and high concurrency.',
+    challenge: 'Entertainment Plus experienced severe buffering during live sports events. Their infrastructure couldn\'t handle the massive spikes in traffic during "Game Days".',
+    solution: 'HexaTrue redesigned the video pipeline using AWS MediaServices. We implemented a multi-CDN strategy and a serverless backend that scales instantly based on concurrent viewers.',
+    results: [
+      'Buffering incidents reduced by 95%',
+      'Zero downtime during 50+ live sporting events',
+      'Infrastructure costs optimized by 40% during off-peak hours',
+      'Support for 1M+ concurrent 4K streams'
+    ],
+    techStack: ['AWS Elemental', 'React', 'Node.js', 'CloudFront', 'Redis', 'HLS/DASH'],
+    sections: [
+      { 
+        title: 'Multi-CDN Load Balancing', 
+        content: 'We implemented an intelligent traffic router that sends users to the fastest CDN based on their ISP and location, ensuring the lowest latency and highest quality stream.' 
+      },
+      { 
+        title: 'Dynamic Ad Insertion', 
+        content: 'The system uses server-side ad insertion (SSAI) to deliver personalized ads during live streams without any "stutter" or delay, maximizing revenue without hurting user experience.' 
+      }
+    ]
+  },
+  {
+    id: 'agritech-precision-farming',
+    title: 'FarmIntel: IoT Precision Agriculture',
+    category: 'AI & Data',
+    client: 'GreenField Agri',
+    thumbnail: 'https://images.unsplash.com/photo-1523348830342-d01df499a04d?q=80&w=2070&auto=format&fit=crop',
+    image: 'https://images.unsplash.com/photo-1625246333195-78d9c38ad449?q=80&w=2070&auto=format&fit=crop',
+    shortDesc: 'Optimizing crop yields with real-time soil and weather analytics.',
+    challenge: 'GreenField suffered from unpredictable yields due to uneven irrigation and pest outbreaks. They needed a scientific way to monitor 50,000 acres of farmland.',
+    solution: 'We deployed a mesh of low-power LoRaWAN sensors across the fields to monitor soil moisture, pH, and nutrient levels. This data is combined with satellite imagery to provide daily precision-farming directives.',
+    results: [
+      'Crop yield increased by 20% on average',
+      'Water usage reduced by 35%',
+      'Pesticide application reduced by 15%',
+      'Net farm profitability increased by 22%'
+    ],
+    techStack: ['LoRaWAN', 'Python', 'BigQuery', 'Google Earth Engine', 'Elixir', 'Flutter'],
+    sections: [
+      { 
+        title: 'Satellite Imagery Analysis', 
+        content: 'We integrated Google Earth Engine to analyze NDVI (Normalized Difference Vegetation Index) data, allowing farmers to see a "heat map" of crop health across their entire operation from their mobile phones.' 
+      },
+      { 
+        title: 'Automated Irrigation Control', 
+        content: 'The IoT platform is linked directly to the irrigation pumps. When the soil moisture sensors in "Zone B" hit a critical low, the pumps are automatically activated for a precise duration, saving millions of gallons of water.' 
+      }
+    ]
+  },
+  {
+    id: 'proptech-real-estate-3d',
+    title: 'UrbanHome: Next-Gen Real Estate Marketplace',
+    category: 'Web Development',
+    client: 'UrbanHome Properties',
+    thumbnail: 'https://images.unsplash.com/photo-1560518883-ce09059eeffa?q=80&w=1973&auto=format&fit=crop',
+    image: 'https://images.unsplash.com/photo-1512917774080-9991f1c4c750?q=80&w=2070&auto=format&fit=crop',
+    shortDesc: 'A high-end property portal with 3D virtual tours and AI matching.',
+    challenge: 'UrbanHome needed to stand out in a crowded market. Their static photos and basic search weren\'t enough to engage high-net-worth buyers who wanted a premium digital experience.',
+    solution: 'We built a high-performance marketplace using Three.js for integrated 3D virtual tours. We also implemented an AI matching engine that learns a user\'s aesthetic preferences to suggest properties.',
+    results: [
+      'User time-on-site increased by 300%',
+      'Direct property inquiries grew by 60%',
+      'Average sale price for portal-originated leads was 20% higher',
+      '1,000+ new 3D tours added monthly'
+    ],
+    techStack: ['Three.js', 'React', 'Elasticsearch', 'Python', 'WebXR', 'Node.js'],
+    sections: [
+      { 
+        title: 'Web-Based Spatial 3D Tours', 
+        content: 'Using Three.js, we created a native-web 3D experience where users can "walk through" properties without downloading an app. The system is fully responsive and even supports VR headsets via WebXR.' 
+      },
+      { 
+        title: 'Aesthetic-Based Matching AI', 
+        content: 'Traditional search uses "beds/baths". Our AI analyzes the *style* of properties a user likes (e.g., "Modern Industrial" or "Mid-Century") and surfaces similar aesthetic matches, drastically improving engagement.' 
+      }
+    ]
+  },
+  {
+    id: 'cyber-soc-automation',
+    title: 'CyberGuard: Automated Threat Response SOC',
+    category: 'Security Engineering',
+    client: 'Global Finance Union',
+    thumbnail: 'https://images.unsplash.com/photo-1550751827-4bd374c3f58b?q=80&w=2070&auto=format&fit=crop',
+    image: 'https://images.unsplash.com/photo-1563986768609-322da13575f3?q=80&w=2070&auto=format&fit=crop',
+    shortDesc: 'Transforming a manual SOC into an AI-driven autonomous defense unit.',
+    challenge: 'Global Finance Union was overwhelmed by 10,000+ security alerts daily. Their human analysts were burnt out, and critical threats were being missed in the "noise".',
+    solution: 'HexaTrue implemented a SOAR (Security Orchestration, Automation, and Response) platform. We built custom AI playbooks that automatically triage alerts and isolate compromised nodes in seconds.',
+    results: [
+      'Mean Time to Resolve (MTTR) dropped from 12 hours to 4 minutes',
+      'False positive alerts reduced by 85%',
+      '99.9% of routine threats handled autonomously',
+      'Security posture significantly hardened against zero-day attacks'
+    ],
+    techStack: ['Python', 'Splunk', 'SIEM/SOAR', 'Kubernetes', 'Go', 'Elastic Stack'],
+    sections: [
+      { 
+        title: 'AI-Powered Alert Triaging', 
+        content: 'We built a custom NLP engine that analyzes logs and correlates them with real-world threat intelligence. It "understands" if an alert is a genuine attack or a false positive caused by a developer error.' 
+      },
+      { 
+        title: 'Automated Playbook Execution', 
+        content: 'When a genuine threat (like a ransomware attack) is detected, the SOAR platform executes a "containment playbook" instantly—blocking IPs, revoking tokens, and spinning up clean backups before the malware can spread.' 
       }
     ]
   }
