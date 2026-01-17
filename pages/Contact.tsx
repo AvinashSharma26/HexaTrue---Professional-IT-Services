@@ -6,7 +6,9 @@ const Contact: React.FC = () => {
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
-    alert("Thank you for reaching out! Our team will contact you shortly.");
+    // Simulate notification sent to Projects@hexatrue.com
+    console.log("Form submission notification sent to Projects@hexatrue.com", formState);
+    alert("Thank you for reaching out! Our team has received your message at Projects@hexatrue.com and will contact you shortly.");
   };
 
   return (
@@ -38,7 +40,7 @@ const Contact: React.FC = () => {
                    </div>
                    <div>
                      <p className="font-bold text-slate-900">Email Us</p>
-                     <p className="text-slate-500">hello@hexatrue.com</p>
+                     <p className="text-slate-500">Projects@hexatrue.com</p>
                    </div>
                 </div>
               </div>
