@@ -1,0 +1,7 @@
+{
+  "name": "HexaTrue - Professional IT Services",
+  "description": "A high-end, enterprise-ready IT services and consulting website for HexaTrue, featuring advanced mega menus, clean typography, and a modern service-oriented layout.",
+  "requestFramePermissions": [
+    "geolocation"
+  ]
+}
