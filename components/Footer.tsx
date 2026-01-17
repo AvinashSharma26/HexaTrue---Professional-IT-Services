@@ -1,4 +1,3 @@
-
 import React from 'react';
 import { Link } from 'react-router-dom';
 
@@ -71,9 +70,9 @@ const Footer: React.FC = () => {
         <div className="border-t border-slate-800 pt-8 flex flex-col md:flex-row justify-between items-center text-xs text-slate-500">
           <p>© {new Date().getFullYear()} HexaTrue. All rights reserved.</p>
           <div className="flex gap-6 mt-4 md:mt-0">
-             <a href="#" className="hover:text-blue-400 transition-colors">Privacy Policy</a>
-             <a href="#" className="hover:text-blue-400 transition-colors">Terms of Service</a>
-             <a href="#" className="hover:text-blue-400 transition-colors">Cookie Policy</a>
+             <Link to="/privacy-policy" className="hover:text-blue-400 transition-colors">Privacy Policy</Link>
+             <Link to="/terms-of-service" className="hover:text-blue-400 transition-colors">Terms of Service</Link>
+             <Link to="/cookie-policy" className="hover:text-blue-400 transition-colors">Cookie Policy</Link>
           </div>
         </div>
       </div>

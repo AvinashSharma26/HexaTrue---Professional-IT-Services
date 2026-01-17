@@ -14,6 +14,9 @@ import Blog from './pages/Blog';
 import BlogDetail from './pages/BlogDetail';
 import CaseStudies from './pages/CaseStudies';
 import Industries from './pages/Industries';
+import PrivacyPolicy from './pages/PrivacyPolicy';
+import TermsOfService from './pages/TermsOfService';
+import CookiePolicy from './pages/CookiePolicy';
 import NotFound from './pages/NotFound';
 
 // Utility component to scroll to top on route change
@@ -45,6 +48,9 @@ const App: React.FC = () => {
             <Route path="/technologies" element={<Technologies />} />
             <Route path="/work" element={<Work />} />
             <Route path="/work/:projectId" element={<ProjectDetail />} />
+            <Route path="/privacy-policy" element={<PrivacyPolicy />} />
+            <Route path="/terms-of-service" element={<TermsOfService />} />
+            <Route path="/cookie-policy" element={<CookiePolicy />} />
             {/* Fallback routes */}
             <Route path="*" element={<NotFound />} />
           </Routes>
