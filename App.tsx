@@ -20,7 +20,8 @@ import TermsOfService from './pages/TermsOfService';
 import CookiePolicy from './pages/CookiePolicy';
 import NotFound from './pages/NotFound';
 import CookieConsentBanner from './components/CookieConsentBanner';
-import ExitIntentPopup from './components/ExitIntentPopup'; // NEW IMPORT
+import ExitIntentPopup from './components/ExitIntentPopup';
+import WhatsAppChat from './components/WhatsAppChat'; // NEW IMPORT
 import { Analytics } from '@vercel/analytics/react';
 
 // Utility component to scroll to top on route change
@@ -35,7 +36,7 @@ const ScrollToTop = () => {
 const App: React.FC = () => {
   const [showCookieBanner, setShowCookieBanner] = useState(false);
   const [cookieConsent, setCookieConsent] = useState<'unknown' | 'accepted' | 'rejected'>('unknown');
-  const [showExitIntentPopup, setShowExitIntentPopup] = useState(false); // NEW STATE
+  const [showExitIntentPopup, setShowExitIntentPopup] = useState(false);
 
   // Cookie Consent Logic
   useEffect(() => {
@@ -156,6 +157,8 @@ const App: React.FC = () => {
         )}
         {cookieConsent === 'accepted' && <Analytics />}
         {showExitIntentPopup && <ExitIntentPopup onClose={closeExitIntentPopup} />}
+        {/* WhatsApp Chat Component */}
+        <WhatsAppChat phoneNumber="7974279350" greetingMessage="Hello 👋 How can we help you today?" />
       </div>
     </Router>
   );
