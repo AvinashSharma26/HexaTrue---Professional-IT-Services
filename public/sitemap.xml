@@ -73,93 +73,75 @@
     <priority>0.5</priority>
   </url>
   <url>
-    <loc>https://hexatrue.com/blog/ai-enterprise-2025</loc>
-    <lastmod>2024-07-29</lastmod>
-    <changefreq>weekly</changefreq>
+    <loc>https://hexatrue.com/blog/ai-in-enterprise</loc>
+    <lastmod>2025-10-26</lastmod>
+    <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://hexatrue.com/blog/quantum-resistant-encryption</loc>
-    <lastmod>2024-07-29</lastmod>
-    <changefreq>weekly</changefreq>
+    <loc>https://hexatrue.com/blog/cloud-security-best-practices</loc>
+    <lastmod>2025-11-15</lastmod>
+    <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://hexatrue.com/blog/sustainability-green-it</loc>
-    <lastmod>2024-07-29</lastmod>
-    <changefreq>weekly</changefreq>
+    <loc>https://hexatrue.com/blog/quantum-computing-impact</loc>
+    <lastmod>2025-12-01</lastmod>
+    <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
     <loc>https://hexatrue.com/blog/devsecops-at-scale</loc>
-    <lastmod>2024-07-29</lastmod>
-    <changefreq>weekly</changefreq>
+    <lastmod>2026-01-10</lastmod>
+    <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
     <loc>https://hexatrue.com/blog/edge-computing-industrial</loc>
-    <lastmod>2024-07-29</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.7</priority>
-  </url>
-  <url>
-    <loc>https://hexatrue.com/blog/future-of-remote-engineering</loc>
-    <lastmod>2024-07-29</lastmod>
-    <changefreq>weekly</changefreq>
+    <lastmod>2026-02-20</lastmod>
+    <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
     <loc>https://hexatrue.com/blog/blockchain-supply-chain</loc>
-    <lastmod>2024-07-29</lastmod>
-    <changefreq>weekly</changefreq>
+    <lastmod>2026-03-15</lastmod>
+    <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
     <loc>https://hexatrue.com/blog/web-4-semantic-iot</loc>
-    <lastmod>2024-07-29</lastmod>
-    <changefreq>weekly</changefreq>
+    <lastmod>2026-04-05</lastmod>
+    <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
     <loc>https://hexatrue.com/blog/low-code-enterprise-agility</loc>
-    <lastmod>2024-07-29</lastmod>
-    <changefreq>weekly</changefreq>
+    <lastmod>2026-05-10</lastmod>
+    <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
     <loc>https://hexatrue.com/blog/immersive-ux-design</loc>
-    <lastmod>2024-07-29</lastmod>
-    <changefreq>weekly</changefreq>
+    <lastmod>2026-06-01</lastmod>
+    <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://hexatrue.com/blog/cybersecurity-gen-ai</loc>
-    <lastmod>2024-07-29</lastmod>
-    <changefreq>weekly</changefreq>
+    <loc>https://hexatrue.com/blog/ai-powered-cybersecurity</loc>
+    <lastmod>2026-07-15</lastmod>
+    <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://hexatrue.com/blog/cloud-native-2026</loc>
-    <lastmod>2024-07-29</lastmod>
-    <changefreq>weekly</changefreq>
+    <loc>https://hexatrue.com/blog/future-of-remote-engineering</loc>
+    <lastmod>2026-08-01</lastmod>
+    <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://hexatrue.com/blog/predictive-maintenance-5-0</loc>
-    <lastmod>2024-07-29</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.7</priority>
-  </url>
-  <url>
-    <loc>https://hexatrue.com/blog/fintech-financial-inclusion</loc>
-    <lastmod>2024-07-29</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.7</priority>
-  </url>
-  <url>
-    <loc>https://hexatrue.com/blog/ethical-ai-regulations</loc>
-    <lastmod>2024-07-29</lastmod>
-    <changefreq>weekly</changefreq>
+    <loc>https://hexatrue.com/blog/sustainability-green-it</loc>
+    <lastmod>2026-08-15</lastmod>
+    <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
@@ -217,91 +199,19 @@
     <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://hexatrue.com/work/fintech-ecosystem</loc>
+    <loc>https://hexatrue.com/work/fintech-platform</loc>
     <lastmod>2024-07-29</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://hexatrue.com/work/edutech-platform</loc>
+    <loc>https://hexatrue.com/work/health-app</loc>
     <lastmod>2024-07-29</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://hexatrue.com/work/smart-logistics-iot</loc>
-    <lastmod>2024-07-29</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.7</priority>
-  </url>
-  <url>
-    <loc>https://hexatrue.com/work/retail-ai-recommendation</loc>
-    <lastmod>2024-07-29</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.7</priority>
-  </url>
-  <url>
-    <loc>https://hexatrue.com/work/healthcare-patient-portal</loc>
-    <lastmod>2024-07-29</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.7</priority>
-  </url>
-  <url>
-    <loc>https://hexatrue.com/work/luxury-blockchain-tracking</loc>
-    <lastmod>2024-07-29</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.7</priority>
-  </url>
-  <url>
-    <loc>https://hexatrue.com/work/energy-grid-optimization</loc>
-    <lastmod>2024-07-29</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.7</priority>
-  </url>
-  <url>
-    <loc>https://hexatrue.com/work/manufacturing-erp-migration</loc>
-    <lastmod>2024-07-29</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.7</priority>
-  </url>
-  <url>
-    <loc>https://hexatrue.com/work/travel-booking-engine</loc>
-    <lastmod>2024-07-29</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.7</priority>
-  </url>
-  <url>
-    <loc>https://hexatrue.com/work/govt-citizen-portal</loc>
-    <lastmod>2024-07-29</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.7</priority>
-  </url>
-  <url>
-    <loc>https://hexatrue.com/work/insurance-claims-ai</loc>
-    <lastmod>2024-07-29</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.7</priority>
-  </url>
-  <url>
-    <loc>https://hexatrue.com/work/media-streaming-cdn</loc>
-    <lastmod>2024-07-29</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.7</priority>
-  </url>
-  <url>
-    <loc>https://hexatrue.com/work/agritech-precision-farming</loc>
-    <lastmod>2024-07-29</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.7</priority>
-  </url>
-  <url>
-    <loc>https://hexatrue.com/work/proptech-real-estate-3d</loc>
-    <lastmod>2024-07-29</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.7</priority>
-  </url>
-  <url>
-    <loc>https://hexatrue.com/work/cyber-soc-automation</loc>
+    <loc>https://hexatrue.com/work/e-commerce-engine</loc>
     <lastmod>2024-07-29</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
