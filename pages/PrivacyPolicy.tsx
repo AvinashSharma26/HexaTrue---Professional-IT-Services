@@ -1,3 +1,4 @@
+
 import React from 'react';
 
 const PrivacyPolicy: React.FC = () => {
@@ -49,7 +50,7 @@ const PrivacyPolicy: React.FC = () => {
           </section>
 
           <p className="text-sm text-slate-400 pt-8">
-            Last Updated: {new Date().toLocaleDateString('en-US', { year: 'numeric', month: 'long', day: 'numeric' })}
+            Last Updated: 2024-07-29
           </p>
         </div>
       </div>
