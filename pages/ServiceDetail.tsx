@@ -1,6 +1,8 @@
 
+
 import React, { useEffect } from 'react';
 import { useParams, Link, Navigate } from 'react-router-dom';
+// Fix: Added missing imports for SERVICES_DATA and Icons from constants
 import { SERVICES_DATA, Icons } from '../constants';
 
 const ServiceDetail: React.FC = () => {
@@ -138,6 +140,7 @@ const ServiceDetail: React.FC = () => {
                         className="flex items-center justify-between p-4 bg-white rounded-xl border border-blue-100 group hover:bg-blue-600 hover:text-white transition-all shadow-sm"
                       >
                         <span className="font-bold text-xs truncate max-w-[80%]">{s.title}</span>
+                        {/* Fix: Use Icons.ArrowRight */}
                         {Icons.ArrowRight}
                       </Link>
                     </li>

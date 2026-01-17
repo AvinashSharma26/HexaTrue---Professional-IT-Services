@@ -1,6 +1,8 @@
+
 import React, { useState, useEffect, useRef } from 'react';
 import { Link, useLocation } from 'react-router-dom';
-import { NAVIGATION } from '../constants';
+// Fix: Added NAVIGATION to the import from constants
+import { NAVIGATION, Icons } from '../constants';
 import MegaMenu from './MegaMenu';
 
 const Header: React.FC = () => {

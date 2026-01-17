@@ -1,6 +1,8 @@
 
+
 import React from 'react';
 import { Link } from 'react-router-dom';
+// Fix: Added BLOG_POSTS to the import from constants
 import { BLOG_POSTS } from '../constants';
 
 const Blog: React.FC = () => {

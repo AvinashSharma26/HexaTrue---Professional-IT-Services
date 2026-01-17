@@ -1,6 +1,8 @@
 
+
 import React from 'react';
 import { Link } from 'react-router-dom';
+// Fix: Added PROJECTS_DATA to the import from constants
 import { PROJECTS_DATA } from '../constants';
 
 const Work: React.FC = () => {

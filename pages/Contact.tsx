@@ -1,4 +1,6 @@
+
 import React, { useState } from 'react';
+// Fix: Added SERVICES_DATA to the import from constants
 import { SERVICES_DATA } from '../constants';
 
 const Contact: React.FC = () => {

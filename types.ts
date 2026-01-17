@@ -1,4 +1,5 @@
 
+
 // Import React to provide access to the React namespace for types like ReactNode
 import React from 'react';
 
@@ -81,4 +82,14 @@ export interface Testimonial {
   company: string;
   content: string;
   avatar: string;
+}
+
+export interface SeoHeadProps {
+  title: string;
+  description: string;
+  canonicalUrl?: string;
+  ogType?: string;
+  ogImage?: string;
+  twitterCardType?: 'summary_large_image' | 'summary';
+  twitterImage?: string;
 }

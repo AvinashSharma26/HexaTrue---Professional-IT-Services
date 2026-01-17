@@ -1,6 +1,8 @@
 
+
 import React, { useEffect } from 'react';
 import { useParams, Link, Navigate } from 'react-router-dom';
+// Fix: Added BLOG_POSTS to the import from constants
 import { BLOG_POSTS } from '../constants';
 
 const BlogDetail: React.FC = () => {

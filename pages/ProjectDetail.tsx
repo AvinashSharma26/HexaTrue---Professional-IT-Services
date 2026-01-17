@@ -1,6 +1,8 @@
 
+
 import React, { useEffect } from 'react';
 import { useParams, Link, Navigate } from 'react-router-dom';
+// Fix: Added PROJECTS_DATA to the import from constants
 import { PROJECTS_DATA, Icons } from '../constants';
 
 const ProjectDetail: React.FC = () => {

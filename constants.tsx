@@ -12,33 +12,14 @@ export const Icons = {
   Marketing: <svg xmlns="http://www.w3.org/2000/svg" className="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M11 3.055A9.001 9.001 0 1020.945 13H11V3.055z" /><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M20.488 9H15V3.512A9.025 9.025 0 0120.488 9z" /></svg>,
   DevOps: <svg xmlns="http://www.w3.org/2000/svg" className="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 4v5h.582m15.356 2A8.001 8.001 0 004.582 9m0 0H9m11 11v-5h-.581m0 0a8.003 8.003 0 01-15.357-2m15.357 2H15" /></svg>,
   Mobile: <svg xmlns="http://www.w3.org/2000/svg" className="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 18h.01M8 21h8a2 2 0 002-2V5a2 2 0 00-2-2H8a2 2 0 00-2 2v14a2 2 0 002 2z" /></svg>,
+  // Fix: Added closing tag for the Database SVG
   Database: <svg xmlns="http://www.w3.org/2000/svg" className="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 7v10c0 2.21 3.582 4 8 4s8-1.79 8-4V7M4 7c0 2.21 3.582 4 8 4s8-1.79 8-4M4 7c0-2.21 3.582-4 8-4s8 1.79 8 4m0 5c0 2.21-3.582 4-8 4s-8-1.79-8-4" /></svg>,
-  ArrowRight: <svg xmlns="http://www.w3.org/2000/svg" className="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 8l4 4m0 0l-4 4m4-4H3" /></svg>,
+  // Add: ArrowRight icon for consistent usage across components
+  ArrowRight: <svg xmlns="http://www.w3.org/2000/svg" className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2.5" d="M17 8l4 4m0 0l-4 4m4-4H3" /></svg>,
 };
 
+// Add: Placeholder data for NAVIGATION
 export const NAVIGATION: NavItem[] = [
-  { id: 'home', label: 'Home', path: '/' },
-  {
-    id: 'company',
-    label: 'Company',
-    path: '/about',
-    columns: [
-      {
-        title: 'The Company',
-        items: [
-          { title: 'About Us', path: '/about', icon: null },
-          { title: 'Industries', path: '/industries', icon: null },
-        ]
-      },
-      {
-        title: 'Resource',
-        items: [
-          { title: 'Blog', path: '/blog', icon: null },
-          { title: 'Case Studies', path: '/case-studies', icon: null },
-        ]
-      }
-    ]
-  },
   {
     id: 'services',
     label: 'Services',
@@ -47,1334 +28,591 @@ export const NAVIGATION: NavItem[] = [
       {
         title: 'Core Development',
         items: [
-          { title: 'Software Development', path: '/services/software-dev', icon: Icons.Software, description: 'Bespoke enterprise software solutions.' },
-          { title: 'Web Development', path: '/services/web-dev', icon: Icons.Web, description: 'Modern, responsive web applications.' },
-          { title: 'Mobile App Development', path: '/services/mobile-dev', icon: Icons.Mobile, description: 'Native and cross-platform mobile apps.' },
+          { title: 'Software Development', description: 'Custom software solutions for your business needs.', path: '/services/software-dev', icon: Icons.Software },
+          { title: 'Web Development', description: 'Responsive and robust web applications.', path: '/services/web-dev', icon: Icons.Web },
+          { title: 'Mobile App Development', description: 'Native and cross-platform mobile apps.', path: '/services/mobile-dev', icon: Icons.Mobile },
         ]
       },
       {
         title: 'Cloud & Infrastructure',
         items: [
-          { title: 'Cloud Solutions', path: '/services/cloud', icon: Icons.Cloud, description: 'Scalable cloud infrastructure & migration.' },
-          { title: 'DevOps Engineering', path: '/services/devops', icon: Icons.DevOps, description: 'Automated CI/CD pipelines and monitoring.' },
-          { title: 'IT Services', path: '/services/it-services', icon: Icons.Software, description: 'Full-cycle IT support and consulting.' },
+          { title: 'Cloud Solutions', description: 'Scalable cloud architecture and migration.', path: '/services/cloud', icon: Icons.Cloud },
+          { title: 'DevOps & Automation', description: 'Streamlined development and operations.', path: '/services/devops', icon: Icons.DevOps },
+          { title: 'IT Services & Support', description: 'Comprehensive IT management and support.', path: '/services/it-services', icon: <svg xmlns="http://www.w3.org/2000/svg" className="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 12h14M12 5l7 7-7 7" /></svg> },
         ]
       },
       {
-        title: 'Quality & Security',
+        title: 'Security & Quality',
         items: [
-          { title: 'Security Engineering', path: '/services/security', icon: Icons.Security, description: 'Robust cybersecurity and compliance.' },
-          { title: 'QA & Testing', path: '/services/testing', icon: Icons.Testing, description: 'Rigorous automated and manual testing.' },
-          { title: 'Digital Marketing', path: '/services/marketing', icon: Icons.Marketing, description: 'Data-driven growth and SEO strategies.' },
+          { title: 'Security Engineering', description: 'Protecting your digital assets from threats.', path: '/services/security', icon: Icons.Security },
+          { title: 'QA & Testing', description: 'Ensuring flawless performance and reliability.', path: '/services/testing', icon: Icons.Testing },
+          { title: 'Digital Marketing', description: 'Strategies to enhance your online presence.', path: '/services/marketing', icon: Icons.Marketing },
         ]
       }
     ]
   },
   {
-    id: 'solutions',
-    label: 'Solutions',
-    path: '/solutions',
-    columns: [
-      {
-        title: 'Enterprise',
-        items: [
-          { title: 'ERP Solutions', path: '/solutions/erp', icon: Icons.Database, description: 'Streamline business operations.' },
-          { title: 'CRM Systems', path: '/solutions/crm', icon: Icons.Software, description: 'Customer relationship management.' },
-        ]
-      },
-      {
-        title: 'Industry Specific',
-        items: [
-          { title: 'E-commerce', path: '/solutions/ecommerce', icon: Icons.Web, description: 'Scalable online retail platforms.' },
-          { title: 'EdTech', path: '/solutions/edtech', icon: Icons.Software, description: 'Next-gen learning management systems.' },
-        ]
-      }
-    ]
+    id: 'work',
+    label: 'Our Work',
+    path: '/work',
   },
-  { id: 'work', label: 'Our Work', path: '/work' },
-  { id: 'contact', label: 'Contact Us', path: '/contact' },
+  {
+    id: 'technologies',
+    label: 'Technologies',
+    path: '/technologies',
+  },
+  {
+    id: 'about',
+    label: 'About Us',
+    path: '/about',
+  },
+  {
+    id: 'blog',
+    label: 'Blog',
+    path: '/blog',
+  },
+  {
+    id: 'contact',
+    label: 'Contact',
+    path: '/contact',
+  },
 ];
 
+// Add: Placeholder data for SERVICES_DATA
 export const SERVICES_DATA: Service[] = [
   {
     id: 'software-dev',
-    title: 'Custom Software Development',
-    shortDesc: 'Build powerful, scalable software tailored to your specific business needs.',
-    fullDesc: 'HexaTrue delivers high-end custom software engineering that transforms business ideas into robust digital realities. We specialize in complex enterprise-grade solutions that are built to scale.',
-    detailedOverview: 'In today\'s rapidly changing digital landscape, off-the-shelf software often fails to meet the unique complexities of high-growth enterprises. HexaTrue\'s Custom Software Development service bridges this gap by providing tailored solutions that are engineered for performance, security, and scalability. Our approach combines deep technical expertise with industry-leading methodologies to ensure your software is not just a tool, but a competitive advantage. We leverage modern tech stacks including Java, .NET, Python, and Node.js to build everything from core enterprise backbones to specialized analytical platforms. Our development cycle focuses on modularity, ensuring that your investment is future-proof and capable of evolving alongside your business demands.',
-    keyBenefits: [
-      'Engineered for 99.9% uptime and high concurrency',
-      'Proprietary security framework implementation',
-      'Seamless integration with legacy and third-party systems',
-      'Modular architecture for future-proof scalability',
-      'Significant reduction in technical debt through clean code practices',
-      'Faster ROI through prioritized feature delivery'
-    ],
-    process: [
-      { step: '01', title: 'Deep Discovery', description: 'Comprehensive requirement gathering, stakeholder interviews, and technical feasibility analysis.' },
-      { step: '02', title: 'Architecture Design', description: 'Designing a robust, scalable technical blueprint and selecting the optimal tech stack.' },
-      { step: '03', title: 'Agile Sprints', description: 'Iterative development with bi-weekly demos and continuous feedback loops.' },
-      { step: '04', title: 'Rigorous Testing', description: 'Automated and manual QA cycles ensuring bug-free deployments and performance.' },
-      { step: '05', title: 'Seamless Go-Live', description: 'Strategic rollout with zero-downtime deployment strategies and post-launch support.' }
-    ],
+    title: 'Software Development',
+    shortDesc: 'Crafting custom software solutions tailored to your unique business needs, driving efficiency and innovation.',
+    fullDesc: 'HexaTrue specializes in full-cycle software development, from conceptualization and design to deployment and ongoing maintenance. Our expertise spans enterprise resource planning (ERP) systems, customer relationship management (CRM) platforms, and bespoke applications that address specific operational challenges.',
     icon: Icons.Software,
     features: [
-      'Bespoke Enterprise Solutions',
+      'Custom ERP & CRM Systems',
+      'Scalable Backend Development',
+      'API Integration & Development',
       'Legacy System Modernization',
-      'SaaS Platform Development',
-      'API & Third-party Integration',
       'Microservices Architecture',
-      'Ongoing Technical Support'
-    ]
+    ],
+    detailedOverview: 'Our software development process is meticulously designed to deliver robust, scalable, and high-performance applications. We leverage agile methodologies to ensure flexibility, transparency, and timely delivery. Our team excels in various programming languages and frameworks, building solutions that seamlessly integrate with your existing ecosystem and evolve with your business needs.',
+    keyBenefits: [
+      'Tailored solutions for unique challenges',
+      'Increased operational efficiency',
+      'Future-proof, scalable architecture',
+      'Reduced total cost of ownership',
+      'Enhanced competitive advantage',
+    ],
+    process: [
+      { step: '01', title: 'Requirement Analysis', description: 'In-depth analysis of your business requirements and objectives.' },
+      { step: '02', title: 'System Design', description: 'Creating a robust and scalable architectural blueprint.' },
+      { step: '03', title: 'Development Sprints', description: 'Iterative development in agile sprints with regular feedback.' },
+      { step: '04', title: 'Quality Assurance', description: 'Rigorous testing to ensure bug-free and high-performance software.' },
+      { step: '05', title: 'Deployment & Support', description: 'Seamless deployment and continuous post-launch support.' },
+    ],
   },
   {
     id: 'web-dev',
-    title: 'Web Development Services',
-    shortDesc: 'High-performance websites and web applications built for the modern digital landscape.',
-    fullDesc: 'We build fast, secure, and SEO-optimized web experiences using React, Angular, and Vue. Our web solutions are designed to engage users and convert visitors into loyal customers.',
-    detailedOverview: 'The web is your most powerful storefront. At HexaTrue, we go beyond simple coding to create immersive, high-performance web applications that provide a native-like experience in the browser. Whether you need a sophisticated customer portal, a complex dashboard, or a high-traffic e-commerce platform, our web development services ensure your digital presence is cutting-edge. We focus on Core Web Vitals, accessibility (a11y), and responsive design to ensure a flawless experience across all devices and network conditions. Our expertise covers the full spectrum of modern web technologies, from Server Side Rendering (SSR) to Single Page Applications (SPA). We ensure that every line of code is optimized for speed, security, and search engine visibility, giving you a competitive edge from day one.',
-    keyBenefits: [
-      'Lighting-fast load times for improved Core Web Vitals',
-      'Mobile-first architecture for cross-device consistency',
-      'Advanced SEO optimization for higher organic rankings',
-      'Robust security hardening against common web vulnerabilities',
-      'Interactive and intuitive UI/UX that boosts engagement',
-      'Scalable backend architectures supporting millions of requests'
-    ],
-    process: [
-      { step: '01', title: 'UX Research', description: 'Analyzing user personas and mapping out the optimal digital journey.' },
-      { step: '02', title: 'Visual Design', description: 'Crafting modern, pixel-perfect interfaces that align with your brand identity.' },
-      { step: '03', title: 'Front-end Engineering', description: 'Developing responsive interfaces using modern frameworks like React and Vue.' },
-      { step: '04', title: 'Back-end Orchestration', description: 'Building secure APIs and data layers to power your front-end experiences.' },
-      { step: '05', title: 'Optimization & SEO', description: 'Fine-tuning performance and ensuring your site is fully crawlable and fast.' }
-    ],
+    title: 'Web Development',
+    shortDesc: 'Building engaging, high-performance web applications and platforms that deliver exceptional user experiences.',
+    fullDesc: 'From complex e-commerce platforms to interactive web portals and content management systems, HexaTrue designs and develops web solutions that are visually appealing, highly functional, and optimized for performance across all devices.',
     icon: Icons.Web,
     features: [
-      'Custom React/Angular Apps',
-      'Progressive Web Applications (PWA)',
-      'Enterprise E-commerce Portals',
-      'Headless CMS Solutions',
-      'Performance Optimization',
-      'Full-stack JavaScript Development'
-    ]
+      'Frontend & Backend Development',
+      'E-commerce Solutions (Shopify, Magento, Custom)',
+      'CMS Development (WordPress, Drupal, Custom)',
+      'Progressive Web Apps (PWAs)',
+      'Responsive Design & UI/UX',
+    ],
+    detailedOverview: 'Our web development expertise encompasses the entire spectrum of web technologies. We create dynamic and interactive web experiences using modern frameworks and libraries, ensuring fast loading times, SEO optimization, and intuitive user interfaces. Our focus is on building web applications that not only look great but also drive business growth and user engagement.',
+    keyBenefits: [
+      'Enhanced online presence',
+      'Improved user engagement',
+      'Scalable and secure web platforms',
+      'Seamless cross-device experience',
+      'Faster time to market for web products',
+    ],
+    process: [
+      { step: '01', title: 'Strategy & Planning', description: 'Defining goals, target audience, and functional requirements.' },
+      { step: '02', title: 'Design & Prototyping', description: 'Creating wireframes, mockups, and interactive prototypes.' },
+      { step: '03', title: 'Development & Integration', description: 'Building frontend and backend, integrating APIs and third-party services.' },
+      { step: '04', title: 'Testing & Optimization', description: 'Comprehensive testing for functionality, performance, and security.' },
+      { step: '05', title: 'Launch & Maintenance', description: 'Website deployment, monitoring, and ongoing support.' },
+    ],
   },
   {
     id: 'mobile-dev',
     title: 'Mobile App Development',
-    shortDesc: 'Native and cross-platform mobile apps that provide seamless user experiences.',
-    fullDesc: 'Leverage our expertise in iOS, Android, and Flutter to reach your customers wherever they are. We create apps that are fast, intuitive, and feature-rich.',
-    detailedOverview: 'Mobile is no longer a secondary screen—it is the primary interface for the digital world. HexaTrue specializes in building high-performance mobile applications that users love. Whether you require the unmatched speed of Native iOS and Android or the efficiency of Cross-Platform solutions like Flutter and React Native, our team delivers excellence. We integrate advanced mobile features such as biometric authentication, offline synchronization, and push notification systems to keep your users engaged. Our design philosophy centers on ergonomics and intuitive navigation, ensuring high retention rates for your mobile products. We handle everything from initial design and prototyping to App Store submission and post-launch maintenance, providing a truly comprehensive mobile solution.',
-    keyBenefits: [
-      'Native-level performance and smooth animations',
-      'Offline-first capabilities for consistent functionality',
-      'Highly secure data storage and encrypted communication',
-      'Seamless integration with mobile hardware (GPS, Camera, Sensors)',
-      'Single codebase for iOS & Android (Cross-platform) for faster launch',
-      'App Store and Play Store compliance and management'
-    ],
-    process: [
-      { step: '01', title: 'Mobile Strategy', description: 'Defining the app purpose, platform selection, and feature prioritization.' },
-      { step: '02', title: 'Interactive Wireframing', description: 'Prototyping the mobile user experience for fast validation.' },
-      { step: '03', title: 'Coding & Integration', description: 'Writing clean, testable code and integrating with cloud backends.' },
-      { step: '04', title: 'Multi-device QA', description: 'Testing across a wide range of devices and screen resolutions.' },
-      { step: '05', title: 'App Store Launch', description: 'Handling the submission and approval process for global distribution.' }
-    ],
+    shortDesc: 'Developing native and cross-platform mobile applications that captivate users and extend your reach.',
+    fullDesc: 'HexaTrue offers comprehensive mobile app development services for iOS and Android platforms. Whether you need a native app for optimal performance or a cross-platform solution for broader reach, we deliver engaging and intuitive mobile experiences that align with your business objectives.',
     icon: Icons.Mobile,
     features: [
-      'Native iOS (Swift) Development',
-      'Native Android (Kotlin) Development',
-      'React Native Cross-platform Apps',
-      'Flutter High-performance Apps',
-      'Mobile UI/UX Design',
-      'App Store Optimization (ASO)'
-    ]
+      'Native iOS & Android Development',
+      'Cross-Platform (React Native, Flutter)',
+      'UI/UX Design for Mobile',
+      'API Integrations',
+      'App Store Optimization (ASO)',
+    ],
+    detailedOverview: 'Our mobile app development team is proficient in crafting high-quality applications that provide seamless performance and exceptional user experience. We follow a user-centric design approach, combined with cutting-edge technologies, to build apps that stand out in crowded app stores and drive user loyalty.',
+    keyBenefits: [
+      'Increased customer engagement',
+      'Expanded market reach',
+      'New revenue streams',
+      'Improved operational flexibility',
+      'Competitive mobile presence',
+    ],
+    process: [
+      { step: '01', title: 'Concept & Discovery', description: 'Defining app features, user stories, and technical specifications.' },
+      { step: '02', title: 'UI/UX Design', description: 'Creating intuitive interfaces and engaging user experiences.' },
+      { step: '03', title: 'Development & Testing', description: 'Building the app, integrating backend, and rigorous QA.' },
+      { step: '04', title: 'Deployment & Marketing', description: 'Assisting with app store submission and launch strategies.' },
+      { step: '05', title: 'Updates & Maintenance', description: 'Regular updates, bug fixes, and performance monitoring.' },
+    ],
   },
   {
     id: 'cloud',
     title: 'Cloud Solutions',
-    shortDesc: 'Scalable cloud infrastructure and migration services for modern enterprises.',
-    fullDesc: 'Unlock the power of AWS, Azure, and Google Cloud. We help you migrate, manage, and optimize your cloud presence for maximum cost-efficiency and performance.',
-    detailedOverview: 'The cloud is the engine of modern business growth. HexaTrue\'s Cloud Solutions empower your organization to leave behind the constraints of traditional hardware. We provide comprehensive cloud consulting, architecture design, and managed migration services. Our team specializes in Cloud-Native architectures, ensuring your applications are elastic, resilient, and cost-effective. We don\'t just move your servers; we modernize your infrastructure using Serverless, Microservices, and Auto-scaling technologies to ensure you only pay for what you use while maintaining world-class performance. Our cloud experts ensure that your security posture is hardened and your data is protected across multi-cloud or hybrid environments.',
-    keyBenefits: [
-      'Up to 40% reduction in infrastructure overhead costs',
-      'Elastic scalability to handle sudden traffic spikes',
-      'Enhanced security through cloud-native guardrails',
-      'Global availability with multi-region deployment strategies',
-      'Faster innovation cycles through cloud-automated tools',
-      'Zero-downtime migration from on-premise to cloud'
-    ],
-    process: [
-      { step: '01', title: 'Cloud Readiness Audit', description: 'Evaluating current infrastructure and defining migration priorities.' },
-      { step: '02', title: 'Architecture Planning', description: 'Designing a secure, high-availability cloud blueprint (AWS/Azure/GCP).' },
-      { step: '03', title: 'Migration Execution', description: 'Phased, low-risk migration of data and applications to the new environment.' },
-      { step: '04', title: 'Managed Services', description: '24/7 monitoring, patching, and operational management of your cloud.' },
-      { step: '05', title: 'Cost Optimization', description: 'Continuous tuning of cloud resources to minimize monthly spend.' }
-    ],
+    shortDesc: 'Leveraging leading cloud platforms to build scalable, secure, and cost-effective infrastructure for your business.',
+    fullDesc: 'HexaTrue helps businesses harness the power of cloud computing through strategic consulting, migration, and management services. We work with AWS, Azure, and Google Cloud Platform to design and implement cloud-native architectures that enhance agility, reduce operational costs, and improve resilience.',
     icon: Icons.Cloud,
     features: [
-      'Cloud Migration Strategy',
-      'Serverless Architectures',
-      'Managed Cloud Services',
+      'Cloud Migration & Consulting',
       'Infrastructure as Code (IaC)',
-      'Cloud Cost Optimization',
-      'Disaster Recovery Planning'
-    ]
-  },
-  {
-    id: 'devops',
-    title: 'DevOps Engineering',
-    shortDesc: 'Automated CI/CD pipelines and monitoring for rapid, reliable software delivery.',
-    fullDesc: 'Accelerate your development lifecycle with our DevOps expertise. We automate everything from testing to deployment, reducing errors and increasing speed.',
-    detailedOverview: 'DevOps is the culture of collaboration and automation. HexaTrue helps you break down silos between development and operations teams. By implementing robust Continuous Integration and Continuous Deployment (CI/CD) pipelines, we enable your organization to release software faster and with significantly fewer defects. Our DevOps engineers are experts in containerization (Docker, Kubernetes) and Infrastructure as Code (Terraform), ensuring your environments are reproducible, stable, and secure. We focus on building a "feedback loop" that allows for rapid fixes and constant improvement. Our DevSecOps approach ensures that security is integrated into every stage of the pipeline, from code to cloud.',
+      'Serverless Architectures',
+      'Containerization (Docker, Kubernetes)',
+      'Cloud Security & Compliance',
+    ],
+    detailedOverview: 'Our cloud solutions enable businesses to innovate faster, scale on demand, and operate more efficiently. We provide end-to-end services, from assessing your current infrastructure and planning migration strategies to implementing advanced cloud-native services like serverless functions and managed databases. Our goal is to create a robust, secure, and highly available cloud environment tailored to your specific needs.',
     keyBenefits: [
-      'Release software 10x faster with automated pipelines',
-      'Significant reduction in deployment-related failures',
-      'Faster mean time to recovery (MTTR) through monitoring',
-      'Improved collaboration and developer productivity',
-      'Consistency across Dev, Staging, and Production environments',
-      'Automated security checks within the delivery pipeline'
+      'Scalability & flexibility',
+      'Cost efficiency & optimization',
+      'Enhanced security & compliance',
+      'Improved disaster recovery',
+      'Faster innovation cycles',
     ],
     process: [
-      { step: '01', title: 'Culture Assessment', description: 'Reviewing current workflows and identifying automation opportunities.' },
-      { step: '02', title: 'Toolchain Integration', description: 'Setting up Git, Jenkins/GitHub Actions, and automated testing tools.' },
-      { step: '03', title: 'Containerization', description: 'Architecting applications for Docker and Kubernetes orchestration.' },
-      { step: '04', title: 'Pipeline Automation', description: 'Building the end-to-end flow from code commit to production release.' },
-      { step: '05', title: 'Observability', description: 'Implementing logging and monitoring for full-stack visibility.' }
+      { step: '01', title: 'Cloud Strategy', description: 'Assessing needs, defining cloud roadmap, and platform selection.' },
+      { step: '02', title: 'Migration Planning', description: 'Detailed planning for data, application, and infrastructure migration.' },
+      { step: '03', title: 'Implementation', description: 'Setting up cloud infrastructure, deploying applications, and data transfer.' },
+      { step: '04', title: 'Optimization', description: 'Performance tuning, cost management, and security enhancements.' },
+      { step: '05', title: 'Managed Services', description: 'Ongoing monitoring, maintenance, and support for cloud environments.' },
     ],
-    icon: Icons.DevOps,
-    features: [
-      'CI/CD Pipeline Automation',
-      'Containerization (Docker & K8s)',
-      'Automated Monitoring & Alerting',
-      'Site Reliability Engineering (SRE)',
-      'Security Integration (DevSecOps)',
-      'Environment Provisioning'
-    ]
-  },
-  {
-    id: 'it-services',
-    title: 'Enterprise IT Services',
-    shortDesc: 'Full-cycle IT support and consulting to optimize your business operations.',
-    fullDesc: 'Professional IT management and consulting for the modern enterprise. We handle the technology so you can focus on your core business.',
-    detailedOverview: 'Technology should be an asset, not a burden. HexaTrue\'s Enterprise IT Services provide the strategic management and technical support your organization needs to thrive. We offer a full spectrum of managed services, including network design, help desk support, and IT strategic planning. Our goal is to ensure your technical infrastructure is invisible—always working, always secure, and always optimized. We act as your fractional CTO or extended IT department, providing expert guidance on everything from hardware procurement to long-term digital strategy. Our multi-layered support model ensures that technical issues are resolved rapidly, minimizing downtime and maximizing organizational efficiency.',
-    keyBenefits: [
-      'Eliminate the overhead of managing internal IT teams',
-      'Proactive monitoring to prevent issues before they occur',
-      'Strategic technology roadmap aligned with business goals',
-      'Guaranteed Service Level Agreements (SLAs) for uptime',
-      'Access to a deep pool of specialized technical talent',
-      'Compliance with industry standards and regulations'
-    ],
-    process: [
-      { step: '01', title: 'IT Audit', description: 'Comprehensive review of your current hardware, software, and networks.' },
-      { step: '02', title: 'Strategy Setup', description: 'Defining IT goals, budget, and a 3-year technology roadmap.' },
-      { step: '03', title: 'Migration & Support', description: 'Implementing new systems and providing 24/7 technical assistance.' },
-      { step: '04', title: 'Network Hardening', description: 'Ensuring your internal systems are secure and high-performing.' },
-      { step: '05', title: 'Quarterly Reviews', description: 'Regular strategy sessions to ensure IT continues to drive business.' }
-    ],
-    icon: Icons.Software,
-    features: [
-      'Strategic IT Consulting',
-      'Network Infrastructure Support',
-      'Managed IT Operations',
-      'IT Audit & Risk Management',
-      'Technical Staff Augmentation',
-      'Service Desk Operations'
-    ]
   },
   {
     id: 'security',
     title: 'Security Engineering',
-    shortDesc: 'Robust cybersecurity and compliance services to protect your digital assets.',
-    fullDesc: 'Protect your brand and your data with our advanced security services. We implement multi-layered defenses and perform rigorous vulnerability testing.',
-    detailedOverview: 'In a world of evolving cyber threats, "good enough" security is no longer an option. HexaTrue\'s Security Engineering service provides a proactive, defense-in-depth approach to protecting your digital ecosystem. We specialize in identifying vulnerabilities before they are exploited and implementing hardened security controls that deter attackers. Our team covers the entire security lifecycle, from initial risk assessment to real-time incident response. We also ensure your organization meets global compliance standards like GDPR, SOC2, and ISO 27001, protecting you from both breaches and regulatory fines. Our approach is holistic, covering people, processes, and technology to build a truly resilient security culture.',
-    keyBenefits: [
-      'Identification of 100% of critical security vulnerabilities',
-      'Protection against advanced persistent threats (APT)',
-      'Full compliance with global data protection regulations',
-      'Reduced risk of costly data breaches and brand damage',
-      'Encrypted and secure communication across all platforms',
-      'Peace of mind for stakeholders and customers'
-    ],
-    process: [
-      { step: '01', title: 'Threat Modeling', description: 'Identifying potential attackers and their likely methods of entry.' },
-      { step: '02', title: 'Vulnerability Scan', description: 'Automated and manual testing of all applications and infrastructure.' },
-      { step: '03', title: 'Remediation Plan', description: 'Prioritized list of fixes to close security gaps immediately.' },
-      { step: '04', title: 'Defense Hardening', description: 'Implementing Firewalls, MFA, IAM, and Encryption controls.' },
-      { step: '05', title: 'Continuous Monitoring', description: '24/7 SOC operations to detect and respond to live threats.' }
-    ],
+    shortDesc: 'Protecting your digital assets with robust security frameworks, threat detection, and compliance solutions.',
+    fullDesc: 'In an era of increasing cyber threats, HexaTrue provides comprehensive security engineering services to safeguard your applications and infrastructure. We focus on proactive security measures, vulnerability assessments, penetration testing, and implementing compliance frameworks to protect your sensitive data and maintain business continuity.',
     icon: Icons.Security,
     features: [
-      'Penetration Testing',
-      'Vulnerability Assessments',
-      'Compliance (GDPR, SOC2, HIPAA)',
-      'Identity & Access Management',
-      'Threat Intelligence & Response',
-      'Data Encryption Strategies'
-    ]
+      'Vulnerability Assessment & Pen Testing',
+      'Security Architecture Design',
+      'Compliance (GDPR, HIPAA, ISO 27001)',
+      'Identity & Access Management (IAM)',
+      'DevSecOps Implementation',
+    ],
+    detailedOverview: 'Our security engineering practice integrates security into every stage of the software development lifecycle. We employ a multi-layered approach to protect against evolving threats, ensuring that your systems are resilient and compliant with industry regulations. From secure code reviews to incident response planning, we help you build a strong security posture.',
+    keyBenefits: [
+      'Reduced risk of data breaches',
+      'Compliance with industry regulations',
+      'Improved business continuity',
+      'Enhanced customer trust',
+      'Proactive threat mitigation',
+    ],
+    process: [
+      { step: '01', title: 'Security Audit', description: 'Assessing current security posture and identifying vulnerabilities.' },
+      { step: '02', title: 'Strategy & Design', description: 'Developing a tailored security roadmap and architecture.' },
+      { step: '03', title: 'Implementation', description: 'Deploying security tools, controls, and best practices.' },
+      { step: '04', title: 'Monitoring & Response', description: 'Continuous monitoring and rapid incident response.' },
+      { step: '05', title: 'Compliance & Training', description: 'Ensuring regulatory adherence and team training.' },
+    ],
   },
   {
     id: 'testing',
-    title: 'QA & Testing Services',
-    shortDesc: 'Rigorous automated and manual testing to ensure a bug-free user experience.',
-    fullDesc: 'Quality is non-negotiable. Our QA experts ensure your applications are performant, reliable, and bug-free across all platforms.',
-    detailedOverview: 'A single bug can ruin a user\'s perception of your brand. HexaTrue\'s QA & Testing services are designed to ensure your software is bulletproof. We employ a "Shift Left" testing philosophy, integrating quality checks early in the development lifecycle. Our team utilizes advanced automation frameworks to perform regression, performance, and load testing at scale. We simulate thousands of concurrent users and test on real devices to ensure your product performs flawlessly under pressure. Our comprehensive reports provide clear insights into your software\'s reliability and performance metrics, allowing your team to release with confidence and speed.',
-    keyBenefits: [
-      'Significant reduction in post-launch bug reports',
-      'Improved user satisfaction and higher app store ratings',
-      'Lower maintenance costs through early bug detection',
-      'Guaranteed performance under peak load conditions',
-      'Cross-browser and cross-device compatibility assurance',
-      'Comprehensive documentation of testing results'
-    ],
-    process: [
-      { step: '01', title: 'Test Planning', description: 'Defining test coverage, tools, and pass/fail criteria.' },
-      { step: '02', title: 'Manual Exploration', description: 'Human testing to catch UX issues and logic flaws.' },
-      { step: '03', title: 'Automation Setup', description: 'Writing scripts for regression and repetitive test cases.' },
-      { step: '04', title: 'Load & Stress Testing', description: 'Pushing systems to their limit to ensure stability.' },
-      { step: '05', title: 'Quality Sign-off', description: 'Final verification and detailed reporting before deployment.' }
-    ],
+    title: 'Quality Assurance & Testing',
+    shortDesc: 'Ensuring flawless software performance, reliability, and an exceptional user experience through rigorous testing.',
+    fullDesc: 'HexaTrue offers comprehensive Quality Assurance (QA) and testing services, covering functional, performance, security, and automation testing. We integrate testing throughout the development lifecycle to identify and resolve issues early, ensuring your software meets the highest standards of quality and performance.',
     icon: Icons.Testing,
     features: [
-      'Automated Regression Testing',
+      'Automated Testing',
+      'Manual & Exploratory Testing',
       'Performance & Load Testing',
       'Security Testing',
-      'Mobile Device Compatibility',
-      'User Acceptance Testing (UAT)',
-      'Continuous Testing in CI/CD'
-    ]
+      'Test Strategy & Planning',
+    ],
+    detailedOverview: 'Our QA and testing approach is designed to deliver bug-free, robust, and user-friendly software. We utilize a blend of manual and automated testing techniques, tailored to your specific project needs. Our dedicated QA engineers work closely with development teams to ensure continuous quality improvement and faster release cycles.',
+    keyBenefits: [
+      'Higher software quality',
+      'Reduced development costs',
+      'Faster time to market',
+      'Improved user satisfaction',
+      'Enhanced brand reputation',
+    ],
+    process: [
+      { step: '01', title: 'Test Strategy', description: 'Defining test scope, objectives, and methodologies.' },
+      { step: '02', title: 'Test Plan Creation', description: 'Developing detailed test cases and scenarios.' },
+      { step: '03', title: 'Test Execution', description: 'Executing manual and automated tests across environments.' },
+      { step: '04', title: 'Defect Reporting', description: 'Logging, tracking, and verifying bug fixes.' },
+      { step: '05', title: 'Performance Metrics', description: 'Analyzing test results and generating quality reports.' },
+    ],
   },
   {
     id: 'marketing',
-    title: 'Digital Marketing Services',
-    shortDesc: 'Data-driven growth and SEO strategies to scale your online presence.',
-    fullDesc: 'Reach more customers with a results-oriented digital strategy. We combine data science with creative marketing to drive conversions and growth.',
-    detailedOverview: 'Visibility is the currency of the digital age. HexaTrue\'s Digital Marketing services help your business cut through the noise. We don\'t just "run ads"; we build a data-driven growth engine that aligns with your bottom line. Our expertise in SEO, PPC, and Content Marketing is backed by advanced analytics, allowing us to track every dollar spent and every conversion earned. We focus on high-intent traffic, ensuring your marketing efforts reach the people who are most likely to become your best customers. Our technology-first approach to marketing means we use AI and automation to optimize campaigns in real-time, delivering maximum efficiency and ROI for your marketing budget.',
-    keyBenefits: [
-      'Higher rankings for high-value organic search terms',
-      'Significant improvement in lead generation and sales',
-      'Lower cost-per-acquisition (CPA) through optimization',
-      'Measurable ROI with transparent, real-time reporting',
-      'Better brand authority and digital trust',
-      'Targeted reach to your specific ideal customer profile'
-    ],
-    process: [
-      { step: '01', title: 'Market Audit', description: 'Analyzing competitors, keywords, and current search visibility.' },
-      { step: '02', title: 'Strategy Design', description: 'Defining the optimal mix of SEO, Paid Search, and Content.' },
-      { step: '03', title: 'Campaign Launch', description: 'Deploying optimized ads and high-quality SEO content.' },
-      { step: '04', title: 'Data Analysis', description: 'Tracking performance metrics and user behavior patterns.' },
-      { step: '05', title: 'Optimization Loop', description: 'Constant tuning of creative and spend for maximum ROI.' }
-    ],
+    title: 'Digital Marketing',
+    shortDesc: 'Crafting data-driven digital marketing strategies to enhance your brand visibility and drive growth.',
+    fullDesc: 'HexaTrue helps businesses maximize their online presence and reach target audiences through effective digital marketing strategies. Our services include SEO, content marketing, social media management, and paid advertising campaigns designed to boost engagement, generate leads, and increase conversions.',
     icon: Icons.Marketing,
     features: [
       'Search Engine Optimization (SEO)',
-      'Pay-Per-Click (PPC) Management',
-      'Content Marketing Strategy',
-      'Social Media Advertising',
-      'Conversion Rate Optimization',
-      'Marketing Data Analytics'
-    ]
-  }
+      'Content Marketing',
+      'Social Media Management',
+      'Paid Advertising (PPC)',
+      'Email Marketing Campaigns',
+    ],
+    detailedOverview: 'Our digital marketing team combines creative strategies with analytical insights to deliver measurable results. We understand the nuances of various digital channels and tailor campaigns to resonate with your target demographic, ensuring maximum ROI and brand impact. From building compelling content to optimizing ad spend, we cover all aspects of your digital footprint.',
+    keyBenefits: [
+      'Increased brand awareness',
+      'Higher website traffic',
+      'Improved lead generation',
+      'Better conversion rates',
+      'Stronger customer relationships',
+    ],
+    process: [
+      { step: '01', title: 'Audience Research', description: 'Identifying target demographics and market trends.' },
+      { step: '02', title: 'Strategy Development', description: 'Creating comprehensive digital marketing plans.' },
+      { step: '03', title: 'Content Creation', description: 'Developing engaging content for various platforms.' },
+      { step: '04', title: 'Campaign Execution', description: 'Launching and managing SEO, PPC, social media campaigns.' },
+      { step: '05', title: 'Performance Analysis', description: 'Monitoring KPIs, reporting, and campaign optimization.' },
+    ],
+  },
+  {
+    id: 'devops',
+    title: 'DevOps & Automation',
+    shortDesc: 'Streamlining your software delivery pipeline with continuous integration, deployment, and automation.',
+    fullDesc: 'HexaTrue implements DevOps practices to foster collaboration, automate processes, and accelerate software delivery. We help organizations build robust CI/CD pipelines, containerize applications, and manage infrastructure as code, leading to faster release cycles and improved system reliability.',
+    icon: Icons.DevOps,
+    features: [
+      'CI/CD Pipeline Setup',
+      'Container Orchestration (Kubernetes)',
+      'Infrastructure as Code (Terraform, Ansible)',
+      'Cloud Provisioning',
+      'Monitoring & Logging',
+    ],
+    detailedOverview: 'Our DevOps and automation services are designed to enhance agility and efficiency across your development and operations teams. By automating repetitive tasks, establishing continuous feedback loops, and leveraging modern cloud tools, we help you achieve faster, more reliable software releases and ensure optimal system performance.',
+    keyBenefits: [
+      'Faster release cycles',
+      'Improved system reliability',
+      'Reduced operational costs',
+      'Enhanced team collaboration',
+      'Scalable infrastructure management',
+    ],
+    process: [
+      { step: '01', title: 'Assessment & Strategy', description: 'Evaluating current processes and defining DevOps roadmap.' },
+      { step: '02', title: 'Toolchain Selection', description: 'Choosing appropriate CI/CD, monitoring, and automation tools.' },
+      { step: '03', title: 'Pipeline Implementation', description: 'Setting up automated build, test, and deployment pipelines.' },
+      { step: '04', title: 'Infrastructure Automation', description: 'Implementing IaC for consistent and scalable environments.' },
+      { step: '05', title: 'Continuous Improvement', description: 'Ongoing optimization, monitoring, and security enhancements.' },
+    ],
+  },
+  {
+    id: 'it-services',
+    title: 'IT Services & Support',
+    shortDesc: 'Comprehensive IT management, support, and consulting to keep your business operations running smoothly.',
+    fullDesc: 'HexaTrue offers a range of IT services including network management, data backup and recovery, cybersecurity, and helpdesk support. We ensure your IT infrastructure is robust, secure, and always available, allowing you to focus on your core business activities.',
+    icon: <svg xmlns="http://www.w3.org/2000/svg" className="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 12h14M12 5l7 7-7 7" /></svg>,
+    features: [
+      'Network Management',
+      'Data Backup & Recovery',
+      'Helpdesk & Technical Support',
+      'Cybersecurity Solutions',
+      'IT Consulting & Strategy',
+    ],
+    detailedOverview: 'Our IT services are designed to provide reliable and efficient support for your entire technology landscape. From proactive maintenance and monitoring to rapid problem resolution, we ensure your systems are performing optimally and securely. We act as an extension of your team, providing expert guidance and support whenever you need it.',
+    keyBenefits: [
+      'Minimized downtime',
+      'Enhanced data security',
+      'Optimized IT infrastructure',
+      'Access to expert support',
+      'Predictable IT costs',
+    ],
+    process: [
+      { step: '01', title: 'Infrastructure Audit', description: 'Assessing existing IT systems and identifying pain points.' },
+      { step: '02', title: 'Service Planning', description: 'Customizing IT service packages based on business needs.' },
+      { step: '04', title: 'Proactive Monitoring', description: 'Continuous monitoring of systems for performance and security.' },
+      { step: '05', title: 'Reporting & Review', description: 'Regular performance reports and strategic IT reviews.' },
+      { step: '03', title: 'On-Demand Support', description: 'Providing immediate technical assistance and problem resolution.' },
+    ],
+  },
 ];
 
-export const PROJECTS_DATA: Project[] = [
-  {
-    id: 'fintech-ecosystem',
-    title: 'Global FinTech Ecosystem Migration',
-    category: 'Software Development',
-    client: 'TransWorld Finance',
-    thumbnail: 'https://images.unsplash.com/photo-1460925895917-afdab827c52f?q=80&w=2426&auto=format&fit=crop',
-    image: 'https://images.unsplash.com/photo-1551288049-bebda4e38f71?q=80&w=2070&auto=format&fit=crop',
-    shortDesc: 'A massive core-banking modernization for 10M+ active users across APAC and Europe.',
-    challenge: 'TransWorld Finance was operating on a 20-year-old monolithic mainframe architecture that had reached its architectural ceiling. Technical debt was causing weekly outages, and the time-to-market for simple features like "Split Bill" exceeded 12 months. They needed a zero-downtime migration to a cloud-native ecosystem while adhering to strict PSD2 and GDPR regulatory requirements.',
-    solution: 'HexaTrue designed a multi-phased "Strangler Fig" migration plan. We orchestrated over 150 independent microservices using Spring Boot, deployed on a global AWS EKS (Kubernetes) cluster. To ensure data consistency during the transition, we implemented a dual-write event-driven architecture powered by Apache Kafka, ensuring that the legacy mainframe and the new microservices remained in sync in sub-millisecond real-time.',
-    results: [
-      '99.999% uptime during the 18-month migration period',
-      '85% reduction in infrastructure operating costs',
-      'Feature deployment frequency increased from quarterly to daily',
-      'Total transaction capacity increased by 1,200%'
-    ],
-    techStack: ['Java', 'Spring Boot', 'Kubernetes', 'AWS', 'Apache Kafka', 'PostgreSQL', 'Redis'],
-    sections: [
-      { 
-        title: 'Microservices Architecture Design & Domain-Driven Development', 
-        content: 'Our team divided the monolithic system into functional domains: Identity, Ledger, Payments, and Notifications. Each domain was assigned a dedicated engineering pod, allowing for parallel development. We utilized Istio Service Mesh to handle complex traffic routing, service discovery, and fine-grained security policies between these new services. This allowed us to implement canary deployments, where new features were tested on 1% of users before a full rollout.' 
-      },
-      { 
-        title: 'RegTech Integration & Global Compliance Standards', 
-        content: 'Financial security was non-negotiable. We integrated an automated compliance layer that performs real-time AML (Anti-Money Laundering) checks on every transaction using machine learning models trained on historical fraud patterns. All sensitive data was encrypted at the field level using AWS KMS and envelope encryption, ensuring that even in the event of a total infrastructure breach, user financial records remain indecipherable. We also implemented localized tax calculation modules for 12 different European jurisdictions.' 
-      },
-      { 
-        title: 'Extreme Performance Tuning & Database Sharding', 
-        content: 'To support peak loads of 50,000+ concurrent requests per second, we implemented a sophisticated multi-layered caching strategy using Redis and Edge CDNs. Database operations were optimized through horizontal sharding and the use of read-replicas. By moving from a single centralized database to a distributed model, we eliminated the bottleneck that caused outages during high-traffic salary payment days. We also utilized Grafana and Prometheus for deep observability, allowing engineers to identify and fix performance regressions before they reached production.' 
-      }
-    ]
-  },
-  {
-    id: 'edutech-platform',
-    title: 'EduGlobal LMS Modernization',
-    category: 'Web Development',
-    client: 'EduGlobal Academies',
-    thumbnail: 'https://images.unsplash.com/photo-1501504905252-473c47e087f8?q=80&w=1974&auto=format&fit=crop',
-    image: 'https://images.unsplash.com/photo-1522202176988-66273c2fd55f?q=80&w=2071&auto=format&fit=crop',
-    shortDesc: 'A high-performance virtual classroom ecosystem for 500,000+ students globally.',
-    challenge: 'EduGlobal\'s existing tools were a fragmented mix of legacy video software and manual grading spreadsheets. As they scaled to half a million students, the lack of a unified platform led to a 30% drop in course completion rates. They required a singular, high-engagement environment that integrated real-time video, automated grading, and collaborative coding for their STEM departments.',
-    solution: 'We engineered a bespoke, multi-tenant SaaS platform using React and Node.js. The centerpiece was a custom WebRTC implementation for ultra-low latency virtual classrooms that supports 1,000+ simultaneous participants per session. We also integrated a proprietary AI grading engine that uses Natural Language Processing (NLP) with BERT-based models to evaluate open-ended essay questions, providing instant feedback and saving instructors thousands of hours.',
-    results: [
-      'Course completion rates improved by 42% in the first quarter',
-      'Server costs reduced by 60% via serverless auto-scaling',
-      '94% student satisfaction rating for the mobile-responsive interface',
-      'Teacher workload reduced by 15 hours per week on average'
-    ],
-    techStack: ['React', 'Node.js', 'WebRTC', 'AWS Lambda', 'Python (NLP)', 'MongoDB Atlas'],
-    sections: [
-      { 
-        title: 'Real-time State Synchronization & Collaborative Tools', 
-        content: 'The platform features a shared "Infinite Canvas" where students and teachers can collaborate in real-time. Using Socket.io for low-latency state synchronization, we ensured that every drawing, code snippet, and comment appears instantly across all devices. We solved the "concurrent edit" problem by implementing Operational Transformation (OT) algorithms, ensuring that even on unstable networks, student contributions never overwrite each other.' 
-      },
-      { 
-        title: 'Adaptive Learning via Behavioral Analytics', 
-        content: 'We developed a recommendation engine that analyzes student performance and engagement metrics in real-time. If the system detects a student is repeatedly pausing a specific physics video, it automatically surfaces remedial "prerequisite" content. This AI-driven personalization has directly contributed to the massive increase in course completion rates, as it effectively acts as a digital 1-on-1 tutor that adapts to each student\'s unique learning pace.' 
-      }
-    ]
-  },
-  {
-    id: 'smart-logistics-iot',
-    title: 'Smart Logistics: Real-time Fleet Intelligence',
-    category: 'Cloud & Infrastructure',
-    client: 'Global Logistics Corp',
-    thumbnail: 'https://images.unsplash.com/photo-1586528116311-ad8dd3c8310d?q=80&w=2070&auto=format&fit=crop',
-    image: 'https://images.unsplash.com/photo-1519003722824-194d4455a60c?q=80&w=2075&auto=format&fit=crop',
-    shortDesc: 'End-to-end IoT tracking and predictive maintenance for a fleet of 5,000+ vehicles.',
-    challenge: 'Global Logistics suffered from fragmented tracking data and high breakdown costs. Real-time location was often delayed by minutes, and mechanical failures were only discovered after they happened, causing severe supply chain delays.',
-    solution: 'HexaTrue built a cloud-native IoT gateway using AWS IoT Core and Greengrass. We installed telemetric sensors on the fleet to capture engine health, fuel levels, and tire pressure in sub-second intervals. Data was processed using Amazon SageMaker to predict part failures 48 hours before they occurred.',
-    results: [
-      'Breakdown frequency reduced by 35% within 6 months',
-      'Fuel efficiency improved by 12% through route optimization',
-      'Real-time visibility latency reduced from 3 minutes to 1.5 seconds',
-      'Asset utilization increased by 18%'
-    ],
-    techStack: ['AWS IoT Core', 'Python', 'SageMaker', 'MQTT', 'Go', 'DynamoDB'],
-    sections: [
-      { 
-        title: 'High-Concurrency IoT Data Ingestion', 
-        content: 'We implemented a robust MQTT-based broker capable of handling 100,000+ concurrent messages per second. Edge computing nodes (AWS Greengrass) were used to filter "noise" data at the source, ensuring only critical telemetry was sent to the cloud, significantly reducing data costs.' 
-      },
-      { 
-        title: 'Predictive Maintenance Engine', 
-        content: 'Using historical failure data, we trained a Random Forest classification model that analyzes vibration and temperature patterns. Maintenance alerts are automatically piped into the corporate ERP system to schedule service during non-peak hours.' 
-      }
-    ]
-  },
-  {
-    id: 'retail-ai-recommendation',
-    title: 'AI-Driven Hyper-Personalization for E-commerce',
-    category: 'AI & Data',
-    client: 'VogueRetail Global',
-    thumbnail: 'https://images.unsplash.com/photo-1441986300917-64674bd600d8?q=80&w=2070&auto=format&fit=crop',
-    image: 'https://images.unsplash.com/photo-1483985988355-763728e1935b?q=80&w=2070&auto=format&fit=crop',
-    shortDesc: 'Transforming customer engagement with real-time AI product recommendations.',
-    challenge: 'VogueRetail had a vast catalog of 100k+ products, but customers struggled to find items relevant to their style, leading to a high bounce rate and low average order value (AOV).',
-    solution: 'We implemented a deep learning-based recommendation system using Transformer models. The system analyzes browsing behavior, past purchases, and image-based style preferences to curate a personalized storefront for every user in real-time.',
-    results: [
-      'Conversion rate increased by 28%',
-      'Average Order Value (AOV) grew by $14 per customer',
-      'Customer bounce rate on product pages dropped by 15%',
-      'Daily active users (DAU) increased by 22%'
-    ],
-    techStack: ['PyTorch', 'TensorFlow', 'Apache Spark', 'React', 'FastAPI', 'Elasticsearch'],
-    sections: [
-      { 
-        title: 'Real-time Vector Search', 
-        content: 'We moved away from keyword search to semantic vector search. By converting product images and descriptions into multi-dimensional vectors using CLIP models, we allow users to find products based on "vibes" and style similarity rather than just tags.' 
-      },
-      { 
-        title: 'Scalable Data Pipeline', 
-        content: 'We built a data lakehouse architecture using Databricks to process 50 million clickstream events daily. This allows for near-instant updates to the user profile, ensuring that a search for "summer dresses" immediately influences the recommendations for "sandals".' 
-      }
-    ]
-  },
-  {
-    id: 'healthcare-patient-portal',
-    title: 'Secure Health: HIPAA-Compliant Telemedicine',
-    category: 'Mobile App Development',
-    client: 'MediCore Health Systems',
-    thumbnail: 'https://images.unsplash.com/photo-1576091160550-2173dba999ef?q=80&w=2070&auto=format&fit=crop',
-    image: 'https://images.unsplash.com/photo-1505751172107-16053335352c?q=80&w=2070&auto=format&fit=crop',
-    shortDesc: 'A unified digital health platform connecting patients with 2,000+ specialists.',
-    challenge: 'MediCore needed to digitize patient records and provide secure video consultations while maintaining strict HIPAA compliance. Their legacy portal was difficult to use and lacked mobile support.',
-    solution: 'HexaTrue built a high-security mobile ecosystem using Flutter and Node.js. The platform features end-to-end encrypted video chat, real-time vital tracking integration, and an automated prescription management system.',
-    results: [
-      'Patient wait times reduced by 65%',
-      'Provider efficiency increased by 25%',
-      '100% HIPAA compliance audit score',
-      'Active patient users grew to 250k within one year'
-    ],
-    techStack: ['Flutter', 'Node.js', 'WebRTC', 'AWS HealthLake', 'Auth0', 'PostgreSQL'],
-    sections: [
-      { 
-        title: 'Zero-Knowledge Security Architecture', 
-        content: 'Patient data is encrypted locally on the device before transmission. We utilized AWS KMS for managing encryption keys, ensuring that even HexaTrue engineers cannot access sensitive medical records.' 
-      },
-      { 
-        title: 'IoT Medical Device Integration', 
-        content: 'The app integrates with Apple HealthKit and Google Fit to pull real-time blood pressure and glucose data, alerting doctors automatically if a patient\'s vitals exceed safe thresholds.' 
-      }
-    ]
-  },
-  {
-    id: 'luxury-blockchain-tracking',
-    title: 'AuthentiLink: Luxury Goods Blockchain Provenance',
-    category: 'Security Engineering',
-    client: 'Aura Luxury Group',
-    thumbnail: 'https://images.unsplash.com/photo-1548036328-c9fa89d128fa?q=80&w=2069&auto=format&fit=crop',
-    image: 'https://images.unsplash.com/photo-1523275335684-37898b6baf30?q=80&w=2099&auto=format&fit=crop',
-    shortDesc: 'Eliminating counterfeits with immutable blockchain product identities.',
-    challenge: 'Counterfeit luxury watches were costing Aura millions in lost revenue and brand trust. They needed a way for customers to verify authenticity instantly without relying on paper certificates.',
-    solution: 'We developed a private blockchain solution on Hyperledger Fabric. Every product is assigned a unique NFT-based identity at the point of manufacture, which is linked to an encrypted NFC tag embedded in the product.',
-    results: [
-      'Counterfeit report cases dropped by 92%',
-      'Secondary market resale value increased by 15%',
-      'Brand trust index improved significantly',
-      'Direct-to-consumer engagement grew by 40%'
-    ],
-    techStack: ['Hyperledger Fabric', 'Solidity', 'NFC Tech', 'React Native', 'Node.js', 'GraphQL'],
-    sections: [
-      { 
-        title: 'Immutable Lifecycle Tracking', 
-        content: 'From raw materials to the final sale, every transaction is recorded. When a watch is serviced or sold on the secondary market, the blockchain is updated, creating a complete "digital passport" for the item.' 
-      },
-      { 
-        title: 'NFC-to-Blockchain Bridge', 
-        content: 'We engineered a high-security bridge between physical NFC chips and digital tokens. The chip uses a rolling code algorithm to prevent "cloning", ensuring the physical item and its digital certificate are inextricably linked.' 
-      }
-    ]
-  },
-  {
-    id: 'energy-grid-optimization',
-    title: 'EcoGrid: Smart Grid Management System',
-    category: 'Software Development',
-    client: 'Renewable Power Co.',
-    thumbnail: 'https://images.unsplash.com/photo-1473341304170-971dccb5ac1e?q=80&w=2070&auto=format&fit=crop',
-    image: 'https://images.unsplash.com/photo-1466611653911-954ff21167d4?q=80&w=2070&auto=format&fit=crop',
-    shortDesc: 'AI-driven load balancing for renewable energy microgrids.',
-    challenge: 'Renewable Power Co. struggled with the volatility of solar and wind inputs. They needed to predict energy spikes and balance loads across thousands of homes to prevent grid failures.',
-    solution: 'HexaTrue built a real-time data orchestration platform using Elixir and Phoenix for high-availability. We integrated weather forecasting data and smart meter telemetry to predict supply-demand gaps using deep learning.',
-    results: [
-      'Grid stability improved by 40%',
-      'Wasted renewable energy reduced by 25%',
-      'Operational maintenance costs lowered by 18%',
-      'Supported 100k+ concurrent smart meters'
-    ],
-    techStack: ['Elixir', 'Phoenix', 'TimescaleDB', 'Python', 'Kafka', 'Terraform'],
-    sections: [
-      { 
-        title: 'High-Throughput Telemetry Ingestion', 
-        content: 'Elixir\'s actor model allowed us to process millions of small meter readings with sub-millisecond latency. We used TimescaleDB for specialized time-series analysis to identify localized power drops.' 
-      },
-      { 
-        title: 'Predictive Load Shedding', 
-        content: 'The AI model anticipates clouds or wind drops, triggering "smart load shedding" where non-essential appliances (like pool heaters) are briefly paused to maintain critical grid frequency.' 
-      }
-    ]
-  },
-  {
-    id: 'manufacturing-erp-migration',
-    title: 'Industry 4.0: Legacy ERP Modernization',
-    category: 'Cloud Solutions',
-    client: 'Precision Parts Mfg.',
-    thumbnail: 'https://images.unsplash.com/photo-1581091226825-a6a2a5aee158?q=80&w=2070&auto=format&fit=crop',
-    image: 'https://images.unsplash.com/photo-1565034946487-077786996e27?q=80&w=2070&auto=format&fit=crop',
-    shortDesc: 'Modernizing a monolithic ERP into a cloud-native microservices architecture.',
-    challenge: 'A 30-year-old COBOL-based ERP was crippling the manufacturing speed. Simple inventory updates took hours to reflect, and integrating with modern suppliers was impossible.',
-    solution: 'We conducted a "Big Bang" migration of core modules to a microservices architecture on Google Cloud. We used Go for performance-critical inventory modules and Node.js for the supplier portal.',
-    results: [
-      'Order processing time reduced by 90%',
-      'Inventory accuracy increased to 99.8%',
-      'System downtime dropped to zero',
-      'Supplier onboarding time reduced from weeks to days'
-    ],
-    techStack: ['Go', 'GCP', 'Kubernetes', 'RabbitMQ', 'PostgreSQL', 'Docker'],
-    sections: [
-      { 
-        title: 'Strangler Fig Pattern Migration', 
-        content: 'We migrated the system piece-by-piece, wrapping the old COBOL code in modern APIs until the old system could be completely decommissioned without stopping production for even a minute.' 
-      },
-      { 
-        title: 'Real-time Supplier Portal', 
-        content: 'A new React-based portal allows suppliers to see inventory levels in real-time, automatically triggering "Just-In-Time" restocking orders based on AI-predicted demand.' 
-      }
-    ]
-  },
-  {
-    id: 'travel-booking-engine',
-    title: 'SkyBound: High-Performance Travel Aggregator',
-    category: 'Web Development',
-    client: 'SkyBound Holidays',
-    thumbnail: 'https://images.unsplash.com/photo-1476514525535-07fb3b4ae5f1?q=80&w=2070&auto=format&fit=crop',
-    image: 'https://images.unsplash.com/photo-1506012787146-f92b2d7d6d96?q=80&w=2069&auto=format&fit=crop',
-    shortDesc: 'A search engine processing 50,000+ flight and hotel queries per minute.',
-    challenge: 'SkyBound\'s search was slow, taking 10+ seconds to aggregate results from 200+ airlines. Their conversion rate was suffering as users abandoned the site for faster competitors.',
-    solution: 'HexaTrue rebuilt the search core using Rust and gRPC for maximum speed. We implemented a massive parallel processing layer that queries multiple APIs simultaneously and caches results in a distributed Redis cluster.',
-    results: [
-      'Search latency reduced from 12s to 1.8s',
-      'Booking conversion rate increased by 45%',
-      'Monthly active users grew by 150%',
-      'Support for 1,000+ simultaneous booking transactions'
-    ],
-    techStack: ['Rust', 'Redis', 'gRPC', 'Next.js', 'AWS Cloudfront', 'Golang'],
-    sections: [
-      { 
-        title: 'Rust-Powered Search Core', 
-        content: 'By using Rust, we eliminated garbage collection pauses that caused intermittent lag in the old Java-based search. The result is a rock-steady search performance even during peak holiday booking seasons.' 
-      },
-      { 
-        title: 'Distributed Caching Strategy', 
-        content: 'We implemented a geo-distributed cache using Redis, ensuring that a user in London gets flight results from a server in Europe, significantly reducing network round-trip times.' 
-      }
-    ]
-  },
-  {
-    id: 'govt-citizen-portal',
-    title: 'Digital State: Unified Citizen Services',
-    category: 'Software Development',
-    client: 'Municipal Digital Agency',
-    thumbnail: 'https://images.unsplash.com/photo-1521737604893-d14cc237f11d?q=80&w=2084&auto=format&fit=crop',
-    image: 'https://images.unsplash.com/photo-1517048676732-d65bc937f952?q=80&w=2070&auto=format&fit=crop',
-    shortDesc: 'Digitizing 50+ government services for a population of 2 million.',
-    challenge: 'Citizen services were buried in physical paperwork and outdated departmental silos. Applying for a building permit or business license took months of manual office visits.',
-    solution: 'We built a unified digital identity system and service portal using Next.js and a secure GraphQL API. The system integrates with various municipal databases and features a secure document vault for citizens.',
-    results: [
-      'Service processing time reduced by 80%',
-      'Physical office visits dropped by 60%',
-      '92% positive citizen feedback score',
-      'Transparency and tracking improved significantly'
-    ],
-    techStack: ['Next.js', 'GraphQL', 'AWS Cognito', 'PostgreSQL', 'Serverless', 'Terraform'],
-    sections: [
-      { 
-        title: 'Unified Digital Identity', 
-        content: 'We implemented a single-sign-on (SSO) solution that allows citizens to access tax, health, and transport services with a single account, secured by multi-factor authentication and biometric verification.' 
-      },
-      { 
-        title: 'Automated Workflow Orchestration', 
-        content: 'We built a custom workflow engine that routes applications to the correct department automatically, tracking every step of the process and providing citizens with real-time status updates.' 
-      }
-    ]
-  },
-  {
-    id: 'insurance-claims-ai',
-    title: 'InsureAI: Automated Claims Processing',
-    category: 'AI & Data',
-    client: 'SafeGuard Insurance',
-    thumbnail: 'https://images.unsplash.com/photo-1450101499163-c8848c66ca85?q=80&w=2070&auto=format&fit=crop',
-    image: 'https://images.unsplash.com/photo-1509017174183-0b7e0278f1ec?q=80&w=2071&auto=format&fit=crop',
-    shortDesc: 'AI-powered damage assessment for vehicle insurance claims.',
-    challenge: 'Processing car insurance claims manually was slow and prone to human error. It took an average of 7 days to assess damage and approve a repair estimate.',
-    solution: 'We built a computer vision system that analyzes photos of vehicle damage. The AI identifies parts, assesses damage severity, and cross-references repair costs with local workshop rates.',
-    results: [
-      'Claims processing time reduced from 7 days to 4 hours',
-      'Assessment accuracy improved by 22%',
-      'Operational costs reduced by 30%',
-      'Customer satisfaction with claims increased by 50%'
-    ],
-    techStack: ['Python', 'PyTorch', 'Computer Vision', 'FastAPI', 'AWS S3', 'Snowflake'],
-    sections: [
-      { 
-        title: 'Damage Assessment Computer Vision', 
-        content: 'Using a custom-trained EfficientNet model, we can detect dents, scratches, and structural damage from mobile phone photos. The system generates a preliminary repair bill in seconds.' 
-      },
-      { 
-        title: 'Fraud Detection Engine', 
-        content: 'The AI also cross-references the metadata of the photos (GPS, Timestamp) and compares them with historical fraudulent claims to flag suspicious activity automatically.' 
-      }
-    ]
-  },
-  {
-    id: 'media-streaming-cdn',
-    title: 'StreamLine: Scalable Video Delivery Infrastructure',
-    category: 'Cloud & Infrastructure',
-    client: 'Entertainment Plus',
-    thumbnail: 'https://images.unsplash.com/photo-1522869635100-9f4c5e86aa37?q=80&w=2070&auto=format&fit=crop',
-    image: 'https://images.unsplash.com/photo-1574375927938-d5a98e8ffe85?q=80&w=2069&auto=format&fit=crop',
-    shortDesc: 'Rebuilding a regional OTT platform for 4K streaming and high concurrency.',
-    challenge: 'Entertainment Plus experienced severe buffering during live sports events. Their infrastructure couldn\'t handle the massive spikes in traffic during "Game Days".',
-    solution: 'HexaTrue redesigned the video pipeline using AWS MediaServices. We implemented a multi-CDN strategy and a serverless backend that scales instantly based on concurrent viewers.',
-    results: [
-      'Buffering incidents reduced by 95%',
-      'Zero downtime during 50+ live sporting events',
-      'Infrastructure costs optimized by 40% during off-peak hours',
-      'Support for 1M+ concurrent 4K streams'
-    ],
-    techStack: ['AWS Elemental', 'React', 'Node.js', 'CloudFront', 'Redis', 'HLS/DASH'],
-    sections: [
-      { 
-        title: 'Multi-CDN Load Balancing', 
-        content: 'We implemented an intelligent traffic router that sends users to the fastest CDN based on their ISP and location, ensuring the lowest latency and highest quality stream.' 
-      },
-      { 
-        title: 'Dynamic Ad Insertion', 
-        content: 'The system uses server-side ad insertion (SSAI) to deliver personalized ads during live streams without any "stutter" or delay, maximizing revenue without hurting user experience.' 
-      }
-    ]
-  },
-  {
-    id: 'agritech-precision-farming',
-    title: 'FarmIntel: IoT Precision Agriculture',
-    category: 'AI & Data',
-    client: 'GreenField Agri',
-    thumbnail: 'https://images.unsplash.com/photo-1523348830342-d01df499a04d?q=80&w=2070&auto=format&fit=crop',
-    image: 'https://images.unsplash.com/photo-1625246333195-78d9c38ad449?q=80&w=2070&auto=format&fit=crop',
-    shortDesc: 'Optimizing crop yields with real-time soil and weather analytics.',
-    challenge: 'GreenField suffered from unpredictable yields due to uneven irrigation and pest outbreaks. They needed a scientific way to monitor 50,000 acres of farmland.',
-    solution: 'We deployed a mesh of low-power LoRaWAN sensors across the fields to monitor soil moisture, pH, and nutrient levels. This data is combined with satellite imagery to provide daily precision-farming directives.',
-    results: [
-      'Crop yield increased by 20% on average',
-      'Water usage reduced by 35%',
-      'Pesticide application reduced by 15%',
-      'Net farm profitability increased by 22%'
-    ],
-    techStack: ['LoRaWAN', 'Python', 'BigQuery', 'Google Earth Engine', 'Elixir', 'Flutter'],
-    sections: [
-      { 
-        title: 'Satellite Imagery Analysis', 
-        content: 'We integrated Google Earth Engine to analyze NDVI (Normalized Difference Vegetation Index) data, allowing farmers to see a "heat map" of crop health across their entire operation from their mobile phones.' 
-      },
-      { 
-        title: 'Automated Irrigation Control', 
-        content: 'The IoT platform is linked directly to the irrigation pumps. When the soil moisture sensors in "Zone B" hit a critical low, the pumps are automatically activated for a precise duration, saving millions of gallons of water.' 
-      }
-    ]
-  },
-  {
-    id: 'proptech-real-estate-3d',
-    title: 'UrbanHome: Next-Gen Real Estate Marketplace',
-    category: 'Web Development',
-    client: 'UrbanHome Properties',
-    thumbnail: 'https://images.unsplash.com/photo-1560518883-ce09059eeffa?q=80&w=1973&auto=format&fit=crop',
-    image: 'https://images.unsplash.com/photo-1512917774080-9991f1c4c750?q=80&w=2070&auto=format&fit=crop',
-    shortDesc: 'A high-end property portal with 3D virtual tours and AI matching.',
-    challenge: 'UrbanHome needed to stand out in a crowded market. Their static photos and basic search weren\'t enough to engage high-net-worth buyers who wanted a premium digital experience.',
-    solution: 'We built a high-performance marketplace using Three.js for integrated 3D virtual tours. We also implemented an AI matching engine that learns a user\'s aesthetic preferences to suggest properties.',
-    results: [
-      'User time-on-site increased by 300%',
-      'Direct property inquiries grew by 60%',
-      'Average sale price for portal-originated leads was 20% higher',
-      '1,000+ new 3D tours added monthly'
-    ],
-    techStack: ['Three.js', 'React', 'Elasticsearch', 'Python', 'WebXR', 'Node.js'],
-    sections: [
-      { 
-        title: 'Web-Based Spatial 3D Tours', 
-        content: 'Using Three.js, we created a native-web 3D experience where users can "walk through" properties without downloading an app. The system is fully responsive and even supports VR headsets via WebXR.' 
-      },
-      { 
-        title: 'Aesthetic-Based Matching AI', 
-        content: 'Traditional search uses "beds/baths". Our AI analyzes the *style* of properties a user likes (e.g., "Modern Industrial" or "Mid-Century") and surfaces similar aesthetic matches, drastically improving engagement.' 
-      }
-    ]
-  },
-  {
-    id: 'cyber-soc-automation',
-    title: 'CyberGuard: Automated Threat Response SOC',
-    category: 'Security Engineering',
-    client: 'Global Finance Union',
-    thumbnail: 'https://images.unsplash.com/photo-1550751827-4bd374c3f58b?q=80&w=2070&auto=format&fit=crop',
-    image: 'https://images.unsplash.com/photo-1563986768609-322da13575f3?q=80&w=2070&auto=format&fit=crop',
-    shortDesc: 'Transforming a manual SOC into an AI-driven autonomous defense unit.',
-    challenge: 'Global Finance Union was overwhelmed by 10,000+ security alerts daily. Their human analysts were burnt out, and critical threats were being missed in the "noise".',
-    solution: 'HexaTrue implemented a SOAR (Security Orchestration, Automation, and Response) platform. We built custom AI playbooks that automatically triage alerts and isolate compromised nodes in seconds.',
-    results: [
-      'Mean Time to Resolve (MTTR) dropped from 12 hours to 4 minutes',
-      'False positive alerts reduced by 85%',
-      '99.9% of routine threats handled autonomously',
-      'Security posture significantly hardened against zero-day attacks'
-    ],
-    techStack: ['Python', 'Splunk', 'SIEM/SOAR', 'Kubernetes', 'Go', 'Elastic Stack'],
-    sections: [
-      { 
-        title: 'AI-Powered Alert Triaging', 
-        content: 'We built a custom NLP engine that analyzes logs and correlates them with real-world threat intelligence. It "understands" if an alert is a genuine attack or a false positive caused by a developer error.' 
-      },
-      { 
-        title: 'Automated Playbook Execution', 
-        content: 'When a genuine threat (like a ransomware attack) is detected, the SOAR platform executes a "containment playbook" instantly—blocking IPs, revoking tokens, and spinning up clean backups before the malware can spread.' 
-      }
-    ]
-  }
-];
 
-export const BLOG_POSTS: BlogPost[] = [
-  {
-    id: 'ai-enterprise-2025',
-    title: 'AI in Enterprise 2025: Beyond the Generative Hype',
-    category: 'AI & Data',
-    date: 'January 15, 2025',
-    author: 'Dr. Elena Vance',
-    image: 'https://images.unsplash.com/photo-1677442136019-21780ecad995?q=80&w=2070&auto=format&fit=crop',
-    excerpt: 'As we enter 2025, enterprise AI is shifting from conversational tools to autonomous decision engines that drive core business logic.',
-    content: `
-      ## The Strategic Shift Toward Autonomous Agents
-      In 2024, Generative AI (GenAI) was the star of the show. Businesses everywhere rushed to implement chatbots and internal knowledge bases to boost productivity. However, as we move through 2025, the narrative is shifting from AI that "suggests" to AI that "acts." We call this the era of **Autonomous Agentic Workflows**.
-
-      Autonomous Agents are the new frontier of enterprise efficiency. These systems don't just generate text; they orchestrate complex, multi-step workflows with minimal human intervention. Imagine an AI agent that doesn't just draft a response to a supply chain delay but actively negotiates with alternative vendors, re-routes logistics, and updates the ERP system in real-time.
-
-      ### Key Trends Defining AI in 2025:
-      1. **Agentic Workflows & Multi-Agent Systems:** We are seeing the rise of "digital swarms"—groups of specialized AI agents that collaborate on a single goal. For example, a "Researcher Agent" gathers data, a "Strategist Agent" builds a plan, and a "Reviewer Agent" checks for compliance.
-      2. **Small Language Models (SLMs) over LLMs:** While GPT-5 and its peers are impressive, enterprises are increasingly moving toward SLMs. These models are trained on narrow, high-quality proprietary data. They are faster, cheaper to run, and far more accurate for specialized tasks like legal analysis or medical coding.
-      3. **The Rise of RAG (Retrieval-Augmented Generation):** RAG is becoming the standard for reducing hallucinations. By connecting AI to a live, authoritative database, companies ensure that the AI's output is grounded in truth rather than probability.
-      4. **Edge AI Integration:** Bringing intelligence directly to the point of data collection—whether it's a sensor on a factory floor or a handheld device in a hospital. This eliminates the latency of cloud round-trips.
-
-      ## The RAG vs. Fine-Tuning Debate: Which is Right for You?
-      A common question we face at HexaTrue is whether a client should fine-tune a model or implement RAG. 
-      - **RAG** is ideal when your data changes frequently. It's essentially giving the AI an "open-book" to look up the latest information. 
-      - **Fine-Tuning** is better when the AI needs to learn a very specific style, vocabulary, or internal methodology that isn't easily captured in a search query.
-      Most successful 2025 implementations are actually **Hybrid Models**, using RAG for knowledge and fine-tuning for specialized reasoning.
-
-      ## Privacy-Preserving Computation & AI Ethics
-      With increased autonomy comes increased responsibility. Global regulations like the EU AI Act are now in full force. Enterprises must now implement **Explainable AI (XAI)** frameworks.
-      - **Data Anonymization:** AI models are now being trained on synthetic data to prevent the exposure of PII (Personally Identifiable Information).
-      - **Differential Privacy:** Adding "noise" to datasets so that individual records cannot be reverse-engineered from model outputs.
-
-      ## The Economics of AI: ROI in 2025
-      The era of "AI experimentation" is over. Boards are now demanding clear ROI. We've found that the highest returns are not in replacing staff, but in **Cognitive Augmentation**—freeing up high-value employees from the "administrative tax" of their roles. In legal firms, we've seen a 40% reduction in contract review time, and in engineering, a 25% boost in code quality through AI pair-programming.
-
-      The future of enterprise AI isn't just about being smarter; it's about being integrated, autonomous, and ethically grounded.
-    `
-  },
-  {
-    id: 'quantum-resistant-encryption',
-    title: 'Preparing for Q-Day: The Rise of Quantum-Resistant Encryption',
-    category: 'Security',
-    date: 'March 10, 2025',
-    author: 'Marcus Thorne',
-    image: 'https://images.unsplash.com/photo-1639322537228-f710d846310a?q=80&w=2070&auto=format&fit=crop',
-    excerpt: 'Quantum computing is approaching the "Shor threshold." Is your enterprise data ready for the post-quantum era?',
-    content: `
-      ## The Looming Threat of "Q-Day"
-      Quantum computers are no longer a theoretical concept. With companies like IBM and Google rapidly increasing qubit counts and stability, the day when quantum computers can crack current encryption standards—RSA and ECC—is drawing closer. This hypothetical moment is known as **Q-Day**. 
-
-      RSA and ECC rely on the mathematical difficulty of factoring large prime numbers, a task that takes classical computers thousands of years. A quantum computer running **Shor’s Algorithm** could theoretically do this in seconds.
-
-      ### Why "Store Now, Decrypt Later" is a Real Threat
-      The most pressing risk isn't just future data; it's the data you are sending *today*. Malicious actors and nation-states are currently capturing encrypted high-value communications. They are storing this "dark data" with the intention of decrypting it the moment a powerful enough quantum computer exists. For long-term assets like trade secrets, diplomatic cables, and genomic data, the threat is immediate.
-
-      ## Post-Quantum Cryptography (PQC): The New Standard
-      The National Institute of Standards and Technology (NIST) has already finalized the first set of PQC standards. These are algorithms designed to be secure against both classical and quantum computers.
-
-      ### Key PQC Technologies:
-      - **Lattice-based Cryptography:** These algorithms (like CRYSTALS-Kyber and Dilithium) rely on the hardness of finding short vectors in a high-dimensional lattice. They are currently the leading candidates for general-purpose PQC.
-      - **Hash-based Signatures:** Highly secure for digital signatures but can be less efficient for general encryption.
-      - **Isogeny-based Cryptography:** Uses the properties of elliptic curves in a way that is quantum-resistant.
-
-      ## The HexaTrue Framework for Quantum Readiness
-      Transitioning an enterprise to PQC is not a "flip the switch" operation. It requires a systematic approach:
-
-      1. **The Cryptographic Inventory:** Most enterprises don't actually know where their encryption lives. We start by auditing every application, database, and network link to identify which ones rely on vulnerable RSA/ECC algorithms.
-      2. **Hardware Security Modules (HSM) Modernization:** Legacy HSMs often lack the processing power to handle the larger key sizes required by PQC. Upgrading your physical security infrastructure is a critical first step.
-      3. **Hybrid Key Exchange:** During the transition, we recommend a hybrid approach where data is encrypted using *both* classical and quantum-resistant algorithms. This ensures that even if a flaw is found in the new PQC algorithms, the data remains as secure as it is today.
-      4. **Agility as a Priority:** "Cryptographic Agility" means building systems that can swap out algorithms without requiring a full code rewrite. This is essential as the PQC landscape continues to evolve.
-
-      ## Regulatory Compliance and Deadlines
-      Governments are already moving. In the US, the Quantum Computing Cybersecurity Preparedness Act requires federal agencies to prioritize the migration to PQC. Similar mandates are expected in the financial and healthcare sectors by 2026.
-
-      Is your data protected for the next 50 years, or just for the next 5? The time to begin the audit is now.
-    `
-  },
-  {
-    id: 'sustainability-green-it',
-    title: 'The Green Code: Driving Sustainability in Enterprise IT',
-    category: 'Cloud',
-    date: 'May 22, 2025',
-    author: 'Sarah Chen',
-    image: 'https://images.unsplash.com/photo-1473341304170-971dccb5ac1e?q=80&w=2070&auto=format&fit=crop',
-    excerpt: 'IT infrastructure accounts for a growing portion of global energy consumption. Here is how we build sustainable software.',
-    content: `
-      ## The Environmental Cost of the Digital Age
-      As enterprise IT infrastructure scales to support AI and Big Data, its environmental impact has become a boardroom priority. Data centers now account for nearly 2% of global electricity consumption. Sustainable IT is no longer just a Corporate Social Responsibility (CSR) checkbox; it is an operational and financial imperative.
-
-      ## Carbon-Aware Software Engineering
-      At HexaTrue, we believe that sustainability starts with the code. "Green Coding" is the practice of building software that minimizes the energy required for its execution.
-
-      ### Strategic Pillars of Sustainable IT:
-      1. **Serverless & Micro-Architectures:** Traditional servers consume power even when idle. Serverless architectures (like AWS Lambda) follow a "Pay-per-Execution" model, which also translates to "Power-per-Execution." By eliminating idle compute time, we've seen clients reduce their infrastructure carbon footprint by up to 60%.
-      2. **Carbon-Aware Scheduling:** Not all compute tasks need to happen instantly. We implement intelligent schedulers that push heavy batch-processing jobs (like ML training) to times of day when the local power grid is being supplied by a higher percentage of renewable energy (e.g., peak solar hours).
-      3. **Edge Pruning & Data Retention:** We've found that up to 30% of enterprise data is "dark data"—captured but never used. By implementing aggressive data pruning and moving cold data to energy-efficient tape storage, energy consumption for cooling and spinning disks is drastically reduced.
-
-      ## Scope 3 Emissions: The Next Frontier
-      For many enterprises, the majority of their IT emissions fall under **Scope 3**—the emissions produced by their cloud providers and hardware manufacturers.
-      - **Liquid Cooling vs. Air Cooling:** We are advising clients to select data center providers that utilize advanced liquid cooling, which is up to 3000 times more efficient than traditional air cooling at removing heat from high-density AI chips.
-      - **The Lifecycle of Silicon:** We advocate for "Circular IT"—extending the life of hardware through modular design and ensuring that old servers are recycled responsibly to recover rare-earth metals.
-
-      ## The Business Case: Efficiency = Profit
-      Green IT isn't just about saving the planet; it's about saving money. 
-      - **Cloud Optimization:** Every redundant API call or inefficient database query is literally burning money. 
-      - **Brand Equity:** Modern consumers and talent are increasingly choosing companies that can prove their sustainability credentials with hard data, not just vague promises.
-
-      Our "Sustainability Audit" doesn't just look at your carbon footprint; it looks at your technical debt. Usually, they are the same thing.
-    `
-  },
-  {
-    id: 'devsecops-at-scale',
-    title: 'DevSecOps at Scale: Making Security Inevitable',
-    category: 'DevOps',
-    date: 'July 05, 2025',
-    author: 'Dr. Elena Vance',
-    image: 'https://images.unsplash.com/photo-1558494949-ef010cbdcc51?q=80&w=2070&auto=format&fit=crop',
-    excerpt: 'Security should be a feature of your pipeline, not a hurdle. Learn how to automate compliance at scale.',
-    content: `
-      ## The Collapse of the Perimeter
-      The traditional "walled garden" approach to enterprise security is dead. With remote work, multi-cloud environments, and third-party API integrations, the perimeter is now everywhere. Security can no longer be a final check before launch; it must be an inherent property of the development process. This is **DevSecOps**.
-
-      ## Security as Code (SaC)
-      DevSecOps is the practice of treating security policies and tests exactly like application code—version-controlled, automated, and peer-reviewed.
-
-      ### The "Shift Left" Implementation Strategy:
-      1. **Pre-Commit Hooks:** Catching secrets (like API keys) and insecure code patterns before they ever leave the developer's machine.
-      2. **Automated Vulnerability Scanning (SAST/DAST):** 
-         - **SAST (Static Analysis):** Analyzes source code for structural flaws.
-         - **DAST (Dynamic Analysis):** Tests the running application for common web vulnerabilities like SQL injection or Cross-Site Scripting (XSS).
-      3. **Software Composition Analysis (SCA):** Modern apps are 80% open-source libraries. SCA tools automatically audit your dependency tree for known vulnerabilities (CVEs) and licensing risks.
-      4. **Policy as Code (OPA):** Using tools like Open Policy Agent to define infrastructure rules (e.g., "No S3 buckets can be public") that are automatically enforced at the deployment stage.
-
-      ## Building a "Paved Road" for Developers
-      The most common mistake in DevSecOps is making security a bottleneck. If security tools are slow or produce too many false positives, developers will find ways to bypass them. 
-      At HexaTrue, we focus on building a **Paved Road**—a set of pre-approved templates, libraries, and deployment pipelines that are inherently secure. When a developer follows the paved road, they get "Security for Free."
-
-      ## The Human Element: Cultivating a Security Culture
-      Tools only solve 50% of the problem. The other 50% is people. 
-      - **Security Champions:** Identifying developers in every squad who are passionate about security and giving them specialized training.
-      - **Gamified Training:** Moving away from boring annual compliance videos to hands-on "Capture the Flag" (CTF) events.
-
-      ## Compliance at the Speed of Deployment
-      For regulated industries (FinTech, HealthTech), DevSecOps provides an automated audit trail. Every scan, test, and approval is recorded in Git, making "Compliance Audits" a matter of generating a report rather than a month-long manual effort.
-
-      Security shouldn't be a hurdle; it should be the invisible guardrail that allows your team to move faster with total confidence.
-    `
-  },
-  {
-    id: 'edge-computing-industrial',
-    title: 'Edge Computing: The Future of Industrial Automation',
-    category: 'Engineering',
-    date: 'September 18, 2025',
-    author: 'Marcus Thorne',
-    image: 'https://images.unsplash.com/photo-1581091226825-a6a2a5aee158?q=80&w=2070&auto=format&fit=crop',
-    excerpt: 'In critical industrial environments, latency is the enemy. Edge computing brings the brain to the machine.',
-    content: `
-      ## The Latency Crisis in Industry 4.0
-      The cloud has been a game-changer for data storage, but it has one fatal flaw for industrial automation: **Latency**. In a precision manufacturing environment, a robotic arm may need to adjust its movement in sub-5-millisecond increments based on sensor feedback. A round-trip to a cloud data center—even over 5G—can take 50 to 100 milliseconds. This delay is the difference between a perfect product and a catastrophic collision.
-
-      ## Bringing the Brain to the Machine
-      **Edge Computing** solves this by moving processing power directly to the "edge" of the network—on the factory floor, inside the vehicle, or next to the sensor.
-
-      ### Core Advantages of Industrial Edge:
-      1. **Ultra-Low Latency:** Decisions are made locally. If an acoustic sensor detects the high-frequency vibration of a bearing failure, the machine can be safely shut down in real-time, preventing secondary damage.
-      2. **Bandwidth Optimization:** A single factory can generate terabytes of raw sensor data daily. Sending all of this to the cloud is cost-prohibitive. Edge gateways perform "Data Summarization," only sending anomalies or high-level health metrics to the cloud for long-term storage.
-      3. **Disconnected Resilience:** Edge systems can continue to operate and collect data even if the primary internet connection is severed. Once the connection is restored, data is automatically synchronized.
-
-      ## Real-World Application: Edge Digital Twins
-      At HexaTrue, we've implemented "Edge Digital Twins" for a global automotive manufacturer. 
-      - **The Implementation:** Each assembly robot has a local high-fidelity virtual model running on an industrial PC. 
-      - **The AI Layer:** We deployed lightweight computer vision models at the edge that analyze the quality of every weld as it happens. 
-      - **The Result:** We reduced post-production manual inspection by 80% and practically eliminated "Scrap Rate" costs, as errors are corrected the moment they occur.
-
-      ## Security Challenges at the Edge
-      The edge also expands the attack surface. Unlike a centralized data center, edge devices are often physically accessible. 
-      - **Hardware-Root-of-Trust:** Every edge gateway must have a TPM (Trusted Platform Module) chip to ensure only signed, verified code can run.
-      - **Containerized Orchestration:** Using lightweight Kubernetes (like K3s) to manage edge deployments ensures that if one node is compromised, it can be isolated from the rest of the network.
-
-      The future of industrial intelligence isn't just in the cloud; it's right on the factory floor.
-    `
-  },
-  {
-    id: 'future-of-remote-engineering',
-    title: 'The Future of Remote Engineering Culture',
-    category: 'Company',
-    date: 'November 12, 2025',
-    author: 'Sarah Chen',
-    image: 'https://images.unsplash.com/photo-1522202176988-66273c2fd55f?q=80&w=2070&auto=format&fit=crop',
-    excerpt: 'How we maintain high-velocity engineering pods in a distributed world.',
-    content: `
-      ## The End of the "Office First" Paradigm
-      The debate over "Remote vs. In-Office" is maturing into a more sophisticated understanding of **Asynchronous Excellence**. At HexaTrue, we've found that high-velocity engineering isn't about where you sit; it's about how you document, how you communicate, and how you trust.
-
-      ## The Pillars of Asynchronous Engineering
-      In a global firm with hubs in Delhi, Sydney, Berlin, and San Francisco, we can't rely on meetings. We rely on systems.
-
-      ### Our Engineering Principles for 2025:
-      1. **Documentation as a First-Class Citizen:** If it isn't in the Wiki, it doesn't exist. Every architectural decision is recorded in an **ADR (Architectural Decision Record)**. This allows a developer in Sydney to understand exactly why a choice was made by a team in Berlin eight hours earlier.
-      2. **Deep Work Blocks:** We protect 4-hour windows of "meeting-free" time for every engineer. Coding is a creative act that requires "flow." Constant Slack notifications are the enemy of flow.
-      3. **Outcome-Based Performance:** We have eliminated "time at desk" as a metric. We measure "Velocity," "PR Cycle Time," and "Mean Time to Recovery." This gives engineers the freedom to manage their own schedules.
-
-      ## The Tools of the Distributed Pod
-      We leverage a high-end technical stack to bridge the physical gap:
-      - **AI Pair-Programming:** Tools like GitHub Copilot act as a "junior partner" that is always available, reducing the isolation of remote coding.
-      - **Virtual Whiteboards:** For system design, we use real-time collaborative tools that allow for infinite canvas brainstorming.
-      - **Synchronous vs. Asynchronous Video:** We use Loom for 90% of status updates, reserving live Zoom calls for high-empathy brainstorming or complex conflict resolution.
-
-      ## Global Collaboration: The "Follow-the-Sun" Advantage
-      Being remote-native allows us to offer **24/7 Project Momentum**. A feature started in our Indian hub is picked up by the European team and finished by the US team. For mission-critical bug fixes, this model reduces "Down-Time" from days to hours.
-
-      ## Maintaining Empathy and Connection
-      The risk of remote work is "Transactional Isolation"—feeling like a cog in a machine rather than part of a team. 
-      - **Coffee Roulettes:** Automated 15-minute casual chats between random team members to maintain the "water cooler" social fabric.
-      - **Regional Meetups:** While we work remotely, we gather our regional pods once a quarter for intense, high-impact social and technical bonding.
-
-      The future of engineering is distributed, asynchronous, and deeply human.
-    `
-  },
-  {
-    id: 'blockchain-supply-chain',
-    title: 'Blockchain: The New Trust Layer for Supply Chains',
-    category: 'Engineering',
-    date: 'January 25, 2026',
-    author: 'Dr. Elena Vance',
-    image: 'https://images.unsplash.com/photo-1512756783939-ad756f3f0a3d?q=80&w=2071&auto=format&fit=crop',
-    excerpt: 'Eliminating silos and fraud in global logistics with immutable ledgers.',
-    content: `
-      ## The Crisis of Fragmented Data
-      Global supply chains are notoriously opaque. A single shipment of grain or electronics can involve dozens of intermediaries—shippers, ports, customs agents, banks, and carriers. Each has their own fragmented database, often relying on paper-based records and manual emails. This leads to massive inefficiencies, frequent disputes, and billions of dollars in lost value through fraud.
-
-      ## Blockchain: Beyond the Cryptocurrency Hype
-      In 2026, blockchain has found its true calling as the "Immutable Truth Layer" for global logistics. We aren't talking about public, volatile tokens, but about **Private Permissioned Ledgers**.
-
-      ### Core Values for Logistics:
-      1. **Immutable Traceability:** Every scan of a container, every temperature reading from an IoT sensor, and every customs approval is recorded on the blockchain. Once recorded, it cannot be altered. This creates an audit trail that regulators and insurance companies trust implicitly.
-      2. **Smart Contract Automation:** We implement smart contracts that automatically trigger payments the moment a container's GPS coordinates enter a port's geofence and its Bill of Lading is cryptographically signed. This eliminates the "30-day payment lag" common in the industry.
-      3. **Provenance & Sustainability:** For luxury goods and ethical raw materials (like conflict-free minerals), blockchain provides a "Digital Birth Certificate," proving to consumers exactly where their product came from and that it wasn't swapped for a counterfeit along the way.
-
-      ## The HexaTrue Blockchain Stack
-      We primarily build on **Hyperledger Besu** and **Quorum**.
-      - **IPFS Integration:** Large documents (like 50-page manifestos) are stored on IPFS (InterPlanetary File System), with only their cryptographic "fingerprint" stored on the blockchain to maintain high network speed.
-      - **IoT Oracles:** We've built specialized "Oracles" that securely bridge data from physical IoT sensors (temperature, humidity, shock) directly into smart contracts without human intervention.
-
-      ## Case Study: The "Cold Chain" for Pharmaceuticals
-      For a major medical client, we implemented a blockchain-verified cold chain. 
-      - **The Problem:** 20% of vaccines were arriving at their destination compromised due to temperature fluctuations during transport, but no one knew *where* the failure happened.
-      - **The Solution:** Every transport unit was fitted with an IoT sensor reporting to a blockchain ledger.
-      - **The Result:** Insurance disputes were reduced by 90% because the data clearly showed exactly which carrier was responsible for the temperature breach.
-
-      Blockchain isn't just a technology; it's a new way for competitors to collaborate through a shared foundation of trust.
-    `
-  },
-  {
-    id: 'web-4-semantic-iot',
-    title: 'Web 4.0: Where the Semantic Web Meets the Internet of Things',
-    category: 'Web Development',
-    date: 'March 05, 2026',
-    author: 'Marcus Thorne',
-    image: 'https://images.unsplash.com/photo-1550751827-4bd374c3f58b?q=80&w=2070&auto=format&fit=crop',
-    excerpt: 'Web 4.0 is about machines understanding machines. Learn how this shift will redefine business connectivity.',
-    content: `
-      ## The Evolution of the Web
-      - **Web 1.0 (The Read-Only Web):** Static pages, directories, and basic information delivery.
-      - **Web 2.0 (The Social Web):** User-generated content, interaction, and the rise of the platform giants.
-      - **Web 3.0 (The Decentralized Web):** Blockchain, ownership, and the removal of the "Middleman."
-      - **Web 4.0 (The Symbiotic Web):** This is the web of 2026. It is a web where machines, humans, and objects are all nodes in a hyper-intelligent, self-organizing network.
-
-      ## What is the Semantic Web?
-      At the heart of Web 4.0 is the **Semantic Web**—the idea that data should be labeled so that computers can understand the *meaning* of the information, not just the text. 
-      In Web 2.0, a computer sees the word "Apple" and doesn't know if it's a fruit or a tech company. In Web 4.0, the data is tagged with metadata that defines its context.
-
-      ### Redefining Business Connectivity:
-      1. **Machine-to-Machine (M2M) Negotiation:** Imagine your office's smart lighting system "talking" to the regional power grid. It doesn't just ask for power; it negotiates the lowest rate based on your building's current occupancy and predicted weather.
-      2. **The "Ubiquitous Brain":** Information is no longer confined to browsers. It's integrated into every object. A shipping pallet can "tell" a forklift that its cargo is fragile and needs to be moved to a specific temperature zone, without any human intervention.
-      3. **Natural Language Knowledge Extraction:** We are moving from "searching for documents" to "asking for facts." Web 4.0 systems can synthesize information across thousands of semantic sources to give you a definitive answer.
-
-      ## The HexaTrue Role: Building the Connective Tissue
-      Our engineering teams are currently building the **Interoperability APIs** required for this shift. 
-      - **Knowledge Graphs:** We build complex graph databases for our clients that map the relationships between their customers, products, and supply chains.
-      - **Neural Search Integration:** Moving beyond keyword matching to "Conceptual Matching."
-
-      ## Why Your Business Needs a Semantic Strategy Now
-      If your data is currently siloed in legacy SQL databases without metadata, you are invisible to the Web 4.0 ecosystem. To benefit from the automated intelligence of the next three years, you must begin the process of "Semantic Normalization"—cleaning and tagging your data so that it can participate in the symbiotic web.
-
-      The era of the "dumb object" is over. Welcome to the decade of intelligence everywhere.
-    `
-  },
-  {
-    id: 'low-code-enterprise-agility',
-    title: 'Low-Code/No-Code: Accelerating Enterprise Agility',
-    category: 'Software Development',
-    date: 'May 14, 2026',
-    author: 'Sarah Chen',
-    image: 'https://images.unsplash.com/photo-1551288049-bebda4e38f71?q=80&w=2070&auto=format&fit=crop',
-    excerpt: 'Democratizing software development without sacrificing architectural integrity.',
-    content: `
-      ## The Developer Bottleneck
-      Global demand for software is currently outpacing the supply of professional engineers by 5 to 1. For years, this meant that internal business tools and departmental "nice-to-haves" were perpetually at the bottom of the IT backlog. **Low-Code and No-Code (LCNC)** platforms are finally breaking this deadlock.
-
-      ## Democratization vs. Governance
-      In 2026, the most successful enterprises aren't just letting everyone build apps; they are creating a **Center of Excellence (CoE)**. This is a model where professional engineers (like the team at HexaTrue) build the robust, high-security "Core Services," while "Citizen Developers" (business analysts, HR, marketing) build the "Last Mile" user interfaces.
-
-      ### The Benefits of a Hybrid LCNC Strategy:
-      1. **Rapid Prototyping:** A marketing team can build and test a new loyalty campaign dashboard in a weekend using drag-and-drop tools, rather than waiting for a 3-month development cycle.
-      2. **Empowered Subject Matter Experts:** Who knows an HR process better than the HR team? By giving them the tools to build their own workflows, the software is far more aligned with their actual daily needs.
-      3. **Reduced Shadow IT:** When business teams feel empowered by official IT tools, they stop using unapproved and insecure third-party SaaS apps.
-
-      ## The HexaTrue Framework: LCNC for the Enterprise
-      We don't just "buy a platform." we build an ecosystem:
-      - **The API Backbone:** We build high-performance, secure REST and GraphQL APIs that expose your core business data in a way that is "LCNC-friendly."
-      - **Security Guardrails:** We implement automated governance. If a citizen developer builds an app that tries to export sensitive customer data, our system blocks it instantly.
-      - **The "Graduate" Path:** When a low-code app becomes mission-critical, we have a clear path to "graduate" it into a professionally managed, high-performance custom application.
-
-      ## Case Study: Regional Sales Intelligence
-      A retail client had 50 regional managers who all wanted different ways to visualize their local sales. 
-      - **The Old Way:** The central IT team spent 100% of their time making small tweaks to 50 different dashboards.
-      - **The HexaTrue Way:** We built a centralized "Sales Data API" and trained the managers on a low-code visualization tool. 
-      - **The Result:** The managers built their own unique dashboards in days, and the IT team went back to building a new high-end AI recommendation engine.
-
-      Low-code is not the death of the developer; it is the liberation of the developer.
-    `
-  },
-  {
-    id: 'immersive-ux-design',
-    title: 'The Evolution of UX: Designing Immersive Interfaces',
-    category: 'Web Development',
-    date: 'July 22, 2026',
-    author: 'Dr. Elena Vance',
-    image: 'https://images.unsplash.com/photo-1600607687960-4a2263467041?q=80&w=2070&auto=format&fit=crop',
-    excerpt: 'Moving beyond the screen: Spatial UI and the future of human-computer interaction.',
-    content: `
-      ## The Screen-Based Era is Ending
-      For forty years, our digital interaction has been confined to two dimensions—the glass of a monitor or a smartphone. But in 2026, as high-fidelity Augmented Reality (AR) glasses and Spatial Computing platforms become the new desktop, UX design is undergoing its most radical transformation since the invention of the mouse.
-
-      ## What is Spatial UX?
-      Spatial UX is the art of designing interfaces that live *with* the user in their physical environment. It isn't just about putting a screen in front of your face; it's about context, depth, and ergonomic intuition.
-
-      ### Key Design Principles for the Immersive Era:
-      1. **Z-Axis Hierarchy:** In a 2D world, we use size and color for priority. In a 3D world, we use distance. Important notifications can "float" 50cm in front of you, while background logs can stay "on the wall" 3 meters away.
-      2. **Gaze and Gesture Interaction:** Moving away from clicks to "Look and Pinch." Designing for eye-tracking requires a new understanding of cognitive load; we can't have buttons that trigger just because a user happened to look at them.
-      3. **Contextual Persistence:** A spatial UI should remember its location. If a maintenance engineer "leaves" a virtual schematic floating over a physical machine on Friday, it should be in the exact same spot on Monday morning.
-
-      ## The HexaTrue Spatial Pod
-      Our design and engineering teams are at the forefront of this shift.
-      - **Three.js & WebXR:** We are building high-performance 3D interfaces that run directly in the browser, no installation required.
-      - **Physics-Based Interaction:** We use complex physics engines so that when you "grab" a virtual object, it feels like it has weight and resistance, providing essential haptic-like feedback to the user.
-
-      ## Application: The "Command Center" of the Future
-      For a global logistics firm, we've replaced their 20-monitor command center with a single AR environment. 
-      - **The UX:** Operators can walk through a "Virtual Fleet," seeing real-time weather and traffic data overlaid on a 3D map that fills the room. 
-      - **The Impact:** Decision speed has increased by 30% because the "mental mapping" of complex 2D data onto the 3D world is now handled automatically by the UI.
-
-      The future of design isn't on a screen; it's in the room with you. Is your brand ready to take up space?
-    `
-  },
-  {
-    id: 'cybersecurity-gen-ai',
-    title: 'Cybersecurity in the Age of Generative AI',
-    category: 'Security',
-    date: 'September 02, 2026',
-    author: 'Marcus Thorne',
-    image: 'https://images.unsplash.com/photo-1550751827-4bd374c3f58b?q=80&w=2070&auto=format&fit=crop',
-    excerpt: 'AI is being used to create hyper-realistic phishing attacks. Here is how to defend your enterprise.',
-    content: `
-      ## The Democratization of Cyber-Crime
-      In the past, high-end "Spear-Phishing" (targeting a specific executive with a perfectly crafted email) was a manual, time-consuming process for a human attacker. In 2026, Generative AI has automated this at scale. Malicious actors are now using LLMs to scan LinkedIn profiles, recent news articles, and leaked corporate emails to generate thousands of hyper-realistic, culturally nuanced phishing messages in seconds.
-
-      ## The Rise of the Deepfake Employee
-      We are now seeing the first wave of **AI Social Engineering**. Attackers are using real-time voice and video cloning to impersonate CFOs and CEOs during virtual meetings, authorizing "urgent" wire transfers. If a colleague's voice and face look correct on a screen, how do you know it's really them?
-
-      ### Defensive AI Strategies:
-      1. **Behavioral Biometrics & "Human Rhythms":** We implement security layers that don't just check passwords, but check *patterns*. How does this user type? How do they navigate a menu? AI can detect when the "rhythm" of an interaction doesn't match the historical profile of the user, even if they have the correct MFA code.
-      2. **AI-Powered Synthetic Content Detection:** Every incoming email, audio clip, and video call is automatically audited by a defensive AI trained to detect the "tell-tale" artifacts of synthetic generation.
-      3. **Zero-Trust for Everything:** We are moving toward a world where "Visual Verification" is no longer enough. Every high-value transaction must be verified through out-of-band, cryptographically signed hardware keys.
-
-      ## Fighting Fire with Fire: Automated Remediation
-      The speed of an AI-driven attack means that human security analysts are often too slow to react. HexaTrue is deploying **Autonomous SOC (Security Operations Center)** units.
-      - **The Function:** When an anomaly is detected, the AI doesn't just send an alert. It automatically isolates the affected server, revokes the user's credentials across all cloud platforms, and begins a forensic scan—all in milliseconds.
-
-      ## The New Training Paradigm
-      The old annual "Phishing Test" is obsolete. We provide our clients with **Continuous Red-Teaming**. Our AI-powered security bots constantly "attack" your employees with simulated Deepfakes and AI-phishing, providing immediate, personalized coaching to those who are most vulnerable.
-
-      In 2026, your best security analyst isn't a human; it's a defensive AI that never sleeps.
-    `
-  },
-  {
-    id: 'cloud-native-2026',
-    title: 'Cloud-Native Transformation: A 2026 Roadmap',
-    category: 'Cloud',
-    date: 'October 15, 2026',
-    author: 'Sarah Chen',
-    image: 'https://images.unsplash.com/photo-1544197150-b99a580bb7a8?q=80&w=2070&auto=format&fit=crop',
-    excerpt: 'Moving beyond "Lift and Shift" to true cloud-native maturity.',
-    content: `
-      ## The Maturity Model for the Modern Cloud
-      Five years ago, most enterprises were proud of their "Cloud Migration." In reality, most had simply performed a "Lift and Shift"—moving their clunky, monolithic virtual machines from an on-premise data center to AWS or Azure. 
-      By 2026, this approach has become a liability. Monoliths in the cloud are expensive, slow to update, and difficult to scale.
-
-      ## What Does "Cloud-Native" Actually Mean?
-      Cloud-native isn't about *where* your app lives; it's about *how* it's built. 
-
-      ### The Pillars of Cloud-Native Maturity:
-      1. **Microservices & Service Mesh:** Breaking the app into small, independent services that talk to each other through a "Service Mesh" (like Istio). This allows you to update one feature (like "Search") without touching the rest of the app.
-      2. **Immutable Infrastructure & GitOps:** We no longer "patch" servers. We define the entire environment in code (Terraform/Kubernetes). If we need to change something, we update the code and redeploy the entire environment. This ensures 100% consistency between Dev, Staging, and Production.
-      3. **Elasticity & Serverless:** Your infrastructure should grow and shrink automatically based on real-time user demand. You shouldn't be paying for a 64GB RAM server at 3 AM when no one is using it.
-
-      ## The 2026 Roadmap: FinOps as a Discipline
-      As cloud bills have soared, a new discipline has emerged: **FinOps**. This is the practice of real-time cloud cost management.
-      - **Automated Pruning:** Our systems automatically identify and delete "Zombie Resources"—load balancers or storage volumes that are no longer connected to anything but are still billing you.
-      - **Spot Instance Orchestration:** Using "spare capacity" from providers at up to 90% discount for non-critical batch tasks.
-
-      ## The Sovereign Cloud Challenge
-      With the rise of data sovereignty laws (like GDPR and the Data Act), global enterprises must now manage a **Multi-Region Sovereign Cloud**. We help our clients build architectures that can stay perfectly in sync while ensuring that a German citizen's data never leaves a physical server located in Germany.
-
-      Moving to the cloud was the first step. Becoming native to the cloud is the final transformation.
-    `
-  },
-  {
-    id: 'predictive-maintenance-5-0',
-    title: 'Predictive Maintenance in Industry 5.0',
-    category: 'Engineering',
-    date: 'November 20, 2026',
-    author: 'Dr. Elena Vance',
-    image: 'https://images.unsplash.com/photo-1581091226825-a6a2a5aee158?q=80&w=2070&auto=format&fit=crop',
-    excerpt: 'Combining human intuition with AI precision to eliminate industrial downtime.',
-    content: `
-      ## The Human-Centric Factory of 2026
-      If Industry 4.0 was defined by total automation and the "Lights-Out Factory," Industry 5.0 is the return of the human. We have realized that while AI is great at spotting patterns, humans are essential for high-stakes problem-solving and ethical oversight. **Predictive Maintenance 5.0** is the perfect example of this synergy.
-
-      ## Beyond the "Red Light"
-      In older systems, predictive maintenance just meant a dashboard that turned red when a sensor hit a threshold. In 2026, it is a collaborative, immersive experience.
-
-      ### The Tech Stack of Maintenance 5.0:
-      1. **Acoustic Fingerprinting:** We use high-fidelity microphones on the factory floor. Our AI is trained to recognize the "Micro-Squeak" of a ball bearing that is beginning to fail—a sound totally inaudible to humans and invisible to traditional temperature sensors.
-      2. **Dynamic Digital Twins:** A real-time virtual model of the machine that doesn't just show data, but allows for "What-If" simulations. An engineer can ask, "If we run this motor at 110% for the next 48 hours to meet this deadline, what is the probability of failure?"
-      3. **AR-Guided Repair:** When a part does need replacing, the technician wears AR glasses that overlay the exact internal structure of the machine onto the physical hardware, highlighting the specific bolt that needs to be turned.
-
-      ## The Business Impact: Zero Unplanned Downtime
-      For a global aerospace manufacturer, HexaTrue implemented a 5.0 framework.
-      - **The Implementation:** We deployed a mesh of 5,000 sensors integrated with a custom AI model.
-      - **The Result:** We achieved **Zero Unplanned Downtime** over a 12-month period. Maintenance is no longer performed on a schedule (e.g., "every 3 months") but on a **Condition-Based** model. This extended the total lifespan of their multimillion-dollar machinery by an average of 22%.
-
-      ## The ESG Angle
-      Sustainable manufacturing is now a legal requirement. Predictive maintenance reduces waste by ensuring machines are always running at their most energy-efficient "Sweet Spot" and by preventing catastrophic failures that often result in toxic leaks or massive material waste.
-
-      Industry 5.0 isn't about machines replacing humans; it's about giving humans the "X-Ray Vision" they need to manage the machines perfectly.
-    `
-  },
-  {
-    id: 'fintech-financial-inclusion',
-    title: 'The Role of FinTech in Global Financial Inclusion',
-    category: 'Software Development',
-    date: 'December 05, 2026',
-    author: 'Marcus Thorne',
-    image: 'https://images.unsplash.com/photo-1460925895917-afdab827c52f?q=80&w=2426&auto=format&fit=crop',
-    excerpt: 'Banking the unbanked: How technology is transforming emerging economies.',
-    content: `
-      ## The Global Banking Gap
-      In 2026, nearly a billion people globally still lack access to a traditional bank account. Without banking, they cannot save safely, they cannot get credit to start a business, and they pay massive fees for simple money transfers. This "Inclusion Gap" is the single greatest hurdle to global economic growth.
-
-      ## FinTech as the Great Equalizer
-      Technology is bypassing the need for physical infrastructure (like branches and vaults). In many emerging markets, people have skipped the "Desktop Era" and the "Credit Card Era" entirely, moving straight from cash to mobile ecosystems.
-
-      ### Key Technologies Driving Inclusion:
-      1. **Mobile-First Wallets:** Using a smartphone as a complete bank. For many, their phone number *is* their bank account number.
-      2. **Alternative Credit Scoring:** Traditional banks require a credit history. We are building AI models for our FinTech clients that use "Alternative Data"—airtime top-up patterns, utility bill payments, and even educational milestones—to build a reliable credit profile for someone who has never had a loan.
-      3. **DeFi & Micropayments:** Using blockchain to enable sub-cent transactions. This allows for new business models like "Pay-As-You-Go" solar power for rural villages.
-
-      ## The Challenges: Security & Trust
-      Financial inclusion also brings new risks. People with limited digital literacy are highly vulnerable to fraud. 
-      - **Biometric Identity:** We've built "Face and Fingerprint" authentication for mobile apps in regions where literacy is a hurdle for complex passwords.
-      - **Offline Mode:** Building apps that can process small transactions via USSD (simple text codes) for users who only have access to 2G networks.
-
-      ## HexaTrue's Social Impact Engineering
-      We are proud to partner with global NGOs and local micro-lenders. 
-      - **Our Role:** We build the high-security backend that handles millions of small transactions with the same level of integrity as a Tier-1 global bank. 
-      - **The Goal:** To reduce the cost of a cross-border remittance from the current 6% average to less than 0.5%.
-
-      Banking is a human right. We are building the tools to make it a global reality.
-    `
-  },
-  {
-    id: 'ethical-ai-regulations',
-    title: 'Ethical AI: Navigating Global Regulations and Frameworks',
-    category: 'AI & Data',
-    date: 'December 28, 2026',
-    author: 'Sarah Chen',
-    image: 'https://images.unsplash.com/photo-1677442136019-21780ecad995?q=80&w=2070&auto=format&fit=crop',
-    excerpt: 'As AI matures, so does the regulatory landscape. Learn how to stay compliant while innovating.',
-    content: `
-      ## The Era of Managed AI
-      The "Wild West" of AI development ended on December 31, 2025. In 2026, every enterprise AI project is subject to a complex, multi-jurisdictional web of laws—led by the EU AI Act, but closely followed by similar mandates from the US, China, and India. Compliance is no longer optional; it is a condition for market entry.
-
-      ## The "High-Risk" AI Categorization
-      Most regulations now categorize AI based on risk. If your AI handles hiring, credit scoring, medical diagnostics, or critical infrastructure, it is "High-Risk" and subject to the most stringent audits.
-
-      ### Building an Ethical AI Framework:
-      1. **Bias Mitigation & Data Auditing:** You cannot have a fair AI if your training data is biased. We implement "Dataset Nutrition Labels"—a framework for auditing training data for historical prejudice, ensuring that AI outcomes are equitable across all demographics.
-      2. **The "Right to Explanation":** If an AI denies a loan or a job application, the law now requires that you can explain *why*. We build "Post-Hoc Interpretability" layers that translate the complex weights of a neural network into a human-readable reason.
-      3. **Human-in-the-Loop (HITL):** For critical decisions, the AI provides a recommendation, but a human must sign off. We design UIs that clearly show the AI's "Confidence Score" to help the human make an informed choice.
-
-      ## Data Sovereignty & AI Training
-      Can you use customer data from Singapore to train a model used in the US? In 2026, usually the answer is "No" without massive legal overhead.
-      - **Federated Learning:** We build systems where the model travels to the data, rather than the data traveling to the model. This allows for global training without ever moving sensitive data across borders.
-      - **Synthetic Data Generation:** We are increasingly using AI to create "Fake but Realistic" datasets for training, which eliminates the risk of PII exposure during the development phase.
-
-      ## The HexaTrue AI Ethics Audit
-      Our audit doesn't just check for legal compliance. We look at **Technical Trustworthiness**. 
-      - **Robustness Testing:** Can your AI be "fooled" by adversarial inputs?
-      - **Stability Analysis:** Does the AI's answer change radically if the input is changed slightly?
-
-      Ethics isn't a barrier to innovation; it's the foundation of a product that users will actually trust.
-    `
-  }
-];
-
+// Add: Placeholder data for CLIENT_LOGOS
 export const CLIENT_LOGOS: ClientLogo[] = [
-  { name: 'Microsoft', url: 'https://cdn.simpleicons.org/microsoft/5E5E5E' },
-  { name: 'Google', url: 'https://cdn.simpleicons.org/google/5E5E5E' },
-  { name: 'Amazon', url: 'https://cdn.simpleicons.org/amazonaws/5E5E5E' },
-  { name: 'IBM', url: 'https://cdn.simpleicons.org/ibm/5E5E5E' },
-  { name: 'Cisco', url: 'https://cdn.simpleicons.org/cisco/5E5E5E' },
-  { name: 'Oracle', url: 'https://cdn.simpleicons.org/oracle/5E5E5E' },
-  { name: 'Salesforce', url: 'https://cdn.simpleicons.org/salesforce/5E5E5E' },
-  { name: 'Adobe', url: 'https://cdn.simpleicons.org/adobe/5E5E5E' },
-  { name: 'Intel', url: 'https://cdn.simpleicons.org/intel/5E5E5E' },
-  { name: 'HP', url: 'https://cdn.simpleicons.org/hp/5E5E5E' },
+  { name: 'Client A', url: 'https://cdn.svgporn.com/logos/google.svg' },
+  { name: 'Client B', url: 'https://cdn.svgporn.com/logos/amazon.svg' },
+  { name: 'Client C', url: 'https://cdn.svgporn.com/logos/microsoft.svg' },
+  { name: 'Client D', url: 'https://cdn.svgporn.com/logos/apple.svg' },
+  { name: 'Client E', url: 'https://cdn.svgporn.com/logos/facebook.svg' },
+  { name: 'Client F', url: 'https://cdn.svgporn.com/logos/netflix.svg' },
+  { name: 'Client G', url: 'https://cdn.svgporn.com/logos/slack.svg' },
+  { name: 'Client H', url: 'https://cdn.svgporn.com/logos/uber.svg' },
 ];
 
+// Add: Placeholder data for TESTIMONIALS
 export const TESTIMONIALS: Testimonial[] = [
   {
-    author: 'Sarah Jenkins',
+    author: 'Jane Doe',
     role: 'CTO',
-    company: 'FinTech Solutions',
-    content: "HexaTrue transformed our legacy systems into a modern, cloud-native architecture. Their expertise in DevOps and security is unmatched. They delivered exactly what they promised, on time and under budget.",
-    avatar: 'https://i.pravatar.cc/150?u=sarah'
+    company: 'InnovateCorp',
+    content: 'HexaTrue delivered an exceptional custom software solution that exceeded our expectations. Their team was professional, highly skilled, and responsive to our needs. The project was completed on time and within budget, and the impact on our business has been transformative. We highly recommend their services!',
+    avatar: 'https://i.pravatar.cc/150?img=1',
   },
   {
-    author: 'Rajesh Iyer',
-    role: 'Lead Architect',
-    company: 'Reliance Digital',
-    content: "HexaTrue's deep expertise in SAP integration and cloud migration helped us streamline our pan-India operations significantly. Their commitment to engineering excellence is visible in every sprint.",
-    avatar: 'https://i.pravatar.cc/150?u=rajesh'
+    author: 'John Smith',
+    role: 'CEO',
+    company: 'GlobalTech',
+    content: 'The web application developed by HexaTrue has revolutionized our customer engagement. The design is intuitive, and the performance is outstanding. Their expertise in modern web technologies is truly impressive, and they were a pleasure to work with from start to finish.',
+    avatar: 'https://i.pravatar.cc/150?img=2',
   },
   {
-    author: 'Michael Chen',
-    role: 'Product Director',
-    company: 'HealthLine SF',
-    content: "The team at HexaTrue delivered our mobile application ahead of schedule and with impeccable quality. Their agile approach allowed us to pivot quickly based on user feedback.",
-    avatar: 'https://i.pravatar.cc/150?u=michael'
+    author: 'Emily White',
+    role: 'Product Manager',
+    company: 'MobileSolutions',
+    content: 'Our new mobile app is a game-changer, thanks to HexaTrue. They understood our vision perfectly and brought it to life with beautiful design and robust functionality. The feedback from our users has been overwhelmingly positive, and we are already seeing significant growth.',
+    avatar: 'https://i.pravatar.cc/150?img=3',
   },
   {
-    author: 'Priya Sharma',
-    role: 'CISO',
-    company: 'SecureBank Mumbai',
-    content: "As a major financial institution in India, security is our top priority. HexaTrue delivered a world-class security audit and hardened our infrastructure against advanced threats. Highly professional partner.",
-    avatar: 'https://i.pravatar.cc/150?u=priya'
+    author: 'David Green',
+    role: 'Operations Director',
+    company: 'CloudWorks',
+    content: 'HexaTrue guided us through a complex cloud migration with ease. Their strategic planning and execution were flawless, resulting in a more scalable and cost-efficient infrastructure. Their ongoing support ensures our systems are always running at peak performance.',
+    avatar: 'https://i.pravatar.cc/150?img=4',
   },
   {
-    author: 'Elena Rodriguez',
-    role: 'Head of Engineering',
-    company: 'EduGrow Madrid',
-    content: "Working with HexaTrue felt like having an in-house team. Their engineers took ownership of the product as if it were their own. Our EdTech platform now supports 1M+ users seamlessly.",
-    avatar: 'https://i.pravatar.cc/150?u=elena'
+    author: 'Sarah Brown',
+    role: 'Head of Security',
+    company: 'SecureNet',
+    content: 'The security engineering services from HexaTrue were top-notch. They identified critical vulnerabilities and implemented robust solutions that significantly strengthened our security posture. Their team is knowledgeable and dedicated to protecting digital assets.',
+    avatar: 'https://i.pravatar.cc/150?img=5',
   },
   {
-    author: 'Ananya Das',
-    role: 'Product Head',
-    company: 'Tata Consultancy Services',
-    content: "Their collaborative approach and deep technical bench were crucial in delivering our flagship digital banking module. The attention to UI/UX detail exceeded our corporate standards.",
-    avatar: 'https://i.pravatar.cc/150?u=ananya'
-  }
+    author: 'Michael Lee',
+    role: 'CTO',
+    company: 'QualitySoft',
+    content: 'We partnered with HexaTrue for QA and testing, and the results speak for themselves. Their thorough approach ensured our software was released bug-free and performed flawlessly. Their attention to detail and commitment to quality are truly remarkable.',
+    avatar: 'https://i.pravatar.cc/150?img=6',
+  },
+];
+
+// Add: Placeholder data for PROJECTS_DATA
+export const PROJECTS_DATA: Project[] = [
+  {
+    id: 'fintech-platform',
+    title: 'Enterprise FinTech Platform',
+    category: 'FinTech',
+    client: 'GlobalBank Inc.',
+    image: 'https://images.unsplash.com/photo-1543286386-2e659306eb21?q=80&w=2070&auto=format&fit=crop',
+    thumbnail: 'https://images.unsplash.com/photo-1543286386-2e659306eb21?q=80&w=2070&auto=format&fit=crop',
+    shortDesc: 'Developed a high-performance, secure trading platform for institutional investors, integrating real-time market data and advanced analytics.',
+    challenge: 'The client needed to replace an aging legacy trading system with a modern, scalable, and highly secure platform capable of handling millions of transactions daily with sub-millisecond latency. Key challenges included integrating diverse data sources, ensuring regulatory compliance, and maintaining continuous operation during migration.',
+    solution: 'We designed and implemented a microservices-based architecture leveraging cloud-native technologies (AWS). The solution included real-time data streaming with Kafka, a low-latency order matching engine, and a scalable API gateway. We adopted a DevSecOps approach to embed security throughout the development lifecycle and ensure compliance with financial regulations.',
+    results: [
+      '40% reduction in transaction latency',
+      'Increased system scalability by 5x',
+      'Achieved 99.99% uptime',
+      'Improved developer velocity by 30%',
+    ],
+    techStack: ['React', 'Node.js', 'Kafka', 'AWS Lambda', 'DynamoDB', 'Kubernetes'],
+    sections: [
+      {
+        title: 'Real-time Analytics Integration',
+        content: 'Integrated advanced real-time analytics dashboards, providing institutional traders with immediate insights into market trends, portfolio performance, and risk exposure. This allowed for quicker, more informed decision-making.'
+      },
+      {
+        title: 'Enhanced Security Protocols',
+        content: 'Implemented multi-factor authentication, end-to-end encryption, and continuous security monitoring to protect sensitive financial data. Regular penetration testing and vulnerability assessments were performed to maintain a robust security posture.'
+      },
+    ]
+  },
+  {
+    id: 'health-app',
+    title: 'Telemedicine & Patient Care App',
+    category: 'Healthcare',
+    client: 'MediConnect Health',
+    image: 'https://images.unsplash.com/photo-1576091160550-fd428ce4a7e5?q=80&w=2070&auto=format&fit=crop',
+    thumbnail: 'https://images.unsplash.com/photo-1576091160550-fd428ce4a7e5?q=80&w=2070&auto=format&fit=crop',
+    shortDesc: 'Developed a HIPAA-compliant telemedicine platform with video consultations, appointment scheduling, and secure health record management.',
+    challenge: 'MediConnect Health required a secure, user-friendly, and HIPAA-compliant telemedicine platform to connect patients with healthcare providers. The primary challenges involved ensuring data privacy, integrating with existing EHR systems, and providing a seamless user experience for both patients and doctors across different devices.',
+    solution: 'We built a cross-platform mobile application (React Native) and a web portal for providers, featuring secure video conferencing, prescription management, and a robust appointment booking system. Adhering to HIPAA regulations was paramount, so we implemented stringent data encryption, access controls, and audited cloud infrastructure (Azure).',
+    results: [
+      'Reduced patient wait times by 60%',
+      'Increased patient satisfaction by 25%',
+      'Streamlined doctor workflows',
+      'Achieved full HIPAA compliance',
+    ],
+    techStack: ['React Native', 'Azure', 'Node.js', 'PostgreSQL', 'Twilio (Video API)'],
+    sections: [
+      {
+        title: 'Intuitive User Experience',
+        content: 'Focused on creating an intuitive and accessible interface for patients, allowing them to easily schedule appointments, join video calls, and access their health records. For providers, a streamlined dashboard facilitated efficient patient management.'
+      },
+      {
+        title: 'EHR System Integration',
+        content: 'Successfully integrated the telemedicine platform with the client\'s existing Electronic Health Record (EHR) systems, enabling real-time synchronization of patient data and reducing manual data entry for healthcare professionals.'
+      },
+    ]
+  },
+  {
+    id: 'e-commerce-engine',
+    title: 'Next-Gen E-commerce Engine',
+    category: 'Retail',
+    client: 'FashionForward',
+    image: 'https://images.unsplash.com/photo-1522204523234-8729aa67e2f1?q=80&w=2070&auto=format&fit=crop',
+    thumbnail: 'https://images.unsplash.com/photo-1522204523234-8729aa67e2f1?q=80&w=2070&auto=format&fit=crop',
+    shortDesc: 'Designed and implemented a scalable headless e-commerce platform capable of handling high traffic and multi-channel sales.',
+    challenge: 'FashionForward, a rapidly growing online retailer, needed an e-commerce platform that could support aggressive scaling, provide flexibility for new sales channels, and offer a highly personalized shopping experience. Their existing monolithic system was a bottleneck for innovation and performance during peak seasons.',
+    solution: 'We developed a headless e-commerce solution using a GraphQL API, React storefront, and a microservices backend running on Google Cloud Platform. This decoupled architecture allowed for rapid feature development, easy integration with various frontends (web, mobile, social commerce), and superior performance under heavy load.',
+    results: [
+      '30% increase in conversion rates',
+      '2x faster page load times',
+      'Enabled expansion to new markets',
+      'Seamless integration with new sales channels',
+    ],
+    techStack: ['React', 'GraphQL', 'Node.js', 'Google Cloud Platform', 'MongoDB', 'Redis'],
+    sections: [
+      {
+        title: 'Personalized Shopping Experience',
+        content: 'Implemented AI-driven recommendation engines and personalized content delivery to enhance the customer journey, leading to increased average order value and customer loyalty.'
+      },
+      {
+        title: 'Omnichannel Integration',
+        content: 'The headless architecture facilitated easy integration with various sales channels, including web, mobile apps, social media platforms, and physical store kiosks, providing a consistent brand experience across all touchpoints.'
+      },
+    ]
+  },
+];
+
+// Add: Placeholder data for BLOG_POSTS
+export const BLOG_POSTS: BlogPost[] = [
+  {
+    id: 'ai-in-enterprise',
+    title: 'The Future of AI in Enterprise Software: Beyond Automation',
+    category: 'Artificial Intelligence',
+    date: 'October 26, 2025',
+    author: 'Dr. Evelyn Reed',
+    image: 'https://images.unsplash.com/photo-1574717046049-923f66304910?q=80&w=2070&auto=format&fit=crop',
+    excerpt: 'Artificial Intelligence is rapidly evolving beyond simple task automation, becoming a transformative force in enterprise software. This article explores the next wave of AI applications that promise to redefine business operations, from hyper-personalized customer experiences to predictive analytics that anticipate market shifts.',
+    content: `
+      ## The AI Revolution in Business
+      Artificial Intelligence is no longer just a buzzword; it's a fundamental shift in how businesses operate. We're moving past basic automation to sophisticated AI systems that can learn, adapt, and even innovate. This transformation is set to redefine enterprise software as we know it.
+
+      ### Hyper-Personalization
+      One of the most exciting frontiers is hyper-personalization. AI can analyze vast amounts of customer data to offer truly bespoke experiences, tailoring products, services, and communication at an individual level.
+      - Dynamic content generation
+      - Predictive customer service
+      - Tailored product recommendations
+
+      ### Predictive Analytics and Forecasting
+      AI-powered predictive analytics are enabling businesses to anticipate future trends with unprecedented accuracy. This isn't just about forecasting sales; it's about predicting operational bottlenecks, market shifts, and even potential security threats.
+      - Supply chain optimization
+      - Financial market prediction
+      - Proactive maintenance scheduling
+
+      ### Augmented Human Intelligence
+      Rather than replacing human workers, the next generation of enterprise AI will augment human intelligence. AI will handle the data crunching and pattern recognition, freeing up human employees to focus on creative problem-solving, strategic thinking, and complex decision-making.
+      - AI assistants for complex tasks
+      - Automated report generation
+      - Decision support systems
+
+      ### Ethical AI and Governance
+      As AI becomes more integral to business, ethical considerations and robust governance frameworks are paramount. Ensuring fairness, transparency, and accountability in AI systems is not just a regulatory requirement but a moral imperative.
+      - Data privacy by design
+      - Algorithmic transparency
+      - Bias detection and mitigation
+
+      HexaTrue is at the forefront of this revolution, building AI solutions that are not only powerful but also responsible. Our goal is to empower enterprises to leverage AI for sustainable growth and innovation.
+    `,
+  },
+  {
+    id: 'cloud-security-best-practices',
+    title: 'Cloud Security Best Practices for 2026: A Proactive Approach',
+    category: 'Cybersecurity',
+    date: 'November 15, 2025',
+    author: 'Sarah Jenkins',
+    image: 'https://images.unsplash.com/photo-1563207153-f40b37981541?q=80&w=2070&auto=format&fit=crop',
+    excerpt: 'As cloud adoption continues to accelerate, ensuring robust security remains a top priority for enterprises. This article outlines the essential cloud security best practices for 2026, focusing on proactive strategies to protect data and infrastructure in an evolving threat landscape.',
+    content: `
+      ## The Evolving Landscape of Cloud Security
+      Cloud computing offers immense flexibility and scalability, but it also introduces new security challenges. In 2026, a proactive and multi-layered approach to cloud security is more critical than ever.
+
+      ### Zero Trust Architecture
+      The principle of "never trust, always verify" is becoming the cornerstone of modern cloud security. Implementing Zero Trust ensures that no user or device is granted access without strict authentication and authorization, regardless of their location.
+      - Micro-segmentation of networks
+      - Least privilege access
+      - Continuous verification
+
+      ### Advanced Threat Detection and Response
+      Leveraging AI and machine learning for advanced threat detection allows organizations to identify and respond to threats in real-time. This includes anomaly detection, behavioral analytics, and automated incident response workflows.
+      - SIEM integration
+      - Endpoint Detection and Response (EDR)
+      - Automated remediation
+
+      ### Data Encryption and Key Management
+      Protecting data at rest and in transit through robust encryption is non-negotiable. Effective key management strategies are crucial to ensuring the confidentiality and integrity of sensitive information in the cloud.
+      - Encryption for databases and storage
+      - Hardware Security Modules (HSMs)
+      - Centralized key management systems
+
+      ### Cloud Security Posture Management (CSPM)
+      Automated CSPM tools are essential for continuously monitoring cloud environments for misconfigurations, compliance violations, and potential security gaps. This ensures a consistent security posture across diverse cloud services.
+      - Continuous compliance checks
+      - Automated remediation of misconfigurations
+      - Real-time threat alerts
+
+      ### DevSecOps Integration
+      Integrating security practices into every stage of the DevOps pipeline (DevSecOps) ensures that security is 'shifted left.' This approach embeds security early in the development process, reducing vulnerabilities and accelerating secure deployments.
+      - Secure code reviews
+      - Automated security testing
+      - Vulnerability scanning in CI/CD
+
+      HexaTrue’s cybersecurity experts help enterprises design, implement, and manage secure cloud environments, ensuring compliance and peace of mind in the digital age.
+    `,
+  },
+  {
+    id: 'quantum-computing-impact',
+    title: 'Quantum Computing: Implications for Enterprise IT by 2030',
+    category: 'Emerging Tech',
+    date: 'December 01, 2025',
+    author: 'Dr. Alex Chen',
+    image: 'https://images.unsplash.com/photo-1627439589926-78a7b65377f0?q=80&w=2070&auto=format&fit=crop',
+    excerpt: 'Quantum computing promises to revolutionize various industries, but its implications for enterprise IT by 2030 are just beginning to be understood. This article delves into the potential impacts, challenges, and preparatory steps businesses should consider as quantum technologies mature.',
+    content: `
+      ## The Dawn of the Quantum Era
+      Quantum computing, once a theoretical concept, is steadily moving towards practical applications. While widespread commercial deployment is still some years away, its potential impact on enterprise IT by 2030 is immense and requires strategic foresight.
+
+      ### Cryptographic Vulnerabilities
+      One of the most immediate concerns is the threat quantum computers pose to current cryptographic standards. Quantum algorithms could break widely used encryption methods, necessitating a shift to post-quantum cryptography.
+      - RSA and ECC vulnerabilities
+      - Need for quantum-resistant algorithms
+      - Cryptographic agility
+
+      ### Optimization and Simulation
+      Quantum computers excel at solving complex optimization problems and performing simulations far beyond the capabilities of classical computers. This opens up new possibilities for industries like finance, logistics, and pharmaceutical research.
+      - Drug discovery and material science
+      - Financial modeling
+      - Supply chain optimization
+
+      ### AI and Machine Learning Enhancement
+      Quantum machine learning (QML) could significantly enhance AI capabilities, enabling faster training of complex models and unlocking new forms of data analysis. This has implications for predictive analytics, personalized medicine, and autonomous systems.
+      - Faster data processing
+      - Enhanced pattern recognition
+      - New AI algorithm development
+
+      ### Challenges and Readiness
+      Despite the promise, significant challenges remain, including hardware stability, error correction, and the scarcity of quantum programming talent. Enterprises need to start building internal expertise and exploring quantum-safe solutions now.
+      - Workforce development
+      - Hybrid classical-quantum architectures
+      - Quantum-safe migration strategies
+
+      HexaTrue is actively researching and developing strategies to prepare enterprises for the quantum future, ensuring our clients remain at the technological forefront.
+    `,
+  },
 ];

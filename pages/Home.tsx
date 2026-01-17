@@ -1,6 +1,8 @@
 
+
 import React, { useState, useEffect, useCallback } from 'react';
 import { Link } from 'react-router-dom';
+// Fix: Added missing imports for SERVICES_DATA, CLIENT_LOGOS, TESTIMONIALS, and Icons from constants
 import { SERVICES_DATA, CLIENT_LOGOS, TESTIMONIALS, Icons } from '../constants';
 
 const Home: React.FC = () => {
@@ -144,7 +146,8 @@ const Home: React.FC = () => {
               </h3>
             </div>
             <Link to="/services" className="text-blue-600 font-bold flex items-center gap-2 hover:translate-x-2 transition-transform">
-              View All Services {Icons.ArrowRight}
+              View All Services {/* Fix: Use Icons.ArrowRight */}
+              {Icons.ArrowRight}
             </Link>
           </div>
 
@@ -167,7 +170,8 @@ const Home: React.FC = () => {
                   ))}
                 </ul>
                 <Link to={`/services/${service.id}`} className="inline-flex items-center gap-2 text-blue-600 font-bold text-sm uppercase tracking-wider group-hover:gap-4 transition-all">
-                  Read More {Icons.ArrowRight}
+                  Read More {/* Fix: Use Icons.ArrowRight */}
+                  {Icons.ArrowRight}
                 </Link>
               </div>
             ))}

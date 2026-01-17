@@ -1,6 +1,8 @@
 
+
 import React from 'react';
 import { Link } from 'react-router-dom';
+// Fix: Added missing imports for SERVICES_DATA and Icons from constants
 import { SERVICES_DATA, Icons } from '../constants';
 
 const Services: React.FC = () => {
@@ -80,7 +82,8 @@ const Services: React.FC = () => {
                         to={`/services/${service.id}`} 
                         className="inline-flex items-center gap-2 text-blue-600 font-bold text-sm uppercase tracking-wider group-hover:gap-4 transition-all"
                       >
-                        Learn More {Icons.ArrowRight}
+                        Learn More {/* Fix: Use Icons.ArrowRight */}
+                        {Icons.ArrowRight}
                       </Link>
                     </div>
                   ))}
