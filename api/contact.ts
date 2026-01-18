@@ -1,3 +1,8 @@
+// ✅ FORCE NODE RUNTIME (VERY IMPORTANT FOR VERCEL)
+export const config = {
+  runtime: 'nodejs',
+};
+
 export default async function handler(req: any, res: any) {
   if (req.method !== 'POST') {
     return res.status(405).json({ error: 'Method not allowed' });
@@ -5,9 +10,11 @@ export default async function handler(req: any, res: any) {
 
   const formData = req.body;
 
-  // ✅ Basic validation
+  // ✅ BASIC VALIDATION
   if (!formData?.email || !formData?.firstName) {
-    return res.status(400).json({ error: 'Name and Email are required' });
+    return res.status(400).json({
+      error: 'First Name and Email are required',
+    });
   }
 
   try {
@@ -15,25 +22,27 @@ export default async function handler(req: any, res: any) {
     const tenantId = process.env.MICROSOFT_TENANT_ID;
     const clientId = process.env.MICROSOFT_CLIENT_ID;
     const clientSecret = process.env.MICROSOFT_CLIENT_SECRET;
-    const senderEmail =
-      process.env.MICROSOFT_SENDER_EMAIL || 'projects@hexatrue.com';
-    const senderUserId = process.env.MICROSOFT_SENDER_USER_ID; // Azure Object ID
+    const senderUserId = process.env.MICROSOFT_SENDER_USER_ID;
 
+    // ⚠️ SAFETY CHECK
     if (!tenantId || !clientId || !clientSecret || !senderUserId) {
-      console.warn('ENV missing. Lead data:', formData);
+      console.warn('Missing env vars. Form data:', formData);
       return res.status(200).json({
         success: true,
-        message:
-          'Submission received (Simulation Mode: Configure env variables).',
+        message: 'Form submitted (email disabled – env missing)',
       });
     }
 
-    // 🔑 GET MICROSOFT GRAPH TOKEN
+    // =====================================================
+    // 🔑 GET MICROSOFT GRAPH ACCESS TOKEN
+    // =====================================================
     const tokenResponse = await fetch(
       `https://login.microsoftonline.com/${tenantId}/oauth2/v2.0/token`,
       {
         method: 'POST',
-        headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
+        headers: {
+          'Content-Type': 'application/x-www-form-urlencoded',
+        },
         body: new URLSearchParams({
           client_id: clientId,
           client_secret: clientSecret,
@@ -44,14 +53,16 @@ export default async function handler(req: any, res: any) {
     );
 
     const tokenData = await tokenResponse.json();
+
     if (!tokenData.access_token) {
-      throw new Error('Failed to obtain Graph access token');
+      console.error('Token Error:', tokenData);
+      throw new Error('Failed to get access token');
     }
 
     const accessToken = tokenData.access_token;
 
     // =====================================================
-    // 🔁 COMMON SEND MAIL FUNCTION (IMPORTANT FIX)
+    // 📩 SEND MAIL FUNCTION
     // =====================================================
     const sendMail = async (mailBody: any) => {
       const response = await fetch(
@@ -66,33 +77,30 @@ export default async function handler(req: any, res: any) {
         }
       );
 
-      // ❌ DO NOT read response body (Graph may return empty 204)
+      // Graph usually returns 202 or 204
       if (!response.ok) {
-        throw new Error(`Graph sendMail failed: ${response.status}`);
+        const text = await response.text();
+        console.error('Graph Error:', text);
+        throw new Error(`Mail send failed: ${response.status}`);
       }
     };
 
     // =====================================================
-    // 1️⃣ ADMIN LEAD EMAIL
+    // 1️⃣ ADMIN EMAIL
     // =====================================================
-    const adminMail = {
+    await sendMail({
       message: {
         subject: 'New Lead from HexaTrue Website',
-        from: {
-          emailAddress: {
-            address: senderEmail,
-            name: 'HexaTrue',
-          },
-        },
         body: {
           contentType: 'HTML',
           content: `
-            <h2>New Lead Received</h2>
+            <h2>New Contact Form Submission</h2>
             <p><strong>Name:</strong> ${formData.firstName} ${
             formData.lastName || ''
           }</p>
             <p><strong>Email:</strong> ${formData.email}</p>
             <p><strong>Phone:</strong> ${formData.phone || 'N/A'}</p>
+            <p><strong>Country:</strong> ${formData.country || 'N/A'}</p>
             <p><strong>Company:</strong> ${formData.company || 'N/A'}</p>
             <p><strong>Service:</strong> ${
               formData.service || 'General Inquiry'
@@ -117,30 +125,21 @@ export default async function handler(req: any, res: any) {
           },
         ],
       },
-      saveToSentItems: true, // ✅ REQUIRED
-    };
-
-    await sendMail(adminMail);
+    });
 
     // =====================================================
     // 2️⃣ USER AUTO-REPLY EMAIL
     // =====================================================
-    const userMail = {
+    await sendMail({
       message: {
         subject: 'Thank You for Contacting HexaTrue',
-        from: {
-          emailAddress: {
-            address: senderEmail,
-            name: 'HexaTrue',
-          },
-        },
         body: {
           contentType: 'HTML',
           content: `
             <p>Hi ${formData.firstName},</p>
             <p>
               Thank you for contacting <strong>HexaTrue</strong>.
-              We’ve received your request and our team will get back to you within <strong>24 hours</strong>.
+              We have received your request and our team will get back to you within 24 hours.
             </p>
             <p>
               Regards,<br/>
@@ -156,24 +155,19 @@ export default async function handler(req: any, res: any) {
           },
         ],
       },
-      saveToSentItems: true, // ✅ REQUIRED
-    };
+    });
 
-    try {
-      await sendMail(userMail);
-    } catch (err) {
-      // ❌ Auto-reply fail hone par main request fail nahi hogi
-      console.error('Auto-reply failed:', err);
-    }
-
+    // =====================================================
+    // ✅ SUCCESS RESPONSE
+    // =====================================================
     return res.status(200).json({
       success: true,
       message: 'Thank you! Our team will contact you shortly.',
     });
-  } catch (error: any) {
-    console.error('Contact API error:', error);
-    return res
-      .status(500)
-      .json({ error: 'Internal server error. Please try again later.' });
+  } catch (error) {
+    console.error('Contact API ERROR:', error);
+    return res.status(500).json({
+      error: 'Internal server error. Please try again later.',
+    });
   }
 }
