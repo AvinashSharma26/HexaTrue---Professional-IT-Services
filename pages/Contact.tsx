@@ -16,6 +16,7 @@ const Contact: React.FC = () => {
   const [errors, setErrors] = useState<Record<string, string>>({});
   const [openFaqIndex, setOpenFaqIndex] = useState<number | null>(null);
   const [isSubmitting, setIsSubmitting] = useState(false);
+  const [isSubmitted, setIsSubmitted] = useState(false);
 
   const faqs = [
     {
@@ -83,7 +84,7 @@ const Contact: React.FC = () => {
         console.log("reCAPTCHA token generated:", token);
         console.log("Form submission notification sent to Projects@hexatrue.com", { ...formState, captchaToken: token });
         
-        alert(`Thank you ${formState.firstName}! Your inquiry has been received. (Protected by reCAPTCHA)`);
+        setIsSubmitted(true);
         
         setFormState({
           firstName: '',
@@ -98,7 +99,7 @@ const Contact: React.FC = () => {
         setErrors({});
       } catch (err) {
         console.error("Captcha error", err);
-        alert("There was an error verifying your submission. Please try again.");
+        setErrors({ general: "There was an error verifying your submission. Please try again." });
       } finally {
         setIsSubmitting(false);
       }
@@ -131,7 +132,7 @@ const Contact: React.FC = () => {
                 </div>
                 <div className="flex gap-6 group">
                    <div className="w-12 h-12 bg-blue-50 text-blue-600 rounded-xl flex items-center justify-center flex-shrink-0 group-hover:bg-blue-600 group-hover:text-white transition-all duration-300">
-                     <svg xmlns="http://www.w3.org/2000/svg" className="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2-2v10a2 2 0 002 2z" /></svg>
+                     <svg xmlns="http://www.w3.org/2000/svg" className="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" /></svg>
                    </div>
                    <div>
                      <p className="font-bold text-slate-900">Email Us</p>
@@ -168,122 +169,145 @@ const Contact: React.FC = () => {
 
           <div className="bg-white p-8 md:p-12 lg:p-16 rounded-[2.5rem] shadow-2xl border border-slate-50 relative overflow-hidden">
             <div className="absolute top-0 right-0 w-32 h-32 bg-blue-500/5 rounded-full blur-3xl"></div>
-            <form onSubmit={handleSubmit} className="space-y-6 relative z-10">
-              <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
-                <div className="space-y-1.5">
-                  <label className="text-[10px] font-black uppercase text-slate-400 tracking-widest ml-1">First Name *</label>
-                  <input 
-                    type="text" 
-                    value={formState.firstName}
-                    className={`w-full border-b-2 py-2.5 focus:outline-none focus:border-blue-600 transition-colors bg-transparent ${errors.firstName ? 'border-red-400' : 'border-slate-100'}`}
-                    placeholder="John"
-                    onChange={(e) => setFormState({...formState, firstName: e.target.value})}
-                  />
-                  {errors.firstName && <p className="text-[10px] text-red-500 font-bold mt-1">{errors.firstName}</p>}
+            
+            {isSubmitted ? (
+              <div className="relative z-10 flex flex-col items-center justify-center text-center py-12 animate-fade-in-up">
+                <div className="w-20 h-20 bg-blue-600 rounded-full flex items-center justify-center text-white mb-8 shadow-xl shadow-blue-200">
+                  <svg xmlns="http://www.w3.org/2000/svg" className="w-10 h-10" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={3} d="M5 13l4 4L19 7" />
+                  </svg>
                 </div>
-                <div className="space-y-1.5">
-                  <label className="text-[10px] font-black uppercase text-slate-400 tracking-widest ml-1">Last Name *</label>
-                  <input 
-                    type="text" 
-                    value={formState.lastName}
-                    className={`w-full border-b-2 py-2.5 focus:outline-none focus:border-blue-600 transition-colors bg-transparent ${errors.lastName ? 'border-red-400' : 'border-slate-100'}`}
-                    placeholder="Doe"
-                    onChange={(e) => setFormState({...formState, lastName: e.target.value})}
-                  />
-                  {errors.lastName && <p className="text-[10px] text-red-500 font-bold mt-1">{errors.lastName}</p>}
-                </div>
-              </div>
-
-              <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
-                <div className="space-y-1.5">
-                  <label className="text-[10px] font-black uppercase text-slate-400 tracking-widest ml-1">Work Email *</label>
-                  <input 
-                    type="email" 
-                    value={formState.email}
-                    className={`w-full border-b-2 py-2.5 focus:outline-none focus:border-blue-600 transition-colors bg-transparent ${errors.email ? 'border-red-400' : 'border-slate-100'}`}
-                    placeholder="john@company.com"
-                    onChange={(e) => setFormState({...formState, email: e.target.value})}
-                  />
-                  {errors.email && <p className="text-[10px] text-red-500 font-bold mt-1">{errors.email}</p>}
-                </div>
-                <div className="space-y-1.5">
-                  <label className="text-[10px] font-black uppercase text-slate-400 tracking-widest ml-1">Contact Number *</label>
-                  <input 
-                    type="tel" 
-                    value={formState.phone}
-                    className={`w-full border-b-2 py-2.5 focus:outline-none focus:border-blue-600 transition-colors bg-transparent ${errors.phone ? 'border-red-400' : 'border-slate-100'}`}
-                    placeholder="+1 (555) 000-0000"
-                    onChange={(e) => setFormState({...formState, phone: e.target.value})}
-                  />
-                  {errors.phone && <p className="text-[10px] text-red-500 font-bold mt-1">{errors.phone}</p>}
-                </div>
-              </div>
-
-              <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
-                <div className="space-y-1.5">
-                  <label className="text-[10px] font-black uppercase text-slate-400 tracking-widest ml-1">Country</label>
-                  <input 
-                    type="text" 
-                    value={formState.country}
-                    className="w-full border-b-2 border-slate-100 py-2.5 focus:outline-none focus:border-blue-600 transition-colors bg-transparent"
-                    placeholder="United States"
-                    onChange={(e) => setFormState({...formState, country: e.target.value})}
-                  />
-                </div>
-                <div className="space-y-1.5">
-                  <label className="text-[10px] font-black uppercase text-slate-400 tracking-widest ml-1">Company Name</label>
-                  <input 
-                    type="text" 
-                    value={formState.company}
-                    className="w-full border-b-2 border-slate-100 py-2.5 focus:outline-none focus:border-blue-600 transition-colors bg-transparent"
-                    placeholder="Acme Corp"
-                    onChange={(e) => setFormState({...formState, company: e.target.value})}
-                  />
-                </div>
-              </div>
-
-              <div className="space-y-1.5">
-                <label className="text-[10px] font-black uppercase text-slate-400 tracking-widest ml-1">Select Services You Need</label>
-                <select 
-                  value={formState.service}
-                  className="w-full border-b-2 border-slate-100 py-2.5 focus:outline-none focus:border-blue-600 transition-colors bg-transparent text-slate-600 appearance-none cursor-pointer"
-                  onChange={(e) => setFormState({...formState, service: e.target.value})}
-                >
-                  <option value="">Choose a service...</option>
-                  {SERVICES_DATA.map(s => (
-                    <option key={s.id} value={s.title}>{s.title}</option>
-                  ))}
-                  <option value="Mobile App Development">Mobile App Development</option>
-                  <option value="Other">Other Consulting</option>
-                </select>
-              </div>
-
-              <div className="space-y-1.5">
-                <label className="text-[10px] font-black uppercase text-slate-400 tracking-widest ml-1">Describe Your Project Briefly *</label>
-                <textarea 
-                  rows={4}
-                  value={formState.message}
-                  className={`w-full border-b-2 py-2.5 focus:outline-none focus:border-blue-600 transition-colors bg-transparent resize-none ${errors.message ? 'border-red-400' : 'border-slate-100'}`}
-                  placeholder="Tell us about your project requirements, goals and timeline..."
-                  onChange={(e) => setFormState({...formState, message: e.target.value})}
-                ></textarea>
-                {errors.message && <p className="text-[10px] text-red-500 font-bold mt-1">{errors.message}</p>}
-              </div>
-
-              <div className="pt-4">
-                <button 
-                  type="submit" 
-                  disabled={isSubmitting}
-                  className="w-full bg-blue-600 text-white py-5 rounded-2xl font-black text-lg shadow-xl shadow-blue-200 hover:bg-blue-700 hover:shadow-2xl hover:-translate-y-1 active:translate-y-0 transition-all duration-300 flex items-center justify-center gap-3 disabled:opacity-50 disabled:cursor-not-allowed"
-                >
-                  {isSubmitting ? 'Processing...' : 'Send Inquiry'}
-                  <svg xmlns="http://www.w3.org/2000/svg" className="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2.5} d="M14 5l7 7m0 0l-7 7m7-7H3" /></svg>
-                </button>
-                <p className="text-[10px] text-slate-400 text-center mt-4 font-bold uppercase tracking-widest">
-                  Protected by Google reCAPTCHA
+                <h2 className="text-3xl font-black text-slate-900 mb-4">Inquiry Received</h2>
+                <p className="text-lg text-slate-600 font-medium max-w-sm mb-10">
+                  Thank you! Our experts will contact you shortly.
                 </p>
+                <button 
+                  onClick={() => setIsSubmitted(false)}
+                  className="text-blue-600 font-black text-sm uppercase tracking-widest hover:underline"
+                >
+                  Send another message
+                </button>
               </div>
-            </form>
+            ) : (
+              <form onSubmit={handleSubmit} className="space-y-6 relative z-10">
+                <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
+                  <div className="space-y-1.5">
+                    <label className="text-[10px] font-black uppercase text-slate-400 tracking-widest ml-1">First Name *</label>
+                    <input 
+                      type="text" 
+                      value={formState.firstName}
+                      className={`w-full border-b-2 py-2.5 focus:outline-none focus:border-blue-600 transition-colors bg-transparent ${errors.firstName ? 'border-red-400' : 'border-slate-100'}`}
+                      placeholder="John"
+                      onChange={(e) => setFormState({...formState, firstName: e.target.value})}
+                    />
+                    {errors.firstName && <p className="text-[10px] text-red-500 font-bold mt-1">{errors.firstName}</p>}
+                  </div>
+                  <div className="space-y-1.5">
+                    <label className="text-[10px] font-black uppercase text-slate-400 tracking-widest ml-1">Last Name *</label>
+                    <input 
+                      type="text" 
+                      value={formState.lastName}
+                      className={`w-full border-b-2 py-2.5 focus:outline-none focus:border-blue-600 transition-colors bg-transparent ${errors.lastName ? 'border-red-400' : 'border-slate-100'}`}
+                      placeholder="Doe"
+                      onChange={(e) => setFormState({...formState, lastName: e.target.value})}
+                    />
+                    {errors.lastName && <p className="text-[10px] text-red-500 font-bold mt-1">{errors.lastName}</p>}
+                  </div>
+                </div>
+
+                <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
+                  <div className="space-y-1.5">
+                    <label className="text-[10px] font-black uppercase text-slate-400 tracking-widest ml-1">Work Email *</label>
+                    <input 
+                      type="email" 
+                      value={formState.email}
+                      className={`w-full border-b-2 py-2.5 focus:outline-none focus:border-blue-600 transition-colors bg-transparent ${errors.email ? 'border-red-400' : 'border-slate-100'}`}
+                      placeholder="john@company.com"
+                      onChange={(e) => setFormState({...formState, email: e.target.value})}
+                    />
+                    {errors.email && <p className="text-[10px] text-red-500 font-bold mt-1">{errors.email}</p>}
+                  </div>
+                  <div className="space-y-1.5">
+                    <label className="text-[10px] font-black uppercase text-slate-400 tracking-widest ml-1">Contact Number *</label>
+                    <input 
+                      type="tel" 
+                      value={formState.phone}
+                      className={`w-full border-b-2 py-2.5 focus:outline-none focus:border-blue-600 transition-colors bg-transparent ${errors.phone ? 'border-red-400' : 'border-slate-100'}`}
+                      placeholder="+1 (555) 000-0000"
+                      onChange={(e) => setFormState({...formState, phone: e.target.value})}
+                    />
+                    {errors.phone && <p className="text-[10px] text-red-500 font-bold mt-1">{errors.phone}</p>}
+                  </div>
+                </div>
+
+                <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
+                  <div className="space-y-1.5">
+                    <label className="text-[10px] font-black uppercase text-slate-400 tracking-widest ml-1">Country</label>
+                    <input 
+                      type="text" 
+                      value={formState.country}
+                      className="w-full border-b-2 border-slate-100 py-2.5 focus:outline-none focus:border-blue-600 transition-colors bg-transparent"
+                      placeholder="United States"
+                      onChange={(e) => setFormState({...formState, country: e.target.value})}
+                    />
+                  </div>
+                  <div className="space-y-1.5">
+                    <label className="text-[10px] font-black uppercase text-slate-400 tracking-widest ml-1">Company Name</label>
+                    <input 
+                      type="text" 
+                      value={formState.company}
+                      className="w-full border-b-2 border-slate-100 py-2.5 focus:outline-none focus:border-blue-600 transition-colors bg-transparent"
+                      placeholder="Acme Corp"
+                      onChange={(e) => setFormState({...formState, company: e.target.value})}
+                    />
+                  </div>
+                </div>
+
+                <div className="space-y-1.5">
+                  <label className="text-[10px] font-black uppercase text-slate-400 tracking-widest ml-1">Select Services You Need</label>
+                  <select 
+                    value={formState.service}
+                    className="w-full border-b-2 border-slate-100 py-2.5 focus:outline-none focus:border-blue-600 transition-colors bg-transparent text-slate-600 appearance-none cursor-pointer"
+                    onChange={(e) => setFormState({...formState, service: e.target.value})}
+                  >
+                    <option value="">Choose a service...</option>
+                    {SERVICES_DATA.map(s => (
+                      <option key={s.id} value={s.title}>{s.title}</option>
+                    ))}
+                    <option value="Mobile App Development">Mobile App Development</option>
+                    <option value="Other">Other Consulting</option>
+                  </select>
+                </div>
+
+                <div className="space-y-1.5">
+                  <label className="text-[10px] font-black uppercase text-slate-400 tracking-widest ml-1">Describe Your Project Briefly *</label>
+                  <textarea 
+                    rows={4}
+                    value={formState.message}
+                    className={`w-full border-b-2 py-2.5 focus:outline-none focus:border-blue-600 transition-colors bg-transparent resize-none ${errors.message ? 'border-red-400' : 'border-slate-100'}`}
+                    placeholder="Tell us about your project requirements, goals and timeline..."
+                    onChange={(e) => setFormState({...formState, message: e.target.value})}
+                  ></textarea>
+                  {errors.message && <p className="text-[10px] text-red-500 font-bold mt-1">{errors.message}</p>}
+                </div>
+
+                {errors.general && <p className="text-sm text-red-500 font-bold text-center">{errors.general}</p>}
+
+                <div className="pt-4">
+                  <button 
+                    type="submit" 
+                    disabled={isSubmitting}
+                    className="w-full bg-blue-600 text-white py-5 rounded-2xl font-black text-lg shadow-xl shadow-blue-200 hover:bg-blue-700 hover:shadow-2xl hover:-translate-y-1 active:translate-y-0 transition-all duration-300 flex items-center justify-center gap-3 disabled:opacity-50 disabled:cursor-not-allowed"
+                  >
+                    {isSubmitting ? 'Processing...' : 'Send Inquiry'}
+                    <svg xmlns="http://www.w3.org/2000/svg" className="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2.5} d="M14 5l7 7m0 0l-7 7m7-7H3" /></svg>
+                  </button>
+                  <p className="text-[10px] text-slate-400 text-center mt-4 font-bold uppercase tracking-widest">
+                    Protected by Google reCAPTCHA
+                  </p>
+                </div>
+              </form>
+            )}
           </div>
         </div>
 

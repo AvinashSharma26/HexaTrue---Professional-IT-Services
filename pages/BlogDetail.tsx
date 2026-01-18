@@ -12,6 +12,7 @@ const BlogDetail: React.FC = () => {
     message: ''
   });
   const [isSubmitting, setIsSubmitting] = useState(false);
+  const [isSidebarSubmitted, setIsSidebarSubmitted] = useState(false);
 
   useEffect(() => {
     window.scrollTo(0, 0);
@@ -24,7 +25,6 @@ const BlogDetail: React.FC = () => {
   const handleSidebarSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     if (!sidebarForm.name || !sidebarForm.email || !sidebarForm.message) {
-      alert("Please fill in all fields.");
       return;
     }
 
@@ -41,11 +41,10 @@ const BlogDetail: React.FC = () => {
       });
 
       console.log("Sidebar reCAPTCHA token:", token);
-      alert("Thank you! Your strategy session request has been received. (Protected by reCAPTCHA)");
+      setIsSidebarSubmitted(true);
       setSidebarForm({ name: '', email: '', message: '' });
     } catch (err) {
       console.error("Captcha error", err);
-      alert("Error verifying submission.");
     } finally {
       setIsSubmitting(false);
     }
@@ -140,40 +139,63 @@ const BlogDetail: React.FC = () => {
             <div className="lg:col-span-4">
               <div className="sticky top-32 space-y-10">
                 <div className="bg-slate-900 p-10 rounded-[2.5rem] text-white shadow-2xl relative overflow-hidden">
-                  <h3 className="text-2xl font-black mb-4 relative z-10">Strategy Session</h3>
-                  <p className="text-slate-400 text-sm mb-8 relative z-10">Intrigued by this insight? Let's discuss how it applies to your specific enterprise roadmap.</p>
-                  
-                  <form onSubmit={handleSidebarSubmit} className="space-y-4 relative z-10">
-                    <input 
-                      type="text" 
-                      placeholder="Your Name" 
-                      value={sidebarForm.name}
-                      onChange={(e) => setSidebarForm({...sidebarForm, name: e.target.value})}
-                      className="w-full bg-white/5 border border-white/10 rounded-xl px-4 py-3 text-sm focus:outline-none focus:border-blue-400" 
-                    />
-                    <input 
-                      type="email" 
-                      placeholder="Work Email" 
-                      value={sidebarForm.email}
-                      onChange={(e) => setSidebarForm({...sidebarForm, email: e.target.value})}
-                      className="w-full bg-white/5 border border-white/10 rounded-xl px-4 py-3 text-sm focus:outline-none focus:border-blue-400" 
-                    />
-                    <textarea 
-                      placeholder="How can we help?" 
-                      rows={3}
-                      value={sidebarForm.message}
-                      onChange={(e) => setSidebarForm({...sidebarForm, message: e.target.value})}
-                      className="w-full bg-white/5 border border-white/10 rounded-xl px-4 py-3 text-sm focus:outline-none focus:border-blue-400 resize-none" 
-                    ></textarea>
-                    <button 
-                      type="submit"
-                      disabled={isSubmitting}
-                      className="w-full bg-blue-600 text-white py-4 rounded-xl font-black text-sm hover:bg-blue-700 transition-all shadow-lg disabled:opacity-50"
-                    >
-                      {isSubmitting ? 'Processing...' : 'Book a Consultation'}
-                    </button>
-                    <p className="text-[10px] text-slate-500 text-center mt-2 uppercase tracking-widest">Protected by reCAPTCHA</p>
-                  </form>
+                  {isSidebarSubmitted ? (
+                    <div className="relative z-10 flex flex-col items-center justify-center text-center py-6 animate-fade-in-up">
+                      <div className="w-16 h-16 bg-blue-600 rounded-full flex items-center justify-center text-white mb-6 shadow-xl">
+                        <svg xmlns="http://www.w3.org/2000/svg" className="w-8 h-8" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={3} d="M5 13l4 4L19 7" />
+                        </svg>
+                      </div>
+                      <h3 className="text-xl font-black mb-2">Request Received</h3>
+                      <p className="text-slate-400 text-xs leading-relaxed mb-6">Thank you! Our experts will contact you shortly.</p>
+                      <button 
+                        onClick={() => setIsSidebarSubmitted(false)}
+                        className="text-blue-400 font-black text-[10px] uppercase tracking-widest hover:text-white"
+                      >
+                        Request another session
+                      </button>
+                    </div>
+                  ) : (
+                    <>
+                      <h3 className="text-2xl font-black mb-4 relative z-10">Strategy Session</h3>
+                      <p className="text-slate-400 text-sm mb-8 relative z-10">Intrigued by this insight? Let's discuss how it applies to your specific enterprise roadmap.</p>
+                      
+                      <form onSubmit={handleSidebarSubmit} className="space-y-4 relative z-10">
+                        <input 
+                          required
+                          type="text" 
+                          placeholder="Your Name" 
+                          value={sidebarForm.name}
+                          onChange={(e) => setSidebarForm({...sidebarForm, name: e.target.value})}
+                          className="w-full bg-white/5 border border-white/10 rounded-xl px-4 py-3 text-sm focus:outline-none focus:border-blue-400" 
+                        />
+                        <input 
+                          required
+                          type="email" 
+                          placeholder="Work Email" 
+                          value={sidebarForm.email}
+                          onChange={(e) => setSidebarForm({...sidebarForm, email: e.target.value})}
+                          className="w-full bg-white/5 border border-white/10 rounded-xl px-4 py-3 text-sm focus:outline-none focus:border-blue-400" 
+                        />
+                        <textarea 
+                          required
+                          placeholder="How can we help?" 
+                          rows={3}
+                          value={sidebarForm.message}
+                          onChange={(e) => setSidebarForm({...sidebarForm, message: e.target.value})}
+                          className="w-full bg-white/5 border border-white/10 rounded-xl px-4 py-3 text-sm focus:outline-none focus:border-blue-400 resize-none" 
+                        ></textarea>
+                        <button 
+                          type="submit"
+                          disabled={isSubmitting}
+                          className="w-full bg-blue-600 text-white py-4 rounded-xl font-black text-sm hover:bg-blue-700 transition-all shadow-lg disabled:opacity-50"
+                        >
+                          {isSubmitting ? 'Processing...' : 'Book a Consultation'}
+                        </button>
+                        <p className="text-[10px] text-slate-500 text-center mt-2 uppercase tracking-widest">Protected by reCAPTCHA</p>
+                      </form>
+                    </>
+                  )}
                   <div className="absolute top-0 right-0 w-32 h-32 bg-blue-600/10 rounded-full blur-2xl"></div>
                 </div>
 
