@@ -13,6 +13,7 @@ const BlogDetail: React.FC = () => {
   });
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [isSidebarSubmitted, setIsSidebarSubmitted] = useState(false);
+  const [error, setError] = useState<string | null>(null);
 
   useEffect(() => {
     window.scrollTo(0, 0);
@@ -29,22 +30,38 @@ const BlogDetail: React.FC = () => {
     }
 
     setIsSubmitting(true);
+    setError(null);
+
     try {
-      // Execute reCAPTCHA v3
+      // 1. Execute reCAPTCHA v3
       // @ts-ignore
-      const token = await new Promise<string>((resolve) => {
+      const token = await new Promise<string>((resolve, reject) => {
         // @ts-ignore
         window.grecaptcha.ready(() => {
           // @ts-ignore
-          window.grecaptcha.execute('6LfVX04sAAAAAIrOgG0SXVhWQPhiAiudvTpqkUoY', {action: 'sidebar_submit'}).then(resolve);
+          window.grecaptcha.execute('6LfVX04sAAAAAIrOgG0SXVhWQPhiAiudvTpqkUoY', { action: 'sidebar_submit' })
+            .then(resolve)
+            .catch(reject);
         });
       });
 
-      console.log("Sidebar reCAPTCHA token:", token);
-      setIsSidebarSubmitted(true);
-      setSidebarForm({ name: '', email: '', message: '' });
+      // 2. Call our API
+      const response = await fetch('/api/contact', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ ...sidebarForm, service: 'Blog Strategy Session', token }),
+      });
+
+      if (response.ok) {
+        setIsSidebarSubmitted(true);
+        setSidebarForm({ name: '', email: '', message: '' });
+      } else {
+        const result = await response.json();
+        setError(result.error || 'Failed to send request.');
+      }
     } catch (err) {
-      console.error("Captcha error", err);
+      console.error("Captcha/API error", err);
+      setError("Network error occurred.");
     } finally {
       setIsSubmitting(false);
     }
@@ -185,6 +202,9 @@ const BlogDetail: React.FC = () => {
                           onChange={(e) => setSidebarForm({...sidebarForm, message: e.target.value})}
                           className="w-full bg-white/5 border border-white/10 rounded-xl px-4 py-3 text-sm focus:outline-none focus:border-blue-400 resize-none" 
                         ></textarea>
+                        
+                        {error && <p className="text-[10px] text-red-400 font-bold text-center mb-2">{error}</p>}
+                        
                         <button 
                           type="submit"
                           disabled={isSubmitting}

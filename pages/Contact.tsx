@@ -69,37 +69,48 @@ const Contact: React.FC = () => {
     e.preventDefault();
     if (validate()) {
       setIsSubmitting(true);
+      setErrors({});
       
       try {
-        // Execute reCAPTCHA v3
+        // 1. Get reCAPTCHA token
         // @ts-ignore
-        const token = await new Promise<string>((resolve) => {
+        const token = await new Promise<string>((resolve, reject) => {
           // @ts-ignore
           window.grecaptcha.ready(() => {
             // @ts-ignore
-            window.grecaptcha.execute('6LfVX04sAAAAAIrOgG0SXVhWQPhiAiudvTpqkUoY', {action: 'contact_submit'}).then(resolve);
+            window.grecaptcha.execute('6LfVX04sAAAAAIrOgG0SXVhWQPhiAiudvTpqkUoY', { action: 'contact_submit' })
+              .then(resolve)
+              .catch(reject);
           });
         });
 
-        console.log("reCAPTCHA token generated:", token);
-        console.log("Form submission notification sent to Projects@hexatrue.com", { ...formState, captchaToken: token });
-        
-        setIsSubmitted(true);
-        
-        setFormState({
-          firstName: '',
-          lastName: '',
-          email: '',
-          country: '',
-          phone: '',
-          company: '',
-          service: '',
-          message: ''
+        // 2. Send to our internal API
+        const response = await fetch('/api/contact', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ ...formState, token }),
         });
-        setErrors({});
+
+        const result = await response.json();
+
+        if (response.ok) {
+          setIsSubmitted(true);
+          setFormState({
+            firstName: '',
+            lastName: '',
+            email: '',
+            country: '',
+            phone: '',
+            company: '',
+            service: '',
+            message: ''
+          });
+        } else {
+          setErrors({ general: result.error || 'Failed to send inquiry. Please try again.' });
+        }
       } catch (err) {
-        console.error("Captcha error", err);
-        setErrors({ general: "There was an error verifying your submission. Please try again." });
+        console.error("Submission error", err);
+        setErrors({ general: "A network error occurred. Please check your connection." });
       } finally {
         setIsSubmitting(false);
       }
@@ -132,7 +143,7 @@ const Contact: React.FC = () => {
                 </div>
                 <div className="flex gap-6 group">
                    <div className="w-12 h-12 bg-blue-50 text-blue-600 rounded-xl flex items-center justify-center flex-shrink-0 group-hover:bg-blue-600 group-hover:text-white transition-all duration-300">
-                     <svg xmlns="http://www.w3.org/2000/svg" className="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" /></svg>
+                     <svg xmlns="http://www.w3.org/2000/svg" className="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2-2v10a2 2 0 002 2z" /></svg>
                    </div>
                    <div>
                      <p className="font-bold text-slate-900">Email Us</p>

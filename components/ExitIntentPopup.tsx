@@ -36,23 +36,37 @@ const ExitIntentPopup: React.FC<ExitIntentPopupProps> = ({ onClose }) => {
     e.preventDefault();
     if (validate()) {
       setIsSubmitting(true);
+      setErrors({});
+      
       try {
-        // Execute reCAPTCHA v3
+        // 1. Get reCAPTCHA token
         // @ts-ignore
-        const token = await new Promise<string>((resolve) => {
+        const token = await new Promise<string>((resolve, reject) => {
           // @ts-ignore
           window.grecaptcha.ready(() => {
             // @ts-ignore
-            window.grecaptcha.execute('6LfVX04sAAAAAIrOgG0SXVhWQPhiAiudvTpqkUoY', {action: 'exit_intent_submit'}).then(resolve);
+            window.grecaptcha.execute('6LfVX04sAAAAAIrOgG0SXVhWQPhiAiudvTpqkUoY', { action: 'exit_intent_submit' })
+              .then(resolve)
+              .catch(reject);
           });
         });
 
-        console.log('Exit-Intent reCAPTCHA Token:', token);
-        console.log('Exit-Intent Form Submitted:', formState);
-        
-        setIsSuccess(true);
+        // 2. Post to API
+        const response = await fetch('/api/contact', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ ...formState, token }),
+        });
+
+        if (response.ok) {
+          setIsSuccess(true);
+        } else {
+          const result = await response.json();
+          setErrors({ general: result.error || 'Submission failed. Please try again.' });
+        }
       } catch (err) {
-        console.error("Captcha error", err);
+        console.error("Captcha/API error", err);
+        setErrors({ general: "A technical error occurred." });
       } finally {
         setIsSubmitting(false);
       }
@@ -177,6 +191,7 @@ const ExitIntentPopup: React.FC<ExitIntentPopupProps> = ({ onClose }) => {
                 >
                   {isSubmitting ? 'Verifying...' : 'Get Free Strategy'}
                 </button>
+                {errors.general && <p className="text-[10px] text-red-500 font-bold mt-2 text-center">{errors.general}</p>}
                 <button
                   type="button"
                   onClick={onClose}
