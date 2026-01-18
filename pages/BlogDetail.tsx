@@ -33,23 +33,11 @@ const BlogDetail: React.FC = () => {
     setError(null);
 
     try {
-      // 1. Execute reCAPTCHA v3
-      // @ts-ignore
-      const token = await new Promise<string>((resolve, reject) => {
-        // @ts-ignore
-        window.grecaptcha.ready(() => {
-          // @ts-ignore
-          window.grecaptcha.execute('6LfVX04sAAAAAIrOgG0SXVhWQPhiAiudvTpqkUoY', { action: 'sidebar_submit' })
-            .then(resolve)
-            .catch(reject);
-        });
-      });
-
-      // 2. Call our API
+      // 1. Call our API directly
       const response = await fetch('/api/contact', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ ...sidebarForm, service: 'Blog Strategy Session', token }),
+        body: JSON.stringify({ ...sidebarForm, service: 'Blog Strategy Session' }),
       });
 
       if (response.ok) {
@@ -60,7 +48,7 @@ const BlogDetail: React.FC = () => {
         setError(result.error || 'Failed to send request.');
       }
     } catch (err) {
-      console.error("Captcha/API error", err);
+      console.error("API error", err);
       setError("Network error occurred.");
     } finally {
       setIsSubmitting(false);
@@ -212,7 +200,6 @@ const BlogDetail: React.FC = () => {
                         >
                           {isSubmitting ? 'Processing...' : 'Book a Consultation'}
                         </button>
-                        <p className="text-[10px] text-slate-500 text-center mt-2 uppercase tracking-widest">Protected by reCAPTCHA</p>
                       </form>
                     </>
                   )}

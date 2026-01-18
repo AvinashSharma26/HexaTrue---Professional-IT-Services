@@ -72,23 +72,11 @@ const Contact: React.FC = () => {
       setErrors({});
       
       try {
-        // 1. Get reCAPTCHA token
-        // @ts-ignore
-        const token = await new Promise<string>((resolve, reject) => {
-          // @ts-ignore
-          window.grecaptcha.ready(() => {
-            // @ts-ignore
-            window.grecaptcha.execute('6LfVX04sAAAAAIrOgG0SXVhWQPhiAiudvTpqkUoY', { action: 'contact_submit' })
-              .then(resolve)
-              .catch(reject);
-          });
-        });
-
-        // 2. Send to our internal API
+        // 1. Send directly to our internal API
         const response = await fetch('/api/contact', {
           method: 'POST',
           headers: { 'Content-Type': 'application/json' },
-          body: JSON.stringify({ ...formState, token }),
+          body: JSON.stringify(formState),
         });
 
         const result = await response.json();
@@ -143,7 +131,7 @@ const Contact: React.FC = () => {
                 </div>
                 <div className="flex gap-6 group">
                    <div className="w-12 h-12 bg-blue-50 text-blue-600 rounded-xl flex items-center justify-center flex-shrink-0 group-hover:bg-blue-600 group-hover:text-white transition-all duration-300">
-                     <svg xmlns="http://www.w3.org/2000/svg" className="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2-2v10a2 2 0 002 2z" /></svg>
+                     <svg xmlns="http://www.w3.org/2000/svg" className="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" /></svg>
                    </div>
                    <div>
                      <p className="font-bold text-slate-900">Email Us</p>
@@ -313,9 +301,6 @@ const Contact: React.FC = () => {
                     {isSubmitting ? 'Processing...' : 'Send Inquiry'}
                     <svg xmlns="http://www.w3.org/2000/svg" className="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2.5} d="M14 5l7 7m0 0l-7 7m7-7H3" /></svg>
                   </button>
-                  <p className="text-[10px] text-slate-400 text-center mt-4 font-bold uppercase tracking-widest">
-                    Protected by Google reCAPTCHA
-                  </p>
                 </div>
               </form>
             )}

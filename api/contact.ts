@@ -4,37 +4,10 @@ export default async function handler(req: any, res: any) {
     return res.status(405).json({ error: 'Method not allowed' });
   }
 
-  const { token, ...formData } = req.body;
-
-  if (!token) {
-    return res.status(400).json({ error: 'Security token is missing' });
-  }
+  const formData = req.body;
 
   try {
-    // 1. Verify reCAPTCHA v3
-    const recaptchaSecret = process.env.RECAPTCHA_SECRET_KEY || '6LfVX04sAAAAAAXrcPg3qRqjHGEj-uIS1d7Ed7ka';
-    const verifyUrl = `https://www.google.com/recaptcha/api/siteverify`;
-    
-    const recaptchaRes = await fetch(verifyUrl, {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
-      body: new URLSearchParams({
-        secret: recaptchaSecret,
-        response: token
-      }),
-    });
-    
-    const recaptchaJson = await recaptchaRes.json();
-
-    // Check success status from Google
-    if (!recaptchaJson.success) {
-      console.error('reCAPTCHA verification failed:', recaptchaJson['error-codes']);
-      return res.status(403).json({ error: 'Security verification failed. Please refresh and try again.' });
-    }
-
-    console.log(`Verified submission with reCAPTCHA score: ${recaptchaJson.score}`);
-
-    // 2. Authenticate with Microsoft Graph (Client Credentials Flow)
+    // 1. Authenticate with Microsoft Graph (Client Credentials Flow)
     const tenantId = process.env.MICROSOFT_TENANT_ID;
     const clientId = process.env.MICROSOFT_CLIENT_ID;
     const clientSecret = process.env.MICROSOFT_CLIENT_SECRET;
@@ -68,7 +41,7 @@ export default async function handler(req: any, res: any) {
 
     const access_token = tokenData.access_token;
 
-    // 3. Send Email via Microsoft Graph
+    // 2. Send Email via Microsoft Graph
     const emailBody = {
       message: {
         subject: `New Lead: ${formData.service || 'General Inquiry'} - HexaTrue.com`,
@@ -89,7 +62,7 @@ export default async function handler(req: any, res: any) {
                 <p style="background: #f8fafc; padding: 15px; border-radius: 8px;">${formData.message || formData.requirement || 'No additional details provided.'}</p>
               </div>
               <hr style="margin-top: 30px; border: 0; border-top: 1px solid #eee;" />
-              <p style="font-size: 11px; color: #999;">Verified via Google reCAPTCHA v3 (Score: ${recaptchaJson.score})</p>
+              <p style="font-size: 11px; color: #999;">Sent via HexaTrue.com secure API</p>
             </div>
           `,
         },

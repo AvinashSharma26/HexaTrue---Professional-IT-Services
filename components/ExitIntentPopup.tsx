@@ -39,23 +39,11 @@ const ExitIntentPopup: React.FC<ExitIntentPopupProps> = ({ onClose }) => {
       setErrors({});
       
       try {
-        // 1. Get reCAPTCHA token
-        // @ts-ignore
-        const token = await new Promise<string>((resolve, reject) => {
-          // @ts-ignore
-          window.grecaptcha.ready(() => {
-            // @ts-ignore
-            window.grecaptcha.execute('6LfVX04sAAAAAIrOgG0SXVhWQPhiAiudvTpqkUoY', { action: 'exit_intent_submit' })
-              .then(resolve)
-              .catch(reject);
-          });
-        });
-
-        // 2. Post to API
+        // 1. Post directly to API
         const response = await fetch('/api/contact', {
           method: 'POST',
           headers: { 'Content-Type': 'application/json' },
-          body: JSON.stringify({ ...formState, token }),
+          body: JSON.stringify(formState),
         });
 
         if (response.ok) {
@@ -65,7 +53,7 @@ const ExitIntentPopup: React.FC<ExitIntentPopupProps> = ({ onClose }) => {
           setErrors({ general: result.error || 'Submission failed. Please try again.' });
         }
       } catch (err) {
-        console.error("Captcha/API error", err);
+        console.error("API error", err);
         setErrors({ general: "A technical error occurred." });
       } finally {
         setIsSubmitting(false);
@@ -189,7 +177,7 @@ const ExitIntentPopup: React.FC<ExitIntentPopupProps> = ({ onClose }) => {
                   disabled={isSubmitting}
                   className="w-full bg-blue-600 text-white px-6 py-3.5 rounded-xl font-black text-sm shadow-xl shadow-blue-100 hover:bg-blue-700 hover:shadow-2xl hover:-translate-y-0.5 active:translate-y-0 transition-all uppercase tracking-widest disabled:opacity-50"
                 >
-                  {isSubmitting ? 'Verifying...' : 'Get Free Strategy'}
+                  {isSubmitting ? 'Processing...' : 'Get Free Strategy'}
                 </button>
                 {errors.general && <p className="text-[10px] text-red-500 font-bold mt-2 text-center">{errors.general}</p>}
                 <button
@@ -200,7 +188,6 @@ const ExitIntentPopup: React.FC<ExitIntentPopupProps> = ({ onClose }) => {
                   Dismiss
                 </button>
               </div>
-              <p className="text-[9px] text-slate-400 text-center uppercase tracking-tighter">Protected by reCAPTCHA</p>
             </form>
           </>
         )}
