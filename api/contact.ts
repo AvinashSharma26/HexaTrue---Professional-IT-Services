@@ -1,8 +1,3 @@
-
-export const config = {
-  runtime: 'nodejs',
-};
-
 export default async function handler(req: any, res: any) {
   // Only allow POST requests
   if (req.method !== 'POST') {
@@ -17,7 +12,6 @@ export default async function handler(req: any, res: any) {
 
   try {
     // 1. Verify reCAPTCHA v3
-    // Using the provided secret key
     const recaptchaSecret = process.env.RECAPTCHA_SECRET_KEY || '6LfVX04sAAAAAAXrcPg3qRqjHGEj-uIS1d7Ed7ka';
     const verifyUrl = `https://www.google.com/recaptcha/api/siteverify`;
     
@@ -32,8 +26,7 @@ export default async function handler(req: any, res: any) {
     
     const recaptchaJson = await recaptchaRes.json();
 
-    // Simplify check: As long as reCAPTCHA reports success, we proceed. 
-    // We log the score for debugging but don't block based on it initially.
+    // Check success status from Google
     if (!recaptchaJson.success) {
       console.error('reCAPTCHA verification failed:', recaptchaJson['error-codes']);
       return res.status(403).json({ error: 'Security verification failed. Please refresh and try again.' });
@@ -47,7 +40,7 @@ export default async function handler(req: any, res: any) {
     const clientSecret = process.env.MICROSOFT_CLIENT_SECRET;
     const senderEmail = process.env.MICROSOFT_SENDER_EMAIL || 'Projects@hexatrue.com';
 
-    // If API keys aren't configured in Vercel environment yet, log and return success for testing UI
+    // If API keys aren't configured, return success simulation for UI testing
     if (!tenantId || !clientId || !clientSecret) {
       console.warn('Microsoft Graph credentials not configured. Lead data:', formData);
       return res.status(200).json({ 
