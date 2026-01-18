@@ -37,7 +37,11 @@ const BlogDetail: React.FC = () => {
       const response = await fetch('/api/contact', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ ...sidebarForm, service: 'Blog Strategy Session' }),
+        body: JSON.stringify({
+          ...sidebarForm,
+          service: 'Blog Strategy Session',
+          sourceUrl: window.location.href
+        }),
       });
 
       if (response.ok) {
