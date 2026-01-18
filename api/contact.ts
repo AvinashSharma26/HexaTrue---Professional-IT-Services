@@ -4,6 +4,7 @@ export const config = {
 };
 
 export default async function handler(req: any, res: any) {
+  // Only allow POST requests
   if (req.method !== 'POST') {
     return res.status(405).json({ error: 'Method not allowed' });
   }
@@ -11,20 +12,34 @@ export default async function handler(req: any, res: any) {
   const { token, ...formData } = req.body;
 
   if (!token) {
-    return res.status(400).json({ error: 'reCAPTCHA token is missing' });
+    return res.status(400).json({ error: 'Security token is missing' });
   }
 
   try {
     // 1. Verify reCAPTCHA v3
+    // Using the provided secret key
     const recaptchaSecret = process.env.RECAPTCHA_SECRET_KEY || '6LfVX04sAAAAAAXrcPg3qRqjHGEj-uIS1d7Ed7ka';
-    const verifyUrl = `https://www.google.com/recaptcha/api/siteverify?secret=${recaptchaSecret}&response=${token}`;
+    const verifyUrl = `https://www.google.com/recaptcha/api/siteverify`;
     
-    const recaptchaRes = await fetch(verifyUrl, { method: 'POST' });
+    const recaptchaRes = await fetch(verifyUrl, {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
+      body: new URLSearchParams({
+        secret: recaptchaSecret,
+        response: token
+      }),
+    });
+    
     const recaptchaJson = await recaptchaRes.json();
 
-    if (!recaptchaJson.success || recaptchaJson.score < 0.5) {
-      return res.status(403).json({ error: 'Security verification failed. Please try again.' });
+    // Simplify check: As long as reCAPTCHA reports success, we proceed. 
+    // We log the score for debugging but don't block based on it initially.
+    if (!recaptchaJson.success) {
+      console.error('reCAPTCHA verification failed:', recaptchaJson['error-codes']);
+      return res.status(403).json({ error: 'Security verification failed. Please refresh and try again.' });
     }
+
+    console.log(`Verified submission with reCAPTCHA score: ${recaptchaJson.score}`);
 
     // 2. Authenticate with Microsoft Graph (Client Credentials Flow)
     const tenantId = process.env.MICROSOFT_TENANT_ID;
@@ -32,13 +47,16 @@ export default async function handler(req: any, res: any) {
     const clientSecret = process.env.MICROSOFT_CLIENT_SECRET;
     const senderEmail = process.env.MICROSOFT_SENDER_EMAIL || 'Projects@hexatrue.com';
 
+    // If API keys aren't configured in Vercel environment yet, log and return success for testing UI
     if (!tenantId || !clientId || !clientSecret) {
-      console.error('Missing Microsoft API environment variables');
-      // Falling back to logging for development if variables aren't set yet
-      console.log('Lead Data:', formData);
-      return res.status(200).json({ success: true, message: 'Lead captured (Simulated)' });
+      console.warn('Microsoft Graph credentials not configured. Lead data:', formData);
+      return res.status(200).json({ 
+        success: true, 
+        message: 'Submission received (Simulation Mode: Please configure environment variables in Vercel).' 
+      });
     }
 
+    // Get Access Token
     const tokenResponse = await fetch(`https://login.microsoftonline.com/${tenantId}/oauth2/v2.0/token`, {
       method: 'POST',
       headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
@@ -50,23 +68,36 @@ export default async function handler(req: any, res: any) {
       }),
     });
 
-    const { access_token } = await tokenResponse.json();
+    const tokenData = await tokenResponse.json();
+    if (!tokenData.access_token) {
+      throw new Error('Failed to obtain Microsoft Graph access token');
+    }
+
+    const access_token = tokenData.access_token;
 
     // 3. Send Email via Microsoft Graph
     const emailBody = {
       message: {
-        subject: `New Lead: ${formData.service || 'Inquiry'} from ${formData.firstName || formData.name}`,
+        subject: `New Lead: ${formData.service || 'General Inquiry'} - HexaTrue.com`,
         body: {
           contentType: 'HTML',
           content: `
-            <h3>New Contact Form Submission</h3>
-            <p><strong>Name:</strong> ${formData.firstName || ''} ${formData.lastName || ''} ${formData.name || ''}</p>
-            <p><strong>Email:</strong> ${formData.email}</p>
-            <p><strong>Company:</strong> ${formData.company || 'N/A'}</p>
-            <p><strong>Service:</strong> ${formData.service || 'N/A'}</p>
-            <p><strong>Message/Requirement:</strong> ${formData.message || formData.requirement || 'No message provided'}</p>
-            <hr />
-            <p><em>This inquiry was verified by Google reCAPTCHA v3.</em></p>
+            <div style="font-family: sans-serif; padding: 20px; color: #333;">
+              <h2 style="color: #2563eb;">New Contact Form Submission</h2>
+              <table style="width: 100%; border-collapse: collapse;">
+                <tr><td style="padding: 8px; border-bottom: 1px solid #eee;"><strong>Name:</strong></td><td style="padding: 8px; border-bottom: 1px solid #eee;">${formData.firstName || formData.name || ''} ${formData.lastName || ''}</td></tr>
+                <tr><td style="padding: 8px; border-bottom: 1px solid #eee;"><strong>Email:</strong></td><td style="padding: 8px; border-bottom: 1px solid #eee;">${formData.email}</td></tr>
+                <tr><td style="padding: 8px; border-bottom: 1px solid #eee;"><strong>Phone:</strong></td><td style="padding: 8px; border-bottom: 1px solid #eee;">${formData.phone || 'N/A'}</td></tr>
+                <tr><td style="padding: 8px; border-bottom: 1px solid #eee;"><strong>Company:</strong></td><td style="padding: 8px; border-bottom: 1px solid #eee;">${formData.company || 'N/A'}</td></tr>
+                <tr><td style="padding: 8px; border-bottom: 1px solid #eee;"><strong>Service:</strong></td><td style="padding: 8px; border-bottom: 1px solid #eee;">${formData.service || 'N/A'}</td></tr>
+              </table>
+              <div style="margin-top: 20px;">
+                <strong>Message / Requirement:</strong>
+                <p style="background: #f8fafc; padding: 15px; border-radius: 8px;">${formData.message || formData.requirement || 'No additional details provided.'}</p>
+              </div>
+              <hr style="margin-top: 30px; border: 0; border-top: 1px solid #eee;" />
+              <p style="font-size: 11px; color: #999;">Verified via Google reCAPTCHA v3 (Score: ${recaptchaJson.score})</p>
+            </div>
           `,
         },
         toRecipients: [
@@ -86,13 +117,13 @@ export default async function handler(req: any, res: any) {
 
     if (!sendMailRes.ok) {
       const errorData = await sendMailRes.json();
-      console.error('Microsoft Graph Error:', errorData);
-      throw new Error('Failed to send email via Microsoft Graph');
+      console.error('Microsoft Graph API Error:', errorData);
+      throw new Error('Could not dispatch email through Microsoft 365');
     }
 
     return res.status(200).json({ success: true });
-  } catch (error) {
-    console.error('API Error:', error);
-    return res.status(500).json({ error: 'Internal server error. Please try again later.' });
+  } catch (error: any) {
+    console.error('Submission processing error:', error);
+    return res.status(500).json({ error: 'We encountered an internal error. Please try again later.' });
   }
 }
