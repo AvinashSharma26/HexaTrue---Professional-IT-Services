@@ -51,6 +51,28 @@ export default async function handler(req: any, res: any) {
     const accessToken = tokenData.access_token;
 
     // =====================================================
+    // 🔁 COMMON SEND MAIL FUNCTION (IMPORTANT FIX)
+    // =====================================================
+    const sendMail = async (mailBody: any) => {
+      const response = await fetch(
+        `https://graph.microsoft.com/v1.0/users/${senderUserId}/sendMail`,
+        {
+          method: 'POST',
+          headers: {
+            Authorization: `Bearer ${accessToken}`,
+            'Content-Type': 'application/json',
+          },
+          body: JSON.stringify(mailBody),
+        }
+      );
+
+      // ❌ DO NOT read response body (Graph may return empty 204)
+      if (!response.ok) {
+        throw new Error(`Graph sendMail failed: ${response.status}`);
+      }
+    };
+
+    // =====================================================
     // 1️⃣ ADMIN LEAD EMAIL
     // =====================================================
     const adminMail = {
@@ -95,25 +117,10 @@ export default async function handler(req: any, res: any) {
           },
         ],
       },
+      saveToSentItems: true, // ✅ REQUIRED
     };
 
-    const adminRes = await fetch(
-      `https://graph.microsoft.com/v1.0/users/${senderUserId}/sendMail`,
-      {
-        method: 'POST',
-        headers: {
-          Authorization: `Bearer ${accessToken}`,
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify(adminMail),
-      }
-    );
-
-    if (!adminRes.ok) {
-      const err = await adminRes.text();
-      console.error('Admin mail error:', err);
-      throw new Error('Admin email failed');
-    }
+    await sendMail(adminMail);
 
     // =====================================================
     // 2️⃣ USER AUTO-REPLY EMAIL
@@ -149,24 +156,14 @@ export default async function handler(req: any, res: any) {
           },
         ],
       },
+      saveToSentItems: true, // ✅ REQUIRED
     };
 
-    const userRes = await fetch(
-      `https://graph.microsoft.com/v1.0/users/${senderUserId}/sendMail`,
-      {
-        method: 'POST',
-        headers: {
-          Authorization: `Bearer ${accessToken}`,
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify(userMail),
-      }
-    );
-
-    if (!userRes.ok) {
-      const err = await userRes.text();
-      console.error('Auto-reply error:', err);
-      // ❌ Do NOT fail request if auto-reply fails
+    try {
+      await sendMail(userMail);
+    } catch (err) {
+      // ❌ Auto-reply fail hone par main request fail nahi hogi
+      console.error('Auto-reply failed:', err);
     }
 
     return res.status(200).json({
