@@ -11,7 +11,7 @@ export default async function handler(req: any, res: any) {
     const tenantId = process.env.MICROSOFT_TENANT_ID;
     const clientId = process.env.MICROSOFT_CLIENT_ID;
     const clientSecret = process.env.MICROSOFT_CLIENT_SECRET;
-    const senderEmail = process.env.MICROSOFT_SENDER_EMAIL || 'Projects@hexatrue.com';
+    const senderEmail = process.env.MICROSOFT_SENDER_EMAIL || 'projects@hexatrue.com';
 
     // If API keys aren't configured, return success simulation for UI testing
     if (!tenantId || !clientId || !clientSecret) {
