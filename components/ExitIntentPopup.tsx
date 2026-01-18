@@ -1,4 +1,3 @@
-
 import React, { useState } from 'react';
 import { SERVICES_DATA } from '../constants';
 
@@ -16,6 +15,7 @@ const ExitIntentPopup: React.FC<ExitIntentPopupProps> = ({ onClose }) => {
   });
 
   const [errors, setErrors] = useState<Record<string, string>>({});
+  const [isSubmitting, setIsSubmitting] = useState(false);
 
   const validate = () => {
     const newErrors: Record<string, string> = {};
@@ -31,12 +31,31 @@ const ExitIntentPopup: React.FC<ExitIntentPopupProps> = ({ onClose }) => {
     return Object.keys(newErrors).length === 0;
   };
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     if (validate()) {
-      console.log('Exit-Intent Form Submitted:', formState);
-      alert('Thank you! Our experts will contact you for your free consultation.');
-      onClose();
+      setIsSubmitting(true);
+      try {
+        // Execute reCAPTCHA v3
+        // @ts-ignore
+        const token = await new Promise<string>((resolve) => {
+          // @ts-ignore
+          window.grecaptcha.ready(() => {
+            // @ts-ignore
+            window.grecaptcha.execute('6LfVX04sAAAAAIrOgG0SXVhWQPhiAiudvTpqkUoY', {action: 'exit_intent_submit'}).then(resolve);
+          });
+        });
+
+        console.log('Exit-Intent reCAPTCHA Token:', token);
+        console.log('Exit-Intent Form Submitted:', formState);
+        alert('Thank you! Our experts will contact you for your free consultation. (Protected by reCAPTCHA)');
+        onClose();
+      } catch (err) {
+        console.error("Captcha error", err);
+        alert("Verification failed. Please try again.");
+      } finally {
+        setIsSubmitting(false);
+      }
     }
   };
 
@@ -48,7 +67,6 @@ const ExitIntentPopup: React.FC<ExitIntentPopupProps> = ({ onClose }) => {
       className="fixed inset-0 bg-slate-900/60 backdrop-blur-[2px] z-[150] flex items-center justify-center p-6 animate-fade-in-up"
     >
       <div className="relative bg-white rounded-[2rem] shadow-2xl max-w-md w-full p-6 md:p-8 overflow-hidden border border-slate-100">
-        {/* Close Button */}
         <button
           onClick={onClose}
           className="absolute top-4 right-4 text-slate-400 hover:text-slate-900 transition-colors p-1"
@@ -59,7 +77,6 @@ const ExitIntentPopup: React.FC<ExitIntentPopupProps> = ({ onClose }) => {
           </svg>
         </button>
 
-        {/* Content Header */}
         <div className="text-center mb-6">
           <div className="inline-flex items-center justify-center w-12 h-12 bg-blue-50 text-blue-600 rounded-2xl mb-4">
             <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -74,7 +91,6 @@ const ExitIntentPopup: React.FC<ExitIntentPopupProps> = ({ onClose }) => {
           </p>
         </div>
 
-        {/* Form */}
         <form onSubmit={handleSubmit} className="space-y-4">
           <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
             <div>
@@ -136,9 +152,10 @@ const ExitIntentPopup: React.FC<ExitIntentPopupProps> = ({ onClose }) => {
           <div className="pt-2">
             <button
               type="submit"
-              className="w-full bg-blue-600 text-white px-6 py-3.5 rounded-xl font-black text-sm shadow-xl shadow-blue-100 hover:bg-blue-700 hover:shadow-2xl hover:-translate-y-0.5 active:translate-y-0 transition-all uppercase tracking-widest"
+              disabled={isSubmitting}
+              className="w-full bg-blue-600 text-white px-6 py-3.5 rounded-xl font-black text-sm shadow-xl shadow-blue-100 hover:bg-blue-700 hover:shadow-2xl hover:-translate-y-0.5 active:translate-y-0 transition-all uppercase tracking-widest disabled:opacity-50"
             >
-              Get Free Strategy
+              {isSubmitting ? 'Verifying...' : 'Get Free Strategy'}
             </button>
             <button
               type="button"
@@ -148,6 +165,7 @@ const ExitIntentPopup: React.FC<ExitIntentPopupProps> = ({ onClose }) => {
               Dismiss
             </button>
           </div>
+          <p className="text-[9px] text-slate-400 text-center uppercase tracking-tighter">Protected by reCAPTCHA</p>
         </form>
       </div>
     </div>

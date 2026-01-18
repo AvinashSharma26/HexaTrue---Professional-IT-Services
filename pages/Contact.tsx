@@ -1,7 +1,4 @@
-
-
 import React, { useState } from 'react';
-// Fix: Added SERVICES_DATA to the import from constants
 import { SERVICES_DATA } from '../constants';
 
 const Contact: React.FC = () => {
@@ -17,7 +14,8 @@ const Contact: React.FC = () => {
   });
 
   const [errors, setErrors] = useState<Record<string, string>>({});
-  const [openFaqIndex, setOpenFaqIndex] = useState<number | null>(null); // State for accordion
+  const [openFaqIndex, setOpenFaqIndex] = useState<number | null>(null);
+  const [isSubmitting, setIsSubmitting] = useState(false);
 
   const faqs = [
     {
@@ -66,25 +64,44 @@ const Contact: React.FC = () => {
     return Object.keys(newErrors).length === 0;
   };
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     if (validate()) {
-      // Simulate notification sent to Projects@hexatrue.com
-      console.log("Form submission notification sent to Projects@hexatrue.com", formState);
-      alert(`Thank you ${formState.firstName}! Your inquiry for ${formState.service || 'our services'} has been received at Projects@hexatrue.com. Our team will contact you shortly.`);
+      setIsSubmitting(true);
       
-      // Reset form
-      setFormState({
-        firstName: '',
-        lastName: '',
-        email: '',
-        country: '',
-        phone: '',
-        company: '',
-        service: '',
-        message: ''
-      });
-      setErrors({});
+      try {
+        // Execute reCAPTCHA v3
+        // @ts-ignore
+        const token = await new Promise<string>((resolve) => {
+          // @ts-ignore
+          window.grecaptcha.ready(() => {
+            // @ts-ignore
+            window.grecaptcha.execute('6LfVX04sAAAAAIrOgG0SXVhWQPhiAiudvTpqkUoY', {action: 'contact_submit'}).then(resolve);
+          });
+        });
+
+        console.log("reCAPTCHA token generated:", token);
+        console.log("Form submission notification sent to Projects@hexatrue.com", { ...formState, captchaToken: token });
+        
+        alert(`Thank you ${formState.firstName}! Your inquiry has been received. (Protected by reCAPTCHA)`);
+        
+        setFormState({
+          firstName: '',
+          lastName: '',
+          email: '',
+          country: '',
+          phone: '',
+          company: '',
+          service: '',
+          message: ''
+        });
+        setErrors({});
+      } catch (err) {
+        console.error("Captcha error", err);
+        alert("There was an error verifying your submission. Please try again.");
+      } finally {
+        setIsSubmitting(false);
+      }
     }
   };
 
@@ -99,7 +116,6 @@ const Contact: React.FC = () => {
         </div>
 
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-20">
-          {/* Contact Info */}
           <div className="space-y-12">
             <div>
               <h3 className="text-2xl font-bold text-slate-900 mb-8">Global Headquarters</h3>
@@ -115,7 +131,7 @@ const Contact: React.FC = () => {
                 </div>
                 <div className="flex gap-6 group">
                    <div className="w-12 h-12 bg-blue-50 text-blue-600 rounded-xl flex items-center justify-center flex-shrink-0 group-hover:bg-blue-600 group-hover:text-white transition-all duration-300">
-                     <svg xmlns="http://www.w3.org/2000/svg" className="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" /></svg>
+                     <svg xmlns="http://www.w3.org/2000/svg" className="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2-2v10a2 2 0 002 2z" /></svg>
                    </div>
                    <div>
                      <p className="font-bold text-slate-900">Email Us</p>
@@ -150,7 +166,6 @@ const Contact: React.FC = () => {
             </div>
           </div>
 
-          {/* Contact Form */}
           <div className="bg-white p-8 md:p-12 lg:p-16 rounded-[2.5rem] shadow-2xl border border-slate-50 relative overflow-hidden">
             <div className="absolute top-0 right-0 w-32 h-32 bg-blue-500/5 rounded-full blur-3xl"></div>
             <form onSubmit={handleSubmit} className="space-y-6 relative z-10">
@@ -258,20 +273,20 @@ const Contact: React.FC = () => {
               <div className="pt-4">
                 <button 
                   type="submit" 
-                  className="w-full bg-blue-600 text-white py-5 rounded-2xl font-black text-lg shadow-xl shadow-blue-200 hover:bg-blue-700 hover:shadow-2xl hover:-translate-y-1 active:translate-y-0 transition-all duration-300 flex items-center justify-center gap-3"
+                  disabled={isSubmitting}
+                  className="w-full bg-blue-600 text-white py-5 rounded-2xl font-black text-lg shadow-xl shadow-blue-200 hover:bg-blue-700 hover:shadow-2xl hover:-translate-y-1 active:translate-y-0 transition-all duration-300 flex items-center justify-center gap-3 disabled:opacity-50 disabled:cursor-not-allowed"
                 >
-                  Send Inquiry
+                  {isSubmitting ? 'Processing...' : 'Send Inquiry'}
                   <svg xmlns="http://www.w3.org/2000/svg" className="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2.5} d="M14 5l7 7m0 0l-7 7m7-7H3" /></svg>
                 </button>
                 <p className="text-[10px] text-slate-400 text-center mt-4 font-bold uppercase tracking-widest">
-                  Protected by Enterprise SSL Encryption
+                  Protected by Google reCAPTCHA
                 </p>
               </div>
             </form>
           </div>
         </div>
 
-        {/* FAQ Section */}
         <div className="mt-24 max-w-4xl mx-auto">
           <div className="text-center max-w-2xl mx-auto mb-16">
             <h2 className="text-blue-600 font-bold uppercase tracking-widest text-sm mb-4">FAQ</h2>

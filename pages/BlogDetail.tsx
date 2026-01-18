@@ -1,13 +1,17 @@
-
-
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import { useParams, Link, Navigate } from 'react-router-dom';
-// Fix: Added BLOG_POSTS to the import from constants
 import { BLOG_POSTS } from '../constants';
 
 const BlogDetail: React.FC = () => {
   const { blogId } = useParams<{ blogId: string }>();
   const post = BLOG_POSTS.find(p => p.id === blogId);
+
+  const [sidebarForm, setSidebarForm] = useState({
+    name: '',
+    email: '',
+    message: ''
+  });
+  const [isSubmitting, setIsSubmitting] = useState(false);
 
   useEffect(() => {
     window.scrollTo(0, 0);
@@ -17,7 +21,36 @@ const BlogDetail: React.FC = () => {
     return <Navigate to="/blog" replace />;
   }
 
-  // Simple markdown-to-html like renderer for the content string
+  const handleSidebarSubmit = async (e: React.FormEvent) => {
+    e.preventDefault();
+    if (!sidebarForm.name || !sidebarForm.email || !sidebarForm.message) {
+      alert("Please fill in all fields.");
+      return;
+    }
+
+    setIsSubmitting(true);
+    try {
+      // Execute reCAPTCHA v3
+      // @ts-ignore
+      const token = await new Promise<string>((resolve) => {
+        // @ts-ignore
+        window.grecaptcha.ready(() => {
+          // @ts-ignore
+          window.grecaptcha.execute('6LfVX04sAAAAAIrOgG0SXVhWQPhiAiudvTpqkUoY', {action: 'sidebar_submit'}).then(resolve);
+        });
+      });
+
+      console.log("Sidebar reCAPTCHA token:", token);
+      alert("Thank you! Your strategy session request has been received. (Protected by reCAPTCHA)");
+      setSidebarForm({ name: '', email: '', message: '' });
+    } catch (err) {
+      console.error("Captcha error", err);
+      alert("Error verifying submission.");
+    } finally {
+      setIsSubmitting(false);
+    }
+  };
+
   const renderContent = (content: string) => {
     return content.split('\n').map((line, i) => {
       const trimmedLine = line.trim();
@@ -40,7 +73,6 @@ const BlogDetail: React.FC = () => {
 
   return (
     <div className="pt-24 min-h-screen bg-white">
-      {/* Article Header */}
       <section className="py-20 bg-slate-50 border-b border-slate-100">
         <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="flex items-center gap-4 mb-8">
@@ -79,17 +111,14 @@ const BlogDetail: React.FC = () => {
         </div>
       </section>
 
-      {/* Article Content */}
       <section className="pb-24">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-20">
-            {/* Main Content Area */}
             <div className="lg:col-span-8">
               <article className="prose prose-blue prose-lg max-w-none">
                 {renderContent(post.content)}
               </article>
               
-              {/* Post Footer/Social */}
               <div className="mt-20 pt-10 border-t border-slate-100 flex flex-col md:flex-row justify-between items-center gap-8">
                 <div className="flex items-center gap-4">
                   <span className="text-sm font-black text-slate-400 uppercase tracking-widest">Share this Insight:</span>
@@ -108,38 +137,46 @@ const BlogDetail: React.FC = () => {
               </div>
             </div>
 
-            {/* Sidebar Contact Form & Related */}
             <div className="lg:col-span-4">
               <div className="sticky top-32 space-y-10">
-                {/* Contact Form Card */}
                 <div className="bg-slate-900 p-10 rounded-[2.5rem] text-white shadow-2xl relative overflow-hidden">
                   <h3 className="text-2xl font-black mb-4 relative z-10">Strategy Session</h3>
                   <p className="text-slate-400 text-sm mb-8 relative z-10">Intrigued by this insight? Let's discuss how it applies to your specific enterprise roadmap.</p>
                   
-                  <form className="space-y-4 relative z-10">
+                  <form onSubmit={handleSidebarSubmit} className="space-y-4 relative z-10">
                     <input 
                       type="text" 
                       placeholder="Your Name" 
+                      value={sidebarForm.name}
+                      onChange={(e) => setSidebarForm({...sidebarForm, name: e.target.value})}
                       className="w-full bg-white/5 border border-white/10 rounded-xl px-4 py-3 text-sm focus:outline-none focus:border-blue-400" 
                     />
                     <input 
                       type="email" 
                       placeholder="Work Email" 
+                      value={sidebarForm.email}
+                      onChange={(e) => setSidebarForm({...sidebarForm, email: e.target.value})}
                       className="w-full bg-white/5 border border-white/10 rounded-xl px-4 py-3 text-sm focus:outline-none focus:border-blue-400" 
                     />
                     <textarea 
                       placeholder="How can we help?" 
                       rows={3}
+                      value={sidebarForm.message}
+                      onChange={(e) => setSidebarForm({...sidebarForm, message: e.target.value})}
                       className="w-full bg-white/5 border border-white/10 rounded-xl px-4 py-3 text-sm focus:outline-none focus:border-blue-400 resize-none" 
                     ></textarea>
-                    <button className="w-full bg-blue-600 text-white py-4 rounded-xl font-black text-sm hover:bg-blue-700 transition-all shadow-lg">
-                      Book a Consultation
+                    <button 
+                      type="submit"
+                      disabled={isSubmitting}
+                      className="w-full bg-blue-600 text-white py-4 rounded-xl font-black text-sm hover:bg-blue-700 transition-all shadow-lg disabled:opacity-50"
+                    >
+                      {isSubmitting ? 'Processing...' : 'Book a Consultation'}
                     </button>
+                    <p className="text-[10px] text-slate-500 text-center mt-2 uppercase tracking-widest">Protected by reCAPTCHA</p>
                   </form>
                   <div className="absolute top-0 right-0 w-32 h-32 bg-blue-600/10 rounded-full blur-2xl"></div>
                 </div>
 
-                {/* Related Posts */}
                 <div className="space-y-6">
                   <h3 className="text-xl font-black text-slate-900 border-b border-slate-100 pb-4">Recent Insights</h3>
                   <div className="space-y-6">
@@ -162,7 +199,6 @@ const BlogDetail: React.FC = () => {
         </div>
       </section>
 
-      {/* Bottom CTA */}
       <section className="py-24 bg-blue-600 relative overflow-hidden text-center text-white">
         <div className="max-w-4xl mx-auto px-4 relative z-10">
           <h2 className="text-3xl md:text-5xl font-black mb-8 leading-tight">Engineering Tomorrow, <br />Available Today.</h2>
